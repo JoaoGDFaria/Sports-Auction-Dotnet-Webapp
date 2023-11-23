@@ -1,0 +1,79 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #f2f2f2;
+    font-family: 'Doppio One', sans-serif;
+}
+
+.buyLayout{
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.grid-info{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2%;
+    padding-top: 3%;
+    padding-bottom: 3%;
+    margin: 0;
+}
+
+#image-display{
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 10px;
+    border: 5px solid black;
+}
+
+#image{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.all-text{
+    overflow: hidden;
+    margin: 0;
+}
+
+.text{
+    margin: 0;
+}
+
+.text-variable{
+    background-color: #e3e3e3;
+    border-radius: 10px;
+    line-height: 2;
+}
+
+.grid-buy{
+    padding: 2%;
+    border: 2px solid black;
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2);
+    gap: 10px;
+}
+
+.info{
+    margin: 0;
+}
+
+.item{
+    text-align: left;
+}
+
+.input{
+    background-color: gray;
+}
+
+.grid-info2{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2%;
+    padding-bottom: 3%;
+}
