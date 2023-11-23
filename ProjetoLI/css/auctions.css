@@ -1,0 +1,17 @@
+body{
+    background-size: cover;
+    font-family: 'Doppio One', sans-serif;
+    width: 100%;
+}
+
+.cont{
+    background-color: #E2DED0;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.row{
+    margin-left: 1%;
+    margin-right: 1%;
+}
+
