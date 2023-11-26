@@ -13,7 +13,7 @@
 
 
 .field{
-  width: 33%;
+  width: 33.33%;
   float: Left;
 }
 
@@ -61,4 +61,6 @@ body{
   overflow-y: auto;
 }
 
-
+.al{
+  text-align: left;
+}
