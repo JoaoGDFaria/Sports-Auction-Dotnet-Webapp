@@ -27,17 +27,17 @@ body {
 }
 
 
-.itemInfos{
-    padding: 0; 
-    margin:0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.itemButton1{
+    background-color: green;
 } 
 
-.itemButton{
-    background-color: rgb(136, 136, 136);
+.itemButton2{
+    background-color: rgb(185, 126, 17);
 }
 
-
-
+.itemButton3{
+    background-color: red;
+}
+.corPreco{
+    color: red;
+}
