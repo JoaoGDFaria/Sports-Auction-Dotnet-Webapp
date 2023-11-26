@@ -78,3 +78,10 @@ body {
     gap: 2%;
     padding-bottom: 3%;
 }
+
+.you-won{
+    text-align: center;
+    color: green;
+    font-size: 24px;
+    margin: 20px 0;
+}

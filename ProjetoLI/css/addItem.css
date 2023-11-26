@@ -1,0 +1,64 @@
+.form-outline{
+  text-align: left;
+}
+
+.form-control{
+  background-color: rgb(120, 118, 118) !important;
+  border-color: black !important;
+}
+
+.form-control:focus{
+  box-shadow: none !important;
+}
+
+
+.field{
+  width: 33%;
+  float: Left;
+}
+
+.card{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+}
+
+.card-body {
+  font-size: 2vh;
+  background-color: rgb(175, 174, 174);
+}
+
+.aux{
+  background-image: #BCBCBC;
+  color: black;
+}
+
+body{
+  background: url("../images/background.png") fixed;
+  background-size: cover;
+  font-family: 'Doppio One', sans-serif;
+  overflow-x: auto;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+.buttons{
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 5%;
+  gap:2%;
+}
+
+.spacer {
+  margin-bottom: 15px;
+}
+
+.scrollable-dropdown-menu {
+  max-height: 100px; /* Set the max height to accommodate three items */
+  overflow-y: auto;
+}
+
+
