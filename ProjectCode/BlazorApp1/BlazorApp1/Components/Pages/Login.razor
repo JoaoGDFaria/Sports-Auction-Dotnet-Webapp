@@ -12,11 +12,11 @@
                 <h2 class="fw-bold mb-2 text-uppercase">LOG IN</h2>
                 <div class="form-outline form-white mb-4">
                     <label class="form-label" for="typeEmailX">EMAIL</label>
-                    <input type="email" id="typeEmailX" class="form-control form-control-lg input" />
+                    <input type="email" id="typeEmailX" class="form-control form-control-lg input" @bind="Email"/>
                 </div>
                 <div class="form-outline form-white mb-4">
                     <label class="form-label" for="typePasswordX">PASSWORD</label>
-                    <input type="password" id="typePasswordX" class="form-control form-control-lg input" />
+                    <input type="password" id="typePasswordX" class="form-control form-control-lg input" @bind="Password"/>
                 </div>
 
                 <div class="hyperlink">
@@ -25,7 +25,7 @@
                 </div>
                 <div class="button d-flex justify-content-between buttons">
                     <button type="button" class="btn btn-danger">EXIT</button>
-                    <button type="button" class="btn btn-success">SUBMIT</button>
+                    <button type="button" class="btn btn-success" @onclick="SubmitForm">SUBMIT</button>
                 </div>
             </div>
         </div>
@@ -36,10 +36,14 @@
 <link rel="stylesheet" href="css/login.css">
 
 @code {
-    private int currentCount = 0;
 
-    private void IncrementCount()
-    {
-        currentCount++;
+    private string Email {get; set;} = string.Empty;
+    private string Password {get; set;} = string.Empty;
+
+    private void SubmitForm(){
+
+        Console.WriteLine("Email: " + Email);
+        Console.WriteLine("Password: " + Password);
+
     }
 }
