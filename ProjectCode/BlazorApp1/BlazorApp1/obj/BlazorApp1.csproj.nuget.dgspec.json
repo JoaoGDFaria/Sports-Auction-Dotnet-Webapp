@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\BlazorApp1.csproj": {}
+    "C:\\Users\\CodeMaster\\source\\repos\\LI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\BlazorApp1.csproj": {}
   },
   "projects": {
-    "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\BlazorApp1.csproj": {
+    "C:\\Users\\CodeMaster\\source\\repos\\LI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\BlazorApp1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\BlazorApp1.csproj",
+        "projectUniqueName": "C:\\Users\\CodeMaster\\source\\repos\\LI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\BlazorApp1.csproj",
         "projectName": "BlazorApp1",
-        "projectPath": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\BlazorApp1.csproj",
-        "packagesPath": "C:\\Users\\tumab\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\obj\\",
+        "projectPath": "C:\\Users\\CodeMaster\\source\\repos\\LI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\BlazorApp1.csproj",
+        "packagesPath": "C:\\Users\\CodeMaster\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\CodeMaster\\source\\repos\\LI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\tumab\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\CodeMaster\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -58,7 +62,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files (x86)\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
