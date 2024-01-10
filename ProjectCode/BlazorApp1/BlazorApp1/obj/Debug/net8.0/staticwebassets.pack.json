@@ -5,10 +5,6 @@
       "PackagePath": "staticwebassets\\BlazorApp1.bundle.scp.css"
     },
     {
-      "Id": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\app.css",
-      "PackagePath": "staticwebassets\\app.css"
-    },
-    {
       "Id": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\bootstrap\\bootstrap.min.css",
       "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css"
     },
@@ -17,8 +13,20 @@
       "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css.map"
     },
     {
-      "Id": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\favicon.png",
-      "PackagePath": "staticwebassets\\favicon.png"
+      "Id": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\app.css",
+      "PackagePath": "staticwebassets\\css\\app.css"
+    },
+    {
+      "Id": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\login.css",
+      "PackagePath": "staticwebassets\\css\\login.css"
+    },
+    {
+      "Id": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\register.css",
+      "PackagePath": "staticwebassets\\css\\register.css"
+    },
+    {
+      "Id": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\favicon.png",
+      "PackagePath": "staticwebassets\\images\\favicon.png"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.BlazorApp1.Microsoft.AspNetCore.StaticWebAssets.props",

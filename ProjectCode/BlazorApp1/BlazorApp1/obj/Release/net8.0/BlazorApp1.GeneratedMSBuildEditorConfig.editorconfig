@@ -22,16 +22,20 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBcHAucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/tumab/OneDrive/Ambiente de Trabalho/ProjetoLI4/ProjectCode/BlazorApp1/BlazorApp1/Components/Pages/Counter.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xDb3VudGVyLnJhem9y
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/tumab/OneDrive/Ambiente de Trabalho/ProjetoLI4/ProjectCode/BlazorApp1/BlazorApp1/Components/Pages/Error.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xFcnJvci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/tumab/OneDrive/Ambiente de Trabalho/ProjetoLI4/ProjectCode/BlazorApp1/BlazorApp1/Components/Pages/Home.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xIb21lLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/tumab/OneDrive/Ambiente de Trabalho/ProjetoLI4/ProjectCode/BlazorApp1/BlazorApp1/Components/Pages/Login - Cópia.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xMb2dpbiAtIEPDs3BpYS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/tumab/OneDrive/Ambiente de Trabalho/ProjetoLI4/ProjectCode/BlazorApp1/BlazorApp1/Components/Pages/Login.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xMb2dpbi5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/tumab/OneDrive/Ambiente de Trabalho/ProjetoLI4/ProjectCode/BlazorApp1/BlazorApp1/Components/Pages/Weather.razor]

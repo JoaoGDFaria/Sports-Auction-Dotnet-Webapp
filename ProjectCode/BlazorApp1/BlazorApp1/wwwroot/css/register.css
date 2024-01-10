@@ -1,0 +1,62 @@
+.form-outline{
+    text-align: left;
+}
+
+.hyperlink{
+    text-align: left;
+}
+
+body{
+    background: url("../images/background.png") fixed;
+    background-size: cover;
+    font-family: 'Doppio One', sans-serif;
+    overflow-x: auto;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.aux{
+    background-color: #BCBCBC;
+    color: black;
+}
+
+
+.card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 70%;
+}
+
+.card-body {
+    font-size: 2vh;
+}
+
+
+.row{
+    display: flex;
+    align-items: center;
+}
+
+.field1{
+    width: 47%;
+    float: left;
+}
+
+.field2{
+    width: 47%;
+    float: right;
+}
+
+.btn1{
+    text-align: right;
+}
+
