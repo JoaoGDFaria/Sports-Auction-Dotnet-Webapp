@@ -21,11 +21,7 @@ app.UseStaticFiles();
 app.UseAntiforgery();
 
 // I want to redirect to login
-<<<<<<< HEAD
 app.MapRazorComponents<StartPage>()
-=======
-app.MapRazorComponents<Login>()
->>>>>>> ed1e5c9bd3a863505fd3a9c45d025a6896153575
     .AddInteractiveServerRenderMode();
 
 app.Run();
