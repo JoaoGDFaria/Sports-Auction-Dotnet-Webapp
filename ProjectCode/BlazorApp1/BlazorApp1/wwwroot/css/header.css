@@ -1,0 +1,48 @@
+body{
+    background-size: cover;
+    font-family: 'Doppio One', sans-serif;
+    width: 100%;
+    overflow: hidden;
+    background-color: #645e49;
+}
+
+.aux{
+    background-color: #645e49;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.botao{
+    width: 100%;
+    height: 50%;
+    border-radius: 0 0 10% 10%;
+    border: 1px solid;
+    font-size: 1.5vw;
+    background-color: blue;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.botao:hover {
+    background-color: red; /* New background color on hover */
+}
+
+.botao:active {
+    background-color: green; /* New background color on hover */
+}
+
+.logo{
+    background-color: black;
+}
+
+.nav-item {
+    flex: 1;
+    width: 100%;
+}
+
+img{
+    height: 100%;
+    width: 100%;
+}
+
+

@@ -19,10 +19,7 @@ C:\Users\tumab\OneDrive\Ambiente de Trabalho\ProjetoLI4\ProjectCode\BlazorApp1\B
 C:\Users\tumab\OneDrive\Ambiente de Trabalho\ProjetoLI4\ProjectCode\BlazorApp1\BlazorApp1\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.BlazorApp1.props
 C:\Users\tumab\OneDrive\Ambiente de Trabalho\ProjetoLI4\ProjectCode\BlazorApp1\BlazorApp1\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.BlazorApp1.props
 C:\Users\tumab\OneDrive\Ambiente de Trabalho\ProjetoLI4\ProjectCode\BlazorApp1\BlazorApp1\obj\Debug\net8.0\staticwebassets.pack.json
-C:\Users\tumab\OneDrive\Ambiente de Trabalho\ProjetoLI4\ProjectCode\BlazorApp1\BlazorApp1\obj\Debug\net8.0\scopedcss\Components\Layout\MainLayout.razor.rz.scp.css
-C:\Users\tumab\OneDrive\Ambiente de Trabalho\ProjetoLI4\ProjectCode\BlazorApp1\BlazorApp1\obj\Debug\net8.0\scopedcss\Components\Layout\NavMenu.razor.rz.scp.css
 C:\Users\tumab\OneDrive\Ambiente de Trabalho\ProjetoLI4\ProjectCode\BlazorApp1\BlazorApp1\obj\Debug\net8.0\scopedcss\bundle\BlazorApp1.styles.css
-C:\Users\tumab\OneDrive\Ambiente de Trabalho\ProjetoLI4\ProjectCode\BlazorApp1\BlazorApp1\obj\Debug\net8.0\scopedcss\projectbundle\BlazorApp1.bundle.scp.css
 C:\Users\tumab\OneDrive\Ambiente de Trabalho\ProjetoLI4\ProjectCode\BlazorApp1\BlazorApp1\obj\Debug\net8.0\BlazorApp1.dll
 C:\Users\tumab\OneDrive\Ambiente de Trabalho\ProjetoLI4\ProjectCode\BlazorApp1\BlazorApp1\obj\Debug\net8.0\refint\BlazorApp1.dll
 C:\Users\tumab\OneDrive\Ambiente de Trabalho\ProjetoLI4\ProjectCode\BlazorApp1\BlazorApp1\obj\Debug\net8.0\BlazorApp1.pdb

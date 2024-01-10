@@ -1,10 +1,6 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\BlazorApp1.bundle.scp.css",
-      "PackagePath": "staticwebassets\\BlazorApp1.bundle.scp.css"
-    },
-    {
       "Id": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\bootstrap\\bootstrap.min.css",
       "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css"
     },
@@ -13,8 +9,12 @@
       "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css.map"
     },
     {
-      "Id": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\app.css",
-      "PackagePath": "staticwebassets\\css\\app.css"
+      "Id": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\auctions.css",
+      "PackagePath": "staticwebassets\\css\\auctions.css"
+    },
+    {
+      "Id": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\header.css",
+      "PackagePath": "staticwebassets\\css\\header.css"
     },
     {
       "Id": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\login.css",
@@ -25,8 +25,68 @@
       "PackagePath": "staticwebassets\\css\\register.css"
     },
     {
+      "Id": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\background.png",
+      "PackagePath": "staticwebassets\\images\\background.png"
+    },
+    {
+      "Id": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\balotelli.jpg",
+      "PackagePath": "staticwebassets\\images\\balotelli.jpg"
+    },
+    {
+      "Id": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\brady.webp",
+      "PackagePath": "staticwebassets\\images\\brady.webp"
+    },
+    {
       "Id": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\favicon.png",
       "PackagePath": "staticwebassets\\images\\favicon.png"
+    },
+    {
+      "Id": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\fernandes.webp",
+      "PackagePath": "staticwebassets\\images\\fernandes.webp"
+    },
+    {
+      "Id": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\icardi.jpg",
+      "PackagePath": "staticwebassets\\images\\icardi.jpg"
+    },
+    {
+      "Id": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\item1.webp",
+      "PackagePath": "staticwebassets\\images\\item1.webp"
+    },
+    {
+      "Id": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\item2.jpg",
+      "PackagePath": "staticwebassets\\images\\item2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\james.jpg",
+      "PackagePath": "staticwebassets\\images\\james.jpg"
+    },
+    {
+      "Id": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\logo.png",
+      "PackagePath": "staticwebassets\\images\\logo.png"
+    },
+    {
+      "Id": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\nfl.jpg",
+      "PackagePath": "staticwebassets\\images\\nfl.jpg"
+    },
+    {
+      "Id": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\pogba.jpg",
+      "PackagePath": "staticwebassets\\images\\pogba.jpg"
+    },
+    {
+      "Id": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\raquete.webp",
+      "PackagePath": "staticwebassets\\images\\raquete.webp"
+    },
+    {
+      "Id": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\ronaldinho.jpg",
+      "PackagePath": "staticwebassets\\images\\ronaldinho.jpg"
+    },
+    {
+      "Id": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\transferir.jpg",
+      "PackagePath": "staticwebassets\\images\\transferir.jpg"
+    },
+    {
+      "Id": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\werner.jpg",
+      "PackagePath": "staticwebassets\\images\\werner.jpg"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.BlazorApp1.Microsoft.AspNetCore.StaticWebAssets.props",

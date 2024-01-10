@@ -21,6 +21,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseAntiforgery();
 
+// I want to redirect to login
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();
 
