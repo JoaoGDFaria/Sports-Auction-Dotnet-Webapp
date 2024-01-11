@@ -7,8 +7,9 @@
     "\\ProjectCode\\BlazorApp1\\BlazorApp1",
     "\\ProjectCode\\BlazorApp1\\BlazorApp1\\Components",
     "\\ProjectCode\\BlazorApp1\\BlazorApp1\\Components\\Layout",
-    "\\ProjectCode\\BlazorApp1\\BlazorApp1\\Components\\Pages"
+    "\\ProjectCode\\BlazorApp1\\BlazorApp1\\Components\\Pages",
+    "\\ProjectCode\\BlazorApp1\\BlazorApp1\\DataLibrary"
   ],
-  "SelectedNode": "\\ProjectCode\\BlazorApp1\\BlazorApp1.sln",
+  "SelectedNode": "\\ProjectCode\\BlazorApp1\\BlazorApp1\\DataLibrary\\DataLibrary.csproj",
   "PreviewInSolutionExplorer": false
 }
