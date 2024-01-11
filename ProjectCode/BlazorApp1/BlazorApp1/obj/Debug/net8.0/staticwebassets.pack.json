@@ -1,91 +1,107 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\CodeMaster\\source\\repos\\LI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "Id": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\bootstrap\\bootstrap.min.css",
       "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css"
     },
     {
-      "Id": "C:\\Users\\CodeMaster\\source\\repos\\LI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "Id": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\bootstrap\\bootstrap.min.css.map",
       "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css.map"
     },
     {
-      "Id": "C:\\Users\\CodeMaster\\source\\repos\\LI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\auctions.css",
+      "Id": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\addItem.css",
+      "PackagePath": "staticwebassets\\css\\addItem.css"
+    },
+    {
+      "Id": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\auctions.css",
       "PackagePath": "staticwebassets\\css\\auctions.css"
     },
     {
-      "Id": "C:\\Users\\CodeMaster\\source\\repos\\LI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\header.css",
+      "Id": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\auctionsWon.css",
+      "PackagePath": "staticwebassets\\css\\auctionsWon.css"
+    },
+    {
+      "Id": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\header.css",
       "PackagePath": "staticwebassets\\css\\header.css"
     },
     {
-      "Id": "C:\\Users\\CodeMaster\\source\\repos\\LI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\login.css",
+      "Id": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\login.css",
       "PackagePath": "staticwebassets\\css\\login.css"
     },
     {
-      "Id": "C:\\Users\\CodeMaster\\source\\repos\\LI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\register.css",
+      "Id": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\myAuctions.css",
+      "PackagePath": "staticwebassets\\css\\myAuctions.css"
+    },
+    {
+      "Id": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\myBids.css",
+      "PackagePath": "staticwebassets\\css\\myBids.css"
+    },
+    {
+      "Id": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\register.css",
       "PackagePath": "staticwebassets\\css\\register.css"
     },
     {
-      "Id": "C:\\Users\\CodeMaster\\source\\repos\\LI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\background.png",
+      "Id": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\background.png",
       "PackagePath": "staticwebassets\\images\\background.png"
     },
     {
-      "Id": "C:\\Users\\CodeMaster\\source\\repos\\LI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\balotelli.jpg",
+      "Id": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\balotelli.jpg",
       "PackagePath": "staticwebassets\\images\\balotelli.jpg"
     },
     {
-      "Id": "C:\\Users\\CodeMaster\\source\\repos\\LI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\brady.webp",
+      "Id": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\brady.webp",
       "PackagePath": "staticwebassets\\images\\brady.webp"
     },
     {
-      "Id": "C:\\Users\\CodeMaster\\source\\repos\\LI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\favicon.png",
+      "Id": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\favicon.png",
       "PackagePath": "staticwebassets\\images\\favicon.png"
     },
     {
-      "Id": "C:\\Users\\CodeMaster\\source\\repos\\LI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\fernandes.webp",
+      "Id": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\fernandes.webp",
       "PackagePath": "staticwebassets\\images\\fernandes.webp"
     },
     {
-      "Id": "C:\\Users\\CodeMaster\\source\\repos\\LI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\icardi.jpg",
+      "Id": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\icardi.jpg",
       "PackagePath": "staticwebassets\\images\\icardi.jpg"
     },
     {
-      "Id": "C:\\Users\\CodeMaster\\source\\repos\\LI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\item1.webp",
+      "Id": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\item1.webp",
       "PackagePath": "staticwebassets\\images\\item1.webp"
     },
     {
-      "Id": "C:\\Users\\CodeMaster\\source\\repos\\LI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\item2.jpg",
+      "Id": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\item2.jpg",
       "PackagePath": "staticwebassets\\images\\item2.jpg"
     },
     {
-      "Id": "C:\\Users\\CodeMaster\\source\\repos\\LI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\james.jpg",
+      "Id": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\james.jpg",
       "PackagePath": "staticwebassets\\images\\james.jpg"
     },
     {
-      "Id": "C:\\Users\\CodeMaster\\source\\repos\\LI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\logo.png",
+      "Id": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\logo.png",
       "PackagePath": "staticwebassets\\images\\logo.png"
     },
     {
-      "Id": "C:\\Users\\CodeMaster\\source\\repos\\LI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\nfl.jpg",
+      "Id": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\nfl.jpg",
       "PackagePath": "staticwebassets\\images\\nfl.jpg"
     },
     {
-      "Id": "C:\\Users\\CodeMaster\\source\\repos\\LI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\pogba.jpg",
+      "Id": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\pogba.jpg",
       "PackagePath": "staticwebassets\\images\\pogba.jpg"
     },
     {
-      "Id": "C:\\Users\\CodeMaster\\source\\repos\\LI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\raquete.webp",
+      "Id": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\raquete.webp",
       "PackagePath": "staticwebassets\\images\\raquete.webp"
     },
     {
-      "Id": "C:\\Users\\CodeMaster\\source\\repos\\LI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\ronaldinho.jpg",
+      "Id": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\ronaldinho.jpg",
       "PackagePath": "staticwebassets\\images\\ronaldinho.jpg"
     },
     {
-      "Id": "C:\\Users\\CodeMaster\\source\\repos\\LI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\transferir.jpg",
+      "Id": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\transferir.jpg",
       "PackagePath": "staticwebassets\\images\\transferir.jpg"
     },
     {
-      "Id": "C:\\Users\\CodeMaster\\source\\repos\\LI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\werner.jpg",
+      "Id": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\werner.jpg",
       "PackagePath": "staticwebassets\\images\\werner.jpg"
     },
     {

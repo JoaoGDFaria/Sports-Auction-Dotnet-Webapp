@@ -9,64 +9,71 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = BlazorApp1
 build_property.RootNamespace = BlazorApp1
-build_property.ProjectDir = C:\Users\CodeMaster\source\repos\LI4\ProjectCode\BlazorApp1\BlazorApp1\
+build_property.ProjectDir = C:\Users\tumab\OneDrive\Ambiente de Trabalho\ProjetoLI4\ProjectCode\BlazorApp1\BlazorApp1\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\CodeMaster\source\repos\LI4\ProjectCode\BlazorApp1\BlazorApp1
+build_property.MSBuildProjectDirectory = C:\Users\tumab\OneDrive\Ambiente de Trabalho\ProjetoLI4\ProjectCode\BlazorApp1\BlazorApp1
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/CodeMaster/source/repos/LI4/ProjectCode/BlazorApp1/BlazorApp1/Components/Layout/MainLayout.razor]
+[C:/Users/tumab/OneDrive/Ambiente de Trabalho/ProjetoLI4/ProjectCode/BlazorApp1/BlazorApp1/Components/Layout/MainLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcTWFpbkxheW91dC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CodeMaster/source/repos/LI4/ProjectCode/BlazorApp1/BlazorApp1/Components/Layout/MainPage.razor]
+[C:/Users/tumab/OneDrive/Ambiente de Trabalho/ProjetoLI4/ProjectCode/BlazorApp1/BlazorApp1/Components/Layout/MainPage.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcTWFpblBhZ2UucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CodeMaster/source/repos/LI4/ProjectCode/BlazorApp1/BlazorApp1/Components/Pages/Auctions.razor]
+[C:/Users/tumab/OneDrive/Ambiente de Trabalho/ProjetoLI4/ProjectCode/BlazorApp1/BlazorApp1/Components/Pages/AddItem.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xBZGRJdGVtLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/tumab/OneDrive/Ambiente de Trabalho/ProjetoLI4/ProjectCode/BlazorApp1/BlazorApp1/Components/Pages/Auctions.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xBdWN0aW9ucy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CodeMaster/source/repos/LI4/ProjectCode/BlazorApp1/BlazorApp1/Components/Pages/Header.razor]
+[C:/Users/tumab/OneDrive/Ambiente de Trabalho/ProjetoLI4/ProjectCode/BlazorApp1/BlazorApp1/Components/Pages/AuctionsWon.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xBdWN0aW9uc1dvbi5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/tumab/OneDrive/Ambiente de Trabalho/ProjetoLI4/ProjectCode/BlazorApp1/BlazorApp1/Components/Pages/Footer.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xGb290ZXIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/tumab/OneDrive/Ambiente de Trabalho/ProjetoLI4/ProjectCode/BlazorApp1/BlazorApp1/Components/Pages/Header.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xIZWFkZXIucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-<<<<<<< HEAD
-[C:/Users/CodeMaster/source/repos/LI4/ProjectCode/BlazorApp1/BlazorApp1/Components/Pages/Home.razor]
+[C:/Users/tumab/OneDrive/Ambiente de Trabalho/ProjetoLI4/ProjectCode/BlazorApp1/BlazorApp1/Components/Pages/Home.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xIb21lLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-=======
->>>>>>> ed1e5c9bd3a863505fd3a9c45d025a6896153575
-[C:/Users/CodeMaster/source/repos/LI4/ProjectCode/BlazorApp1/BlazorApp1/Components/Pages/Login.razor]
+[C:/Users/tumab/OneDrive/Ambiente de Trabalho/ProjetoLI4/ProjectCode/BlazorApp1/BlazorApp1/Components/Pages/Login.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xMb2dpbi5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CodeMaster/source/repos/LI4/ProjectCode/BlazorApp1/BlazorApp1/Components/Pages/Register.razor]
+[C:/Users/tumab/OneDrive/Ambiente de Trabalho/ProjetoLI4/ProjectCode/BlazorApp1/BlazorApp1/Components/Pages/MyAuctions.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xNeUF1Y3Rpb25zLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/tumab/OneDrive/Ambiente de Trabalho/ProjetoLI4/ProjectCode/BlazorApp1/BlazorApp1/Components/Pages/MyBids.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xNeUJpZHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/tumab/OneDrive/Ambiente de Trabalho/ProjetoLI4/ProjectCode/BlazorApp1/BlazorApp1/Components/Pages/Register.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xSZWdpc3Rlci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-<<<<<<< HEAD
-=======
-[C:/Users/CodeMaster/source/repos/LI4/ProjectCode/BlazorApp1/BlazorApp1/Components/Pages/StartPage.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTdGFydFBhZ2UucmF6b3I=
-build_metadata.AdditionalFiles.CssScope = 
-
->>>>>>> ed1e5c9bd3a863505fd3a9c45d025a6896153575
-[C:/Users/CodeMaster/source/repos/LI4/ProjectCode/BlazorApp1/BlazorApp1/Components/Routes.razor]
+[C:/Users/tumab/OneDrive/Ambiente de Trabalho/ProjetoLI4/ProjectCode/BlazorApp1/BlazorApp1/Components/Routes.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xSb3V0ZXMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-<<<<<<< HEAD
-[C:/Users/CodeMaster/source/repos/LI4/ProjectCode/BlazorApp1/BlazorApp1/Components/StartPage.razor]
+[C:/Users/tumab/OneDrive/Ambiente de Trabalho/ProjetoLI4/ProjectCode/BlazorApp1/BlazorApp1/Components/StartPage.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xTdGFydFBhZ2UucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-=======
->>>>>>> ed1e5c9bd3a863505fd3a9c45d025a6896153575
-[C:/Users/CodeMaster/source/repos/LI4/ProjectCode/BlazorApp1/BlazorApp1/Components/_Imports.razor]
+[C:/Users/tumab/OneDrive/Ambiente de Trabalho/ProjetoLI4/ProjectCode/BlazorApp1/BlazorApp1/Components/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xfSW1wb3J0cy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 

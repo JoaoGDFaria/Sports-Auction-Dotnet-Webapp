@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "U2duQI5RKDX6udNYUPHM9kORi7Vqojjhh7DShdrBwJ0=",
+  "Hash": "zjoMttZ6sttD7TBc8dugaiatBBwNkVPFChfhF64Qt8k=",
   "Source": "BlazorApp1",
   "BasePath": "_content/BlazorApp1",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "BlazorApp1\\wwwroot",
       "Source": "BlazorApp1",
-      "ContentRoot": "C:\\Users\\CodeMaster\\source\\repos\\LI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\",
       "BasePath": "_content/BlazorApp1",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\CodeMaster\\source\\repos\\LI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "Identity": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\bootstrap\\bootstrap.min.css",
       "SourceId": "BlazorApp1",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\CodeMaster\\source\\repos\\LI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\",
       "BasePath": "_content/BlazorApp1",
       "RelativePath": "bootstrap/bootstrap.min.css",
       "AssetKind": "All",
@@ -36,10 +36,10 @@
       "OriginalItemSpec": "wwwroot\\bootstrap\\bootstrap.min.css"
     },
     {
-      "Identity": "C:\\Users\\CodeMaster\\source\\repos\\LI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "Identity": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\bootstrap\\bootstrap.min.css.map",
       "SourceId": "BlazorApp1",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\CodeMaster\\source\\repos\\LI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\",
       "BasePath": "_content/BlazorApp1",
       "RelativePath": "bootstrap/bootstrap.min.css.map",
       "AssetKind": "All",
@@ -55,10 +55,29 @@
       "OriginalItemSpec": "wwwroot\\bootstrap\\bootstrap.min.css.map"
     },
     {
-      "Identity": "C:\\Users\\CodeMaster\\source\\repos\\LI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\auctions.css",
+      "Identity": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\addItem.css",
       "SourceId": "BlazorApp1",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\CodeMaster\\source\\repos\\LI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\",
+      "BasePath": "_content/BlazorApp1",
+      "RelativePath": "css/addItem.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\addItem.css"
+    },
+    {
+      "Identity": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\auctions.css",
+      "SourceId": "BlazorApp1",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\",
       "BasePath": "_content/BlazorApp1",
       "RelativePath": "css/auctions.css",
       "AssetKind": "All",
@@ -74,10 +93,29 @@
       "OriginalItemSpec": "wwwroot\\css\\auctions.css"
     },
     {
-      "Identity": "C:\\Users\\CodeMaster\\source\\repos\\LI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\header.css",
+      "Identity": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\auctionsWon.css",
       "SourceId": "BlazorApp1",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\CodeMaster\\source\\repos\\LI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\",
+      "BasePath": "_content/BlazorApp1",
+      "RelativePath": "css/auctionsWon.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\auctionsWon.css"
+    },
+    {
+      "Identity": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\header.css",
+      "SourceId": "BlazorApp1",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\",
       "BasePath": "_content/BlazorApp1",
       "RelativePath": "css/header.css",
       "AssetKind": "All",
@@ -93,10 +131,10 @@
       "OriginalItemSpec": "wwwroot\\css\\header.css"
     },
     {
-      "Identity": "C:\\Users\\CodeMaster\\source\\repos\\LI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\login.css",
+      "Identity": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\login.css",
       "SourceId": "BlazorApp1",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\CodeMaster\\source\\repos\\LI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\",
       "BasePath": "_content/BlazorApp1",
       "RelativePath": "css/login.css",
       "AssetKind": "All",
@@ -112,10 +150,48 @@
       "OriginalItemSpec": "wwwroot\\css\\login.css"
     },
     {
-      "Identity": "C:\\Users\\CodeMaster\\source\\repos\\LI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\register.css",
+      "Identity": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\myAuctions.css",
       "SourceId": "BlazorApp1",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\CodeMaster\\source\\repos\\LI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\",
+      "BasePath": "_content/BlazorApp1",
+      "RelativePath": "css/myAuctions.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\myAuctions.css"
+    },
+    {
+      "Identity": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\myBids.css",
+      "SourceId": "BlazorApp1",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\",
+      "BasePath": "_content/BlazorApp1",
+      "RelativePath": "css/myBids.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\myBids.css"
+    },
+    {
+      "Identity": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\register.css",
+      "SourceId": "BlazorApp1",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\",
       "BasePath": "_content/BlazorApp1",
       "RelativePath": "css/register.css",
       "AssetKind": "All",
@@ -131,10 +207,10 @@
       "OriginalItemSpec": "wwwroot\\css\\register.css"
     },
     {
-      "Identity": "C:\\Users\\CodeMaster\\source\\repos\\LI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\background.png",
+      "Identity": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\background.png",
       "SourceId": "BlazorApp1",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\CodeMaster\\source\\repos\\LI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\",
       "BasePath": "_content/BlazorApp1",
       "RelativePath": "images/background.png",
       "AssetKind": "All",
@@ -150,10 +226,10 @@
       "OriginalItemSpec": "wwwroot\\images\\background.png"
     },
     {
-      "Identity": "C:\\Users\\CodeMaster\\source\\repos\\LI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\balotelli.jpg",
+      "Identity": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\balotelli.jpg",
       "SourceId": "BlazorApp1",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\CodeMaster\\source\\repos\\LI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\",
       "BasePath": "_content/BlazorApp1",
       "RelativePath": "images/balotelli.jpg",
       "AssetKind": "All",
@@ -169,10 +245,10 @@
       "OriginalItemSpec": "wwwroot\\images\\balotelli.jpg"
     },
     {
-      "Identity": "C:\\Users\\CodeMaster\\source\\repos\\LI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\brady.webp",
+      "Identity": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\brady.webp",
       "SourceId": "BlazorApp1",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\CodeMaster\\source\\repos\\LI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\",
       "BasePath": "_content/BlazorApp1",
       "RelativePath": "images/brady.webp",
       "AssetKind": "All",
@@ -188,10 +264,10 @@
       "OriginalItemSpec": "wwwroot\\images\\brady.webp"
     },
     {
-      "Identity": "C:\\Users\\CodeMaster\\source\\repos\\LI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\favicon.png",
+      "Identity": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\favicon.png",
       "SourceId": "BlazorApp1",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\CodeMaster\\source\\repos\\LI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\",
       "BasePath": "_content/BlazorApp1",
       "RelativePath": "images/favicon.png",
       "AssetKind": "All",
@@ -207,10 +283,10 @@
       "OriginalItemSpec": "wwwroot\\images\\favicon.png"
     },
     {
-      "Identity": "C:\\Users\\CodeMaster\\source\\repos\\LI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\fernandes.webp",
+      "Identity": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\fernandes.webp",
       "SourceId": "BlazorApp1",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\CodeMaster\\source\\repos\\LI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\",
       "BasePath": "_content/BlazorApp1",
       "RelativePath": "images/fernandes.webp",
       "AssetKind": "All",
@@ -226,10 +302,10 @@
       "OriginalItemSpec": "wwwroot\\images\\fernandes.webp"
     },
     {
-      "Identity": "C:\\Users\\CodeMaster\\source\\repos\\LI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\icardi.jpg",
+      "Identity": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\icardi.jpg",
       "SourceId": "BlazorApp1",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\CodeMaster\\source\\repos\\LI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\",
       "BasePath": "_content/BlazorApp1",
       "RelativePath": "images/icardi.jpg",
       "AssetKind": "All",
@@ -245,10 +321,10 @@
       "OriginalItemSpec": "wwwroot\\images\\icardi.jpg"
     },
     {
-      "Identity": "C:\\Users\\CodeMaster\\source\\repos\\LI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\item1.webp",
+      "Identity": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\item1.webp",
       "SourceId": "BlazorApp1",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\CodeMaster\\source\\repos\\LI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\",
       "BasePath": "_content/BlazorApp1",
       "RelativePath": "images/item1.webp",
       "AssetKind": "All",
@@ -264,10 +340,10 @@
       "OriginalItemSpec": "wwwroot\\images\\item1.webp"
     },
     {
-      "Identity": "C:\\Users\\CodeMaster\\source\\repos\\LI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\item2.jpg",
+      "Identity": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\item2.jpg",
       "SourceId": "BlazorApp1",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\CodeMaster\\source\\repos\\LI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\",
       "BasePath": "_content/BlazorApp1",
       "RelativePath": "images/item2.jpg",
       "AssetKind": "All",
@@ -283,10 +359,10 @@
       "OriginalItemSpec": "wwwroot\\images\\item2.jpg"
     },
     {
-      "Identity": "C:\\Users\\CodeMaster\\source\\repos\\LI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\james.jpg",
+      "Identity": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\james.jpg",
       "SourceId": "BlazorApp1",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\CodeMaster\\source\\repos\\LI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\",
       "BasePath": "_content/BlazorApp1",
       "RelativePath": "images/james.jpg",
       "AssetKind": "All",
@@ -302,10 +378,10 @@
       "OriginalItemSpec": "wwwroot\\images\\james.jpg"
     },
     {
-      "Identity": "C:\\Users\\CodeMaster\\source\\repos\\LI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\logo.png",
+      "Identity": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\logo.png",
       "SourceId": "BlazorApp1",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\CodeMaster\\source\\repos\\LI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\",
       "BasePath": "_content/BlazorApp1",
       "RelativePath": "images/logo.png",
       "AssetKind": "All",
@@ -321,10 +397,10 @@
       "OriginalItemSpec": "wwwroot\\images\\logo.png"
     },
     {
-      "Identity": "C:\\Users\\CodeMaster\\source\\repos\\LI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\nfl.jpg",
+      "Identity": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\nfl.jpg",
       "SourceId": "BlazorApp1",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\CodeMaster\\source\\repos\\LI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\",
       "BasePath": "_content/BlazorApp1",
       "RelativePath": "images/nfl.jpg",
       "AssetKind": "All",
@@ -340,10 +416,10 @@
       "OriginalItemSpec": "wwwroot\\images\\nfl.jpg"
     },
     {
-      "Identity": "C:\\Users\\CodeMaster\\source\\repos\\LI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\pogba.jpg",
+      "Identity": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\pogba.jpg",
       "SourceId": "BlazorApp1",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\CodeMaster\\source\\repos\\LI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\",
       "BasePath": "_content/BlazorApp1",
       "RelativePath": "images/pogba.jpg",
       "AssetKind": "All",
@@ -359,10 +435,10 @@
       "OriginalItemSpec": "wwwroot\\images\\pogba.jpg"
     },
     {
-      "Identity": "C:\\Users\\CodeMaster\\source\\repos\\LI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\raquete.webp",
+      "Identity": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\raquete.webp",
       "SourceId": "BlazorApp1",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\CodeMaster\\source\\repos\\LI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\",
       "BasePath": "_content/BlazorApp1",
       "RelativePath": "images/raquete.webp",
       "AssetKind": "All",
@@ -378,10 +454,10 @@
       "OriginalItemSpec": "wwwroot\\images\\raquete.webp"
     },
     {
-      "Identity": "C:\\Users\\CodeMaster\\source\\repos\\LI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\ronaldinho.jpg",
+      "Identity": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\ronaldinho.jpg",
       "SourceId": "BlazorApp1",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\CodeMaster\\source\\repos\\LI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\",
       "BasePath": "_content/BlazorApp1",
       "RelativePath": "images/ronaldinho.jpg",
       "AssetKind": "All",
@@ -397,10 +473,10 @@
       "OriginalItemSpec": "wwwroot\\images\\ronaldinho.jpg"
     },
     {
-      "Identity": "C:\\Users\\CodeMaster\\source\\repos\\LI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\transferir.jpg",
+      "Identity": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\transferir.jpg",
       "SourceId": "BlazorApp1",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\CodeMaster\\source\\repos\\LI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\",
       "BasePath": "_content/BlazorApp1",
       "RelativePath": "images/transferir.jpg",
       "AssetKind": "All",
@@ -416,10 +492,10 @@
       "OriginalItemSpec": "wwwroot\\images\\transferir.jpg"
     },
     {
-      "Identity": "C:\\Users\\CodeMaster\\source\\repos\\LI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\werner.jpg",
+      "Identity": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\werner.jpg",
       "SourceId": "BlazorApp1",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\CodeMaster\\source\\repos\\LI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\tumab\\OneDrive\\Ambiente de Trabalho\\ProjetoLI4\\ProjectCode\\BlazorApp1\\BlazorApp1\\wwwroot\\",
       "BasePath": "_content/BlazorApp1",
       "RelativePath": "images/werner.jpg",
       "AssetKind": "All",

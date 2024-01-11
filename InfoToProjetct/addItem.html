@@ -76,22 +76,26 @@
                             <input type="text" id="typeEmailX" class="form-control form-control-lg" />
                         </div>
                         <div class="cont field">
-                            <p class="al">Category</p>   
-                            <button type="button" class="btn-primary dropdown-toggle form-control form-control-lg" data-bs-toggle="dropdown" aria-expanded="false"></button>
-                            <ul class="dropdown-menu scrollable-dropdown-menu">
-                                <li><a class="dropdown-item" href="#">AAA</a></li>
-                                <li><a class="dropdown-item" href="#">BBB</a></li>
-                                <li><a class="dropdown-item" href="#">CCC</a></li>
-                                <li><a class="dropdown-item" href="#">DDD</a></li>
-                                <li><a class="dropdown-item" href="#">EEE</a></li>
-                                <li><a class="dropdown-item" href="#">AAA</a></li>
-                                <li><a class="dropdown-item" href="#">BBB</a></li>
-                                <li><a class="dropdown-item" href="#">CCC</a></li>
-                                <li><a class="dropdown-item" href="#">DDD</a></li>
-                                <li><a class="dropdown-item" href="#">EEE</a></li>
-                            </ul>
-                        </form>  
-                    </div>
+                            <p class="al">Category</p>
+                            <div class="dropdown">
+                                <button class="btn btn-primary dropdown-toggle" type="button" id="categoryDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Select Category
+                                </button>
+                                <ul class="dropdown-menu scrollable-dropdown-menu" aria-labelledby="categoryDropdown">
+                                    <li><a class="dropdown-item" href="#">AAA</a></li>
+                                    <li><a class="dropdown-item" href="#">BBB</a></li>
+                                    <li><a class="dropdown-item" href="#">CCC</a></li>
+                                    <li><a class="dropdown-item" href="#">DDD</a></li>
+                                    <li><a class="dropdown-item" href="#">EEE</a></li>
+                                    <li><a class="dropdown-item" href="#">AAA</a></li>
+                                    <li><a class="dropdown-item" href="#">BBB</a></li>
+                                    <li><a class="dropdown-item" href="#">CCC</a></li>
+                                    <li><a class="dropdown-item" href="#">DDD</a></li>
+                                    <li><a class="dropdown-item" href="#">EEE</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        
                     <div class="button d-flex buttons">
                         <button type="button" class="btn btn-success">SUBMIT</button>
                         <button type="button" class="btn btn-danger">CANCEL</button>

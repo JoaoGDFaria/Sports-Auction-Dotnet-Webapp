@@ -1,0 +1,129 @@
+@page "/addItem"
+@rendermode InteractiveServer
+
+<PageTitle>Add Item</PageTitle>
+    
+<div id="addItem" class="d-flex align-items-center justify-content-center vh-80">
+        <div class="card bg-dark text-white">
+            <div class="card-body p-5 text-center aux">
+                <div class = "row row-cols-1">
+                        <div class="form-outline form-white mb-4 field">
+                            <p>Auction Name</p>
+                            <input type="text" id="typeEmailX" class="form-control form-control-lg"  @bind="AuctionName" />
+                        </div>
+                        <div class="form-outline form-white mb-4 field">
+                            <p>Picture of the Item</p>
+                            <input type="text" id="typeEmailX" class="form-control form-control-lg"  @bind="ItemImage"/>
+                        </div>
+                        <div class="form-outline form-white mb-4 field">
+                            <p>Minimum Bid Amount(€)</p>
+                            <input type="text" id="typeEmailX" class="form-control form-control-lg" @bind="MinimumBid"/>
+                        </div>
+                        <div class="form-outline form-white mb-4 field">
+                            <p>Item Name</p>
+                            <input type="text" id="typeEmailX" class="form-control form-control-lg" @bind="ItemName"/>
+                        </div>
+                        <div class="form-outline form-white mb-4 field">
+                            <p>Authentication Number</p>
+                            <input type="text" id="typeEmailX" class="form-control form-control-lg" @bind="AuthenticationNumber"/>
+                        </div>
+                        <div class="form-outline form-white mb-4 field">
+                            <p>Buy Now Price(€)</p>
+                            <input type="text" id="typeEmailX" class="form-control form-control-lg" @bind="BuyNowPrice"/>
+                        </div>
+                        <div class="form-outline form-white mb-4 field">
+                            <p>Athlete/Team/Event Name</p>
+                            <input type="text" id="typeEmailX" class="form-control form-control-lg" @bind="AthleteName"/>
+                        </div>
+                        <div class="form-outline form-white mb-4 field">
+                            <p>Size</p>
+                            <input type="text" id="typeEmailX" class="form-control form-control-lg" @bind="ItemSize"/>
+                        </div>
+                        <div class="form-outline form-white mb-4 field">
+                            <p>Minimum Bid Increment(€)</p>
+                            <input type="text" id="typeEmailX" class="form-control form-control-lg" @bind="MinimumBidIncrement"/>
+                        </div>
+                        <div class="form-outline form-white mb-4 field">
+                            <p>Description</p>
+                            <input type="text" id="typeEmailX" class="form-control form-control-lg" @bind="Description"/>
+                        </div>
+                        <div class="form-outline form-white mb-4 field">
+                            <p>Condition</p>
+                            <input type="text" id="typeEmailX" class="form-control form-control-lg" @bind="ItemCondition"/>
+                        </div>
+                        
+                        <div class="form-outline form-white mb-4 field">
+                            <p>Date of Use</p>
+                            <input type="text" id="typeEmailX" class="form-control form-control-lg" @bind="DateOfUse" />
+                        </div>
+                        <div class="form-outline form-white mb-4 field">
+                            <p>Auction Closing Date(min. 1 day)</p>
+                            <input type="text" id="typeEmailX" class="form-control form-control-lg" @bind="ClosingDate"/>
+                        </div>
+                        <div class="cont field">
+                            <p class="al">Category</p>   
+                            <button type="button" class="btn-primary dropdown-toggle form-control form-control-lg" data-bs-toggle="dropdown" aria-expanded="false"></button>
+                            <ul class="dropdown-menu scrollable-dropdown-menu">
+                                <li><a class="dropdown-item" href="#">AAA</a></li>
+                                <li><a class="dropdown-item" href="#">BBB</a></li>
+                                <li><a class="dropdown-item" href="#">CCC</a></li>
+                                <li><a class="dropdown-item" href="#">DDD</a></li>
+                                <li><a class="dropdown-item" href="#">EEE</a></li>
+                                <li><a class="dropdown-item" href="#">AAA</a></li>
+                                <li><a class="dropdown-item" href="#">BBB</a></li>
+                                <li><a class="dropdown-item" href="#">CCC</a></li>
+                                <li><a class="dropdown-item" href="#">DDD</a></li>
+                                <li><a class="dropdown-item" href="#">EEE</a></li>
+                            </ul>
+                    </div>
+                    <div class="button d-flex buttons">
+                        <button type="button" class="btn btn-success" @onclick="SubmitForm">SUBMIT</button>
+                        <button type="button" class="btn btn-danger">CANCEL</button>
+                    </div> 
+                </div>
+                
+
+        </div>
+    </div>    
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="css/addItem.css">
+
+@code {
+
+    private string AuctionName { get; set; } = string.Empty;
+    private string ItemImage { get; set; } = string.Empty;
+    private string MinimumBid { get; set; } = string.Empty;
+    private string ItemName { get; set; } = string.Empty;
+    private string AuthenticationNumber { get; set; } = string.Empty;
+    private string BuyNowPrice { get; set; } = string.Empty;
+    private string AthleteName { get; set; } = string.Empty;
+    private string ItemSize { get; set; } = string.Empty;
+    private string MinimumBidIncrement { get; set; } = string.Empty;
+    private string Description { get; set; } = string.Empty;
+    private string ItemCondition { get; set; } = string.Empty;
+    private string DateOfUse { get; set; } = string.Empty;
+    private string ClosingDate { get; set; } = string.Empty;
+    private string Category { get; set; } = string.Empty;
+
+    private void SubmitForm(){
+
+        Console.WriteLine("Auction Name: " + AuctionName);
+        Console.WriteLine("Item Image: " + ItemImage);
+        Console.WriteLine("Minimum Bid: " + MinimumBid);
+        Console.WriteLine("Item Name: " + ItemName);
+        Console.WriteLine("Authentication Number: " + AuthenticationNumber);
+        Console.WriteLine("Buy Now Price: " + BuyNowPrice);
+        Console.WriteLine("Athlete Name: " + AthleteName);
+        Console.WriteLine("Item Size: " + ItemSize);
+        Console.WriteLine("Minimum Bid Increment: " + MinimumBidIncrement);
+        Console.WriteLine("Description: " + Description);
+        Console.WriteLine("Item Condition: " + ItemCondition);
+        Console.WriteLine("Date Of Use: " + DateOfUse);
+        Console.WriteLine("Closing Date: " + ClosingDate);
+        Console.WriteLine("Category: " + Category);
+
+    }
+}

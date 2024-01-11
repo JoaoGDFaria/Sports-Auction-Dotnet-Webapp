@@ -1,0 +1,45 @@
+body {
+    background-size: cover;
+    font-family: 'Doppio One', sans-serif;
+    background: url("../images/background.png") fixed;
+    background-size: cover;
+}
+
+.corPreco {
+    color: green;
+}
+
+.pagination {
+    margin-top: 20px;
+}
+
+.grid-info2{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2%;
+    padding-bottom: 3%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+
+.cont{
+    margin-top: 0.75%;
+}
+
+
+.itemButton1{
+    background-color: rgb(136, 136, 136);
+} 
+
+.itemButton2{
+    background-color: rgb(138, 41, 138);
+}
+
+.itemButton3{
+    background-color: rgb(238, 238, 112);
+}
+
+.corPreco{
+    color: green;
+}
