@@ -1,6 +1,8 @@
 ﻿@page "/login"
 @rendermode InteractiveServer
 
+@using DataLibrary
+
 <PageTitle>Login</PageTitle>
 
 <div id="login" class="d-flex align-items-center justify-content-center vh-80">
@@ -43,6 +45,27 @@
 
         Console.WriteLine("Email: " + Email);
         Console.WriteLine("Password: " + Password);
+
+    
+
+    SqlDataAccess sqlDataAccess = new SqlDataAccess();
+    string clientName = sqlDataAccess.GetClient("SELECT PrimeiroNome FROM Utilizador WHERE NIB = 584720193218","Server=DESKTOP-71FROVH;Port=1433;database=MatchWornItems;UserID=tumab");
+    try
+    {
+        if (clientName != null)
+        {
+            Console.WriteLine("Client Name: " + clientName);
+        }
+        else
+        {
+            Console.WriteLine("Client not found for ID: " + 584720193218);
+        }
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine("Error: " + ex.Message);
+    }
+
 
     }
 }

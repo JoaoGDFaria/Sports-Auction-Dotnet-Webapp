@@ -30,6 +30,17 @@ namespace DataLibrary
         }
 
 
+        public String GetClient(string sql, string connectionString)
+        {
+            using (IDbConnection connection = new MySqlConnection(connectionString))
+            {
+                var rows = connection.Query<string>(sql);
+
+                return rows.FirstOrDefault() ?? string.Empty;
+            }
+        }
+
+
 
 
     }
