@@ -1,48 +1,40 @@
-body{
+body {
     background-size: cover;
     font-family: 'Doppio One', sans-serif;
-    width: 100%;
-    overflow: hidden;
-    background-color: #645e49;
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    background-color: rgb(194, 240, 253);
 }
 
-.aux{
-    background-color: #645e49;
-    margin-left: 5%;
-    margin-right: 5%;
+.aux {
+    background-color: rgb(194, 240, 253);
+    margin: 0;
 }
 
-.botao{
+.botao {
+    background-color: rgb(194, 240, 253);
     width: 100%;
-    height: 50%;
-    border-radius: 0 0 10% 10%;
-    border: 1px solid;
+    height: 100%;
     font-size: 1.5vw;
-    background-color: blue;
+    text-align: center;
+    border: none;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
 .botao:hover {
-    background-color: red; /* New background color on hover */
+    text-decoration: underline; /* New background color on hover */
 }
 
-.botao:active {
-    background-color: green; /* New background color on hover */
-}
-
-.logo{
-    background-color: black;
+.logo {
+    background-color: rgb(194, 240, 253);
 }
 
 .nav-item {
     flex: 1;
-    width: 100%;
 }
 
-img{
-    height: 100%;
+img {
     width: 100%;
+    height: auto; /* Maintain aspect ratio for images */
 }
-
-
