@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
+using Microsoft;
+using System.Data.SqlClient;
 
 namespace DataLibrary
 {
@@ -31,10 +33,10 @@ namespace DataLibrary
 
         public async Task<T> ExecuteScalarAsync<T>(string sql, object parameters, string connectionString)
         {
-            using (IDbConnection connection = new MySqlConnection(connectionString))
+            using (IDbConnection connection = new SqlConnection(connectionString)) // Change here
             {
                 var result = await connection.ExecuteScalarAsync<T>(sql, parameters);
-                return result ?? default!;
+                return result ?? default(T)!;
             }
         }
 

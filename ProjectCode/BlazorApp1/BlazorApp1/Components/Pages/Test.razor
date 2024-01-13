@@ -1,4 +1,3 @@
-@page "/test"
 @using DataLibrary
 @using BlazorApp1.Components
 @using Microsoft.Extensions.Configuration
@@ -8,21 +7,23 @@
 
 @code {
 
-    protected override async Task OnInitializedAsync()
+    public async Task<bool> GetLoginStatus(string email, string password)
     {
-        long nib = 584720193218;
-        string sql = "SELECT PrimeiroNome FROM Utilizador WHERE NIB = @nib";
 
-        var parameters = new { NibValue = nib };
+        string sql = "SELECT PalavraPasse FROM Utilizador WHERE Email = @email";
+
+        var parameters = new { email };
 
         string connectionString = _config.GetConnectionString("DefaultConnection") ?? string.Empty;
-        string firstName = "ERROR";
+        string real_password = "";
+
         if (connectionString != null)
         {
-            firstName = await _data.ExecuteScalarAsync<string>(sql, parameters, connectionString);
+            real_password = await _data.ExecuteScalarAsync<string>(sql, parameters, connectionString);
         }
 
-        Console.WriteLine(firstName);
+        Console.WriteLine(real_password);
+        return (real_password!="" && real_password.Equals(password));
 
     }
 }
