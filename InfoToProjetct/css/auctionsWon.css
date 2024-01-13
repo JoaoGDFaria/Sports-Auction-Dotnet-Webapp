@@ -5,6 +5,12 @@ body {
     background-size: cover;
 }
 
+.header-iframe {
+    height: 10vh; /* 20% da altura da tela */
+    width: 100%;
+    display: block;
+}
+
 .corPreco {
     color: green;
 }

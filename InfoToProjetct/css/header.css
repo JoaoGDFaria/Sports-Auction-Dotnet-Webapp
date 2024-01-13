@@ -35,6 +35,6 @@ body {
 }
 
 img {
-    width: 100%;
-    height: auto; /* Maintain aspect ratio for images */
+    width: 30%;
+    height: auto; 
 }

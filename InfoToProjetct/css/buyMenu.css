@@ -6,6 +6,12 @@ body {
     font-family: 'Doppio One', sans-serif;
 }
 
+.header-iframe {
+    height: 10vh; /* 20% da altura da tela */
+    width: 100%;
+    display: block;
+}
+
 .buyLayout{
     margin-left: 5%;
     margin-right: 5%;

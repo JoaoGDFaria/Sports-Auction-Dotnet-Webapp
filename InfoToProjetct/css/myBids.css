@@ -13,6 +13,12 @@ body {
     margin-top: 20px;
 }
 
+.header-iframe {
+    height: 10vh; /* 20% da altura da tela */
+    width: 100%;
+    display: block;
+}
+
 .grid-info2{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
