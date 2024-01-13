@@ -1,6 +1,6 @@
 body {
     background: url("../images/back10.png");
-    background-size: 100% 100%; /* Cobrir toda a largura e altura do body */
+    background-size: 100% 100%;
     font-family: 'Doppio One', sans-serif;
     margin: 0;
     padding: 0;
@@ -11,22 +11,26 @@ body {
 }
 
 .botao {
-    opacity: 0;
+    opacity: 1;
+    background-color: transparent; /* ou remova esta linha se deseja a cor padrão do botão */
     width: 100%;
     height: 100%;
     font-size: 1.5vw;
     text-align: center;
     border: none;
     cursor: pointer;
-    transition: background-color 0.3s ease;
 }
 
 .botao:hover {
-    text-decoration: underline; /* Nova cor de fundo ao passar o mouse */
+    text-decoration: underline;
+}
+
+.botao {
+    text-shadow: 0 0 10px rgb(255, 255, 255);
 }
 
 .logo {
-    background-color: none;
+    background-color: transparent; /* ou remova esta linha se deseja a cor padrão do botão */
 }
 
 .nav-item {
@@ -34,6 +38,6 @@ body {
 }
 
 img {
-    width: 30%;
+    width: 32.3%;
     height: auto; 
 }
