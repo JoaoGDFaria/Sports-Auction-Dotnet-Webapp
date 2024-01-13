@@ -10,8 +10,7 @@
 }
 
 .form-control{
-  background-color: rgb(120, 118, 118) !important;
-  border-color: black !important;
+  background-color: rgb(175, 175, 175) !important;
 }
 
 .form-control:focus{
@@ -33,12 +32,13 @@
 }
 
 .card-body {
+  border-radius: 10px;
   font-size: 2vh;
-  background-color: rgb(175, 174, 174);
+  background-color: rgb(255, 255, 255);
 }
 
 .aux{
-  background-image: #BCBCBC;
+  background-image: #000000;
   color: black;
 }
 
