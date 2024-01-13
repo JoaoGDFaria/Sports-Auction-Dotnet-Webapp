@@ -1,9 +1,12 @@
 body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    background-color: #f2f2f2;
+    background: url("../images/back90.png") fixed;
+    background-size: 100% 90%;
+    background-position: center bottom; 
     font-family: 'Doppio One', sans-serif;
+    overflow-x: auto;
+    width: 100%;
+    height: 100%;
+    margin: 0;
 }
 
 .header-iframe {

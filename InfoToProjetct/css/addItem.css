@@ -3,9 +3,10 @@
 }
 
 .header-iframe {
-  height: 10vh; /* 20% da altura da tela */
+  height: 10vh; /* 10% da altura da tela para o cabeçalho */
   width: 100%;
   display: block;
+  z-index: 2; /* Certifica-se de que o cabeçalho está na frente da imagem de fundo */
 }
 
 .form-control{
@@ -41,9 +42,10 @@
   color: black;
 }
 
-body{
-  background: url("../images/background.png") fixed;
-  background-size: cover;
+body {
+  background: url("../images/back90.png") fixed;
+  background-size: 100% 90%;
+  background-position: center bottom; 
   font-family: 'Doppio One', sans-serif;
   overflow-x: auto;
   width: 100%;
@@ -51,11 +53,11 @@ body{
   margin: 0;
 }
 
-.buttons{
+.buttons {
   display: flex;
   justify-content: flex-end;
   padding-top: 5%;
-  gap:2%;
+  gap: 2%;
 }
 
 .spacer {
@@ -63,14 +65,14 @@ body{
 }
 
 .scrollable-dropdown-menu {
-  max-height: 100px; /* Set the max height to accommodate three items */
+  max-height: 100px;
   overflow-y: auto;
 }
 
-.al{
+.al {
   text-align: left;
 }
 
-p{
-  margin:0;
+p {
+  margin: 0;
 }

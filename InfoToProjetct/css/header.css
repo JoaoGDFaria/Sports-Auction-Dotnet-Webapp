@@ -1,18 +1,17 @@
 body {
-    background-size: cover;
+    background: url("../images/back10.png");
+    background-size: 100% 100%; /* Cobrir toda a largura e altura do body */
     font-family: 'Doppio One', sans-serif;
-    margin: 0; /* Remove default margin */
-    padding: 0; /* Remove default padding */
-    background-color: rgb(194, 240, 253);
+    margin: 0;
+    padding: 0;
 }
 
 .aux {
-    background-color: rgb(194, 240, 253);
     margin: 0;
 }
 
 .botao {
-    background-color: rgb(194, 240, 253);
+    opacity: 0;
     width: 100%;
     height: 100%;
     font-size: 1.5vw;
@@ -23,11 +22,11 @@ body {
 }
 
 .botao:hover {
-    text-decoration: underline; /* New background color on hover */
+    text-decoration: underline; /* Nova cor de fundo ao passar o mouse */
 }
 
 .logo {
-    background-color: rgb(194, 240, 253);
+    background-color: none;
 }
 
 .nav-item {

@@ -1,9 +1,12 @@
-body{
-    background-size: cover;
+body {
+    background: url("../images/back90.png") fixed;
+    background-size: 100% 90%;
+    background-position: center bottom; 
     font-family: 'Doppio One', sans-serif;
+    overflow-x: auto;
     width: 100%;
-    background: url("../images/background.png") fixed;
-    background-size: cover;
+    height: 100%;
+    margin: 0;
 }
 
 .header-iframe {
