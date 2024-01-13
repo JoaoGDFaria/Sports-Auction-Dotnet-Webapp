@@ -1,0 +1,28 @@
+@page "/test"
+@using DataLibrary
+@using BlazorApp1.Components
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration _config
+@inject ISqlDataAccess _data
+
+
+@code {
+
+    protected override async Task OnInitializedAsync()
+    {
+        long nib = 584720193218;
+        string sql = "SELECT PrimeiroNome FROM Utilizador WHERE NIB = @nib";
+
+        var parameters = new { NibValue = nib };
+
+        string connectionString = _config.GetConnectionString("DefaultConnection") ?? string.Empty;
+        string firstName = "ERROR";
+        if (connectionString != null)
+        {
+            firstName = await _data.ExecuteScalarAsync<string>(sql, parameters, connectionString);
+        }
+
+        Console.WriteLine(firstName);
+
+    }
+}

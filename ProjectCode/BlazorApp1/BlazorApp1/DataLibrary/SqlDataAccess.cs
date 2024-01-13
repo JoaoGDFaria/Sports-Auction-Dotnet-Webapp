@@ -29,6 +29,15 @@ namespace DataLibrary
             }
         }
 
+        public async Task<T> ExecuteScalarAsync<T>(string sql, object parameters, string connectionString)
+        {
+            using (IDbConnection connection = new MySqlConnection(connectionString))
+            {
+                var result = await connection.ExecuteScalarAsync<T>(sql, parameters);
+                return result ?? default!;
+            }
+        }
+
 
         public String GetClient(string sql, string connectionString)
         {
