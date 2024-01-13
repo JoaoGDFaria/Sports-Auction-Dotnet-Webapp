@@ -40,6 +40,16 @@ namespace DataLibrary
             }
         }
 
+        public async Task<List<T>> ExecuteQueryList<T>(string sql, object parameters, string connectionString)
+        {
+            using (IDbConnection connection = new SqlConnection(connectionString))
+            {
+                var results = await connection.QueryAsync<T>(sql, parameters);
+                return results.ToList();
+            }
+}
+
+
 
         public String GetClient(string sql, string connectionString)
         {

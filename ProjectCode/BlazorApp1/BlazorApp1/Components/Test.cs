@@ -24,7 +24,24 @@ public class Test{
         {
             id = await _data.ExecuteQuery<long>(sql, parameters, connectionString);
         }
-        return (id!=0);
+        return id!=0;
+    }
+
+
+
+    public async Task<List<Leilao>> GetAllAuctions()
+    {
+        string sql = "SELECT * FROM ArtigoLeilao";
+
+        var parameters = new {};
+        string connectionString = _config.GetConnectionString("DefaultConnection") ?? string.Empty;
+
+        List<Leilao> leiloes = new List<Leilao>();
+        if (connectionString != null)
+        {
+            leiloes = await _data.ExecuteQueryList<Leilao>(sql, parameters, connectionString);
+        }
+        return leiloes;
     }
 
 }

@@ -1,6 +1,11 @@
 ﻿@page "/signup"
 @rendermode InteractiveServer
 
+@inject IConfiguration _config
+@inject ISqlDataAccess _data
+
+@using DataLibrary
+
 <PageTitle>Register</PageTitle>
 
 
@@ -69,13 +74,25 @@
 
     private void SubmitForm(){
 
-        Console.WriteLine("First Name: " + FirstName);
-        Console.WriteLine("Last Name: " + LastName);
-        Console.WriteLine("Email: " + Email);
-        Console.WriteLine("Password: " + Password);
-        Console.WriteLine("Address: " + Address);
-        Console.WriteLine("Phone Number: " + PhoneNumber);
-        Console.WriteLine("BIN: " + BIN);
+        //Console.WriteLine("First Name: " + FirstName);
+        //Console.WriteLine("Last Name: " + LastName);
+        //Console.WriteLine("Email: " + Email);
+        //Console.WriteLine("Password: " + Password);
+        //Console.WriteLine("Address: " + Address);
+        //Console.WriteLine("Phone Number: " + PhoneNumber);
+        //Console.WriteLine("BIN: " + BIN);
+
+
+
+        Test test = new Test(_config, _data);
+        var resultTask = Task.Run(async () => await test.GetAllAuctions());
+        resultTask.Wait();
+        List<Leilao> leiloes = resultTask.Result;
+
+        for (int i = 0; i < leiloes.Count; i++)
+        {
+            Console.WriteLine($"Auction Name: {leiloes[i].getNomeLeilao}");
+        }
 
     }
 }
