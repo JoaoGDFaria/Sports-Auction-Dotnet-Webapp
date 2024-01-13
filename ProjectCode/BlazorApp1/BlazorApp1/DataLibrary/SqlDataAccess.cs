@@ -31,7 +31,7 @@ namespace DataLibrary
             }
         }
 
-        public async Task<T> ExecuteScalarAsync<T>(string sql, object parameters, string connectionString)
+        public async Task<T> ExecuteQuery<T>(string sql, object parameters, string connectionString)
         {
             using (IDbConnection connection = new SqlConnection(connectionString)) // Change here
             {

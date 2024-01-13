@@ -46,12 +46,19 @@
 
     private void SubmitForm(){
 
-        var testInstance = new Test(_config, _data);
-        var resultTask = Task.Run(async () => await testInstance.GetLoginStatus("a","b"));
-        resultTask.Wait(); // Wait for the asynchronous task to complete
-        var result = resultTask.Result;
+        Test test = new Test(_config, _data);
+        var resultTask = Task.Run(async () => await test.GetLoginStatus(Email,Password));
+        resultTask.Wait();
+        bool isValid = resultTask.Result;
 
-        Console.WriteLine(result);
+        if (isValid){
+            Console.WriteLine("Entrou");
+        }
+        else{
+            Console.WriteLine("Não Entrou");
+        }
+
+        
 
 
     }

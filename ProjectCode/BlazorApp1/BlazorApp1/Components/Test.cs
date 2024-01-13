@@ -12,29 +12,19 @@ public class Test{
         _data = data;
     }
 
-
-    public void A(){
-        Console.WriteLine("aaa");
-    }
-
-    public async Task<bool> GetLoginStatus(string a, string b)
+    public async Task<bool> GetLoginStatus(string email, string password)
     {
-        string email = "francisco.silva@gmail.com";
-        string sql = "SELECT PalavraPasse FROM Utilizador WHERE Email = @email";
+        string sql = "SELECT NIB FROM Utilizador WHERE Email = @email AND PalavraPasse = @password";
 
-        var parameters = new { email };
-
+        var parameters = new { email, password};
         string connectionString = _config.GetConnectionString("DefaultConnection") ?? string.Empty;
-        string nib = "";  // Change the variable name to reflect its content
 
+        long id = 0;
         if (connectionString != null)
         {
-            nib = await _data.ExecuteScalarAsync<string>(sql, parameters, connectionString);
+            id = await _data.ExecuteQuery<long>(sql, parameters, connectionString);
         }
-
-        Console.WriteLine(nib);  // Adjust the variable name in the Console.WriteLine
-
-        return true;
+        return (id!=0);
     }
 
 }
