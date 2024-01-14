@@ -3,6 +3,7 @@
 
 @inject IConfiguration _config
 @inject ISqlDataAccess _data
+@inject NavigationManager NavigationManager
 
 @using DataLibrary
 
@@ -46,6 +47,72 @@
                         </div>
                     </form>
 
+                    <!--
+                        Checkings the data in not null
+                    -->
+
+                    @if(nullError){
+                        <div class="alert alert-danger" role="alert">
+                        Please fill all the fields!
+                        </div>
+                    }
+
+                    <!--
+                        Checkings the data is unique
+                    -->
+
+                    @if(nibError){
+                        <div class="alert alert-danger" role="alert">
+                        Nib already exists!
+                        </div>
+                    }
+
+                    @if(emailError){
+                        <div class="alert alert-danger" role="alert">
+                        Email already exists!
+                        </div>
+                    }
+
+                    @if(phoneError){
+                        <div class="alert alert-danger" role="alert">
+                        Phone number already exists!
+                        </div>
+                    }
+
+                    @if(dataError){
+                        <div class="alert alert-danger" role="alert">
+                        Something went wrong, please try again!
+                        </div>
+                    } 
+
+                    <!--
+                        Checkings the data format
+                    -->
+
+                    @if(nibFormatError){
+                        <div class="alert alert-danger" role="alert">
+                        Nib must be a 9 digit number!
+                        </div>
+                    }
+
+                    @if(emailFormatError){
+                        <div class="alert alert-danger" role="alert">
+                        Email must have a valid format!
+                        </div>
+                    }
+
+                    @if(phoneFormatError){
+                        <div class="alert alert-danger" role="alert">
+                        Phone number must have 9 digits!
+                        </div>
+                    }
+
+                    @if(passwordFormatError){
+                        <div class="alert alert-danger" role="alert">
+                        Password must have between 8 and 20 characters!
+                        </div>
+                    }
+
                     <div class="hyperlink">
                         <p class="mb-0">Already have an account? <a href="@("/login")" class="text-white-50 fw-bold click">Log In</a>!</p>
                         <br/>
@@ -64,8 +131,23 @@
 <link rel="stylesheet" href="css/register.css">
 
 @code {
-    private string PrimeiroNome {get; set;} = string.Empty;
+
+    public bool nullError { get; set; } = false;
     
+    // Data base duplicate check
+    public bool nibError { get; set; } = false;
+    public bool emailError { get; set; } = false;
+    public bool phoneError { get; set; } = false;
+    public bool dataError { get; set; } = false;
+
+    // Data format check
+    public bool nibFormatError { get; set; } = false;
+    public bool emailFormatError { get; set; } = false;
+    public bool phoneFormatError { get; set; } = false;
+    public bool passwordFormatError { get; set; } = false;
+
+    // Data
+    private string PrimeiroNome {get; set;} = string.Empty;
     private string UltimoNome {get; set;} = string.Empty;
     private string Email {get; set;} = string.Empty;
     private string PalavraPasse {get; set;} = string.Empty;
@@ -76,18 +158,157 @@
 
     private async Task SubmitForm()
     {
-        DatabaseQueries dbQuery = new DatabaseQueries(_config, _data);
-        int rowsAffected = await dbQuery.RegisterUser(PrimeiroNome, UltimoNome, Email, PalavraPasse, Morada, NumeroTelemovel, NIB);
+        DatabaseQueries test = new DatabaseQueries(_config, _data);
 
-        if (rowsAffected > 0)
+        nullError = false;
+
+        nibError = false;
+        emailError = false;
+        phoneError = false;
+        dataError = false;
+
+        nibFormatError = false;
+        emailFormatError = false;
+        phoneFormatError = false;
+        passwordFormatError = false;
+
+        if (string.IsNullOrEmpty(PrimeiroNome) || 
+            string.IsNullOrEmpty(UltimoNome) || 
+            string.IsNullOrEmpty(Email) || 
+            string.IsNullOrEmpty(PalavraPasse) || 
+            string.IsNullOrEmpty(Morada) || 
+            string.IsNullOrEmpty(NumeroTelemovel) || 
+            string.IsNullOrEmpty(NIB)){
+
+            nullError = true;
+            return;
+        } else{
+
+            // Checking data format
+            if(validateEmail(Email) && validateNib(NIB) && validatePhone(NumeroTelemovel) && validatePassword(PalavraPasse)){
+            
+                // Checking data uniqueness
+                bool nibCheck = await test.isThereNIB(NIB);
+                if (nibCheck){
+                    nibError = true;
+                    return;
+                }
+
+                // Checking data uniqueness
+                bool emailCheck = await test.isThereEmail(Email);
+                if (emailCheck){
+                    emailError = true;
+                    return;
+                }
+
+                // Checking data uniqueness
+                bool phoneCheck = await test.isTherePhoneNumber(NumeroTelemovel);
+                if (phoneCheck){
+                    phoneError = true;
+                    return;
+                }
+            
+                // Registering user
+                int rowsAffected = await test.RegisterUser(PrimeiroNome, UltimoNome, Email, PalavraPasse, Morada, NumeroTelemovel, NIB);
+                // Checking if user was registered
+                if (rowsAffected > 0)
+                {
+                    // Redirecting to login page
+                    NavigationManager.NavigateTo("/login");
+                    return;
+                }
+                else
+                {
+                    //  Something went wrong but we don't know what, so we just say something went wrong, 
+                    // please try again, and we don't redirect, because we don't know what happened, so we 
+                    // don't know if it's safe to redirect, so we just stay here, and we don't do anything, 
+                    // because we don't know what happened, so we don't know what to do, so we just stay here,
+                    // and we don't do anything, because we don't know what happened... 
+                    dataError = true;
+                    return;
+                }
+            }
+        }
+
+
+    }
+
+    private bool validateNib(string nib)
+    {
+        bool valid = int.TryParse(nib, out _);
+
+        if (!valid || nib.Length != 21)
         {
-            // Inserção bem-sucedida, você pode adicionar lógica adicional aqui.
-            Console.WriteLine("Utilizador inserido com sucesso!");
+            nibFormatError = true;
+            return false;
         }
         else
         {
-            // Falha na inserção, você pode adicionar lógica adicional aqui.
-            Console.WriteLine("Falha ao inserir utilizador.");
+            nibFormatError = false;
+            return true;
+        }
+    }
+
+    private bool validateEmail(string email)
+    {
+        if (string.IsNullOrWhiteSpace(email))
+		{
+            emailFormatError = true;
+			return false;
+		}
+
+		string[] parts = email.Split('@');
+		if (parts.Length != 2)
+		{
+            emailFormatError = true;
+			return false; // email must have exactly one @ symbol
+		}
+
+		string localPart = parts[0];
+		string domainPart = parts[1];
+		if (string.IsNullOrWhiteSpace(localPart) || string.IsNullOrWhiteSpace(domainPart))
+		{
+            emailFormatError = true;
+			return false; // local and domain parts cannot be empty
+		}
+
+		// check domain part for valid format
+		if (domainPart.Length < 2 || !domainPart.Contains(".") || domainPart.Split(".").Length !=2 ||  domainPart.EndsWith(".") || domainPart.StartsWith("."))
+		{
+            emailFormatError = true;
+			return false; // domain part is not a valid format
+		}
+
+		return true;
+	}
+    
+    private bool validatePhone(string phone)
+    {
+        bool valid = int.TryParse(phone, out _);
+
+        if (!valid || phone.Length != 9)
+        {
+            phoneFormatError = true;
+            return false;
+        }
+        else
+        {
+            phoneFormatError = false;
+            return true;
+        }
+    }
+
+    private bool validatePassword(string password)
+    {
+        if (password.Length < 8 || password.Length > 20)
+        {
+            passwordFormatError = true;
+            return false;
+        }
+        else
+        {
+            passwordFormatError = false;
+            return true;
         }
     }
 
