@@ -11,6 +11,7 @@ public class Pagination{
     }
 
     public Pagination(int totalItems){
+        this.currentPage = 1;
         this.totalItems = totalItems;
         this.totalPages = (int)Math.Ceiling(this.totalItems / (double)this.itemsPerPage);
     }
@@ -24,12 +25,10 @@ public class Pagination{
     }
 
     public int GetItemsForPage(){
-        if (this.currentPage == this.totalPages)
-        {
+        if (this.currentPage == this.totalPages){
             return this.totalItems - ((this.currentPage - 1) * this.itemsPerPage);
         }
-        else
-        {
+        else{
             return this.itemsPerPage;
         }
     }
@@ -39,14 +38,21 @@ public class Pagination{
     }
 
     public int GetEndIndex(){
-        return (this.currentPage * this.itemsPerPage) - 1;
+        if (this.currentPage == this.totalPages){
+            return ((this.currentPage -1) * this.itemsPerPage) + this.totalItems - ((this.currentPage - 1) * this.itemsPerPage) -1;
+        }
+        else{
+            return (this.currentPage * this.itemsPerPage) - 1;
+        }
     }
 
 
-    public void SetCurrentPage(int page){
+    public bool SetCurrentPage(int page){
         if(page > 0 && page <= this.totalPages){
             this.currentPage = page;
+            return true;
         }
+        return false;
     }
 
 }

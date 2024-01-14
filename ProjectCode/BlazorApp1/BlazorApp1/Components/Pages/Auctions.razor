@@ -1,8 +1,9 @@
-@page "/auctions"
+@page "/auctions/{page:int?}"
 @rendermode InteractiveServer
 
 @inject IConfiguration _config
 @inject ISqlDataAccess _data
+@inject NavigationManager NavigationManager
 
 @using DataLibrary
 
@@ -31,25 +32,32 @@
             </div>
         </div>
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            @if (leiloes.Count != 0)
+            {
 
-            @for (int i = pagination.GetStartIndex(); i <= pagination.GetEndIndex(); i++){
-                Leilao leilao = leiloes[i];
-                <button class="itemButton">
-                    <div class="item row g-0 ">
-                            
-                        <div class="imagem col-md-4 ">
-                            <img src="./images/item1.webp" class="img-fluid " >
-                        </div>
+                @for (int i = pagination.GetStartIndex(); i <= pagination.GetEndIndex(); i++){
 
-                        <div class="itemInfo col-md-8">
-                            <h5 class="itemTitle">@leilao.GetNomeLeilao()</h5>
-                            <p class="itemInfo">Current bid: $404.5</p>
-                            <p class="itemInfo">Buy Now: $@leilao.GetPrecoCompraAutomaticoLeilao()</p>
-                            <p class="itemTime"><small class="text-body-secondary">18h 20min</small></p>
+
+                    Leilao leilao = leiloes[i];
+
+
+                    <button class="itemButton">
+                        <div class="item row g-0 ">
+                                
+                            <div class="imagem col-md-4 ">
+                                <img src="./images/item1.webp" class="img-fluid " >
+                            </div>
+
+                            <div class="itemInfo col-md-8">
+                                <h5 class="itemTitle">@leilao.GetNomeLeilao()</h5>
+                                <p class="itemInfo">Current bid: $404.5</p>
+                                <p class="itemInfo">Buy Now: $@leilao.GetPrecoCompraAutomaticoLeilao()</p>
+                                <p class="itemTime"><small class="text-body-secondary">18h 20min</small></p>
+                            </div>
+                                
                         </div>
-                            
-                    </div>
-                </button>
+                    </button>
+                }
             }
 
 
@@ -57,11 +65,28 @@
 
         <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center mt-4">
-                <li class="page-item disabled"><a class="page-link">Previous</a></li>
-                @for (int i = 1; i <= pagination.GetTotalPages(); i++){
-                    <li class="page-item"><a class="page-link" href="#">@i</a></li>
+                @if ((pagination.GetCurrentPage() - 1) < 1){
+                    <li class="page-item disabled"><a class="page-link" href="auctions/@(pagination.GetCurrentPage()-1)">Previous</a></li>
                 }
-                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                else{
+                    <li class="page-item"><a class="page-link" href="auctions/@(pagination.GetCurrentPage()-1)">Previous</a></li>
+                }
+                @for (int i = 1; i <= pagination.GetTotalPages(); i++){
+                    int currentPage = i;
+                    @if (currentPage == 1){
+                        <a class="page-link" href="auctions">@i</a>
+                    }
+                    else{
+                        <a class="page-link" href="auctions/@currentPage">@i</a>
+                    }
+                }
+                @if ((pagination.GetCurrentPage() + 1) > pagination.GetTotalPages()){
+                    <li class="page-item disabled"><a class="page-link" href="auctions/@(pagination.GetCurrentPage()+1)">Next</a></li>
+                }
+                else{
+                    <li class="page-item"><a class="page-link" href="auctions/@(pagination.GetCurrentPage()+1)">Next</a></li>
+                }
+                
             </ul>
         </nav>
 
@@ -82,6 +107,9 @@
 
 
 @code {
+
+    [Parameter] public int? page { get; set; }
+
     private List<Leilao> leiloes= new List<Leilao>();
     private Pagination pagination = new Pagination();
 
@@ -95,11 +123,25 @@
         Test test = new Test(_config, _data);
         leiloes = await test.GetAllAuctions();
         pagination = new Pagination(leiloes.Count);
+        bool flag = pagination.SetCurrentPage(GetCurrentPage());
+ 
+        if (!flag)
+        {
+            NavigationManager.NavigateTo("/notfound");
+        }
 
-        //for (int i = 0; i < leiloes.Count; i++)
-        //{
-        //    Console.WriteLine($"{leiloes[i].ToString()}");
-        //}
     }
+
+    private int GetCurrentPage(){
+        var currentUrl = NavigationManager.Uri;
+        var pageStr = currentUrl.Split("/").Last();
+        if (int.TryParse(pageStr, out var currentPage)){
+            return currentPage;
+        }
+        else{
+            return 1;
+        }
+    }
+
 
 }

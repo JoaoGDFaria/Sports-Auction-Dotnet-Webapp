@@ -7,6 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
+builder.Services.AddRazorPages();
+builder.Services.AddRazorComponents().AddInteractiveServerComponents();
 builder.Services.AddTransient<ISqlDataAccess, SqlDataAccess>();
 
 var app = builder.Build();
@@ -26,5 +28,8 @@ app.UseAntiforgery();
 // I want to redirect to login
 app.MapRazorComponents<StartPage>()
     .AddInteractiveServerRenderMode();
+
+app.MapFallbackToPage("/_Pages/Auctions/{*page}", "/_Pages/Auctions");
+
 
 app.Run();
