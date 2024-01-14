@@ -90,10 +90,8 @@
             </ul>
         </nav>
 
-        <div class="button buttons">
-            <button type="button" class="btn btn-danger">EXIT</button>
-            <button type="button" class="btn btn-warning">LOG OUT</button>
-        </div>
+        <a href="./login"  target="_top"><button type="button" class="btn btn-warning">LOG OUT</button></a>
+        
     </div>
 
     <div class="container">
@@ -120,8 +118,8 @@
 
     private async Task LoadAuctions()
     {
-        Test test = new Test(_config, _data);
-        leiloes = await test.GetAllAuctions();
+        DatabaseQueries dbQuery = new DatabaseQueries(_config, _data);
+        leiloes = await dbQuery.GetAllAuctions();
         pagination = new Pagination(leiloes.Count);
         bool flag = pagination.SetCurrentPage(GetCurrentPage());
  

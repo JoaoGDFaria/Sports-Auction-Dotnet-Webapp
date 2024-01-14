@@ -76,8 +76,8 @@
 
     private async Task SubmitForm()
     {
-        Test test = new Test(_config, _data);
-        int rowsAffected = await test.RegisterUser(PrimeiroNome, UltimoNome, Email, PalavraPasse, Morada, NumeroTelemovel, NIB);
+        DatabaseQueries dbQuery = new DatabaseQueries(_config, _data);
+        int rowsAffected = await dbQuery.RegisterUser(PrimeiroNome, UltimoNome, Email, PalavraPasse, Morada, NumeroTelemovel, NIB);
 
         if (rowsAffected > 0)
         {

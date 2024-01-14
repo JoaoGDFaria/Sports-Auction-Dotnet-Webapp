@@ -1,13 +1,13 @@
 using DataLibrary;
 using System.Data.SqlClient;
 
-public class Test{
+public class DatabaseQueries{
 
     private readonly IConfiguration _config;
     private readonly ISqlDataAccess _data;
 
     
-    public Test(IConfiguration config, ISqlDataAccess data)
+    public DatabaseQueries(IConfiguration config, ISqlDataAccess data)
     {
         _config = config;
         _data = data;

@@ -60,8 +60,8 @@
 
     private void SubmitForm(){
 
-        Test test = new Test(_config, _data);
-        var resultTask = Task.Run(async () => await test.GetLoginStatus(Email,Password));
+        DatabaseQueries dbQuery = new DatabaseQueries(_config, _data);
+        var resultTask = Task.Run(async () => await dbQuery.GetLoginStatus(Email,Password));
         resultTask.Wait();
         bool isValid = resultTask.Result;
 

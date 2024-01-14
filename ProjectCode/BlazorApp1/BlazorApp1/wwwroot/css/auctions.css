@@ -27,6 +27,6 @@ body{
     overflow-y: auto;
 }
 
-.buttons{
-    gap: 2%;
+.btn-warning{
+    margin-left: 1%;
 }
