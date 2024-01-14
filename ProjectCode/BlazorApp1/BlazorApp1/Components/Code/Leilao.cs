@@ -16,6 +16,28 @@ public class Leilao{
     private int idVendor;
     private string estadoLeilao;
     
+
+    public Leilao(){
+        this.tamanho = "";
+        this.data = DateTime.Now;
+        this.nomeEquipaEvento = "";
+        this.nomeArtigo = "";
+        this.descricao = "";
+        this.autenticacao = 0;
+        this.estadoArtigo = "";
+        this.urlImagem = "";
+        this.nomeLeilao = "";
+        this.taxaMinIncremento = 0;
+        this.dataFinal = DateTime.Now;
+        this.precoCompraAutomatica = 0;
+        this.precoBase = 0;
+        this.idCategoria = 0;
+        this.idVendor = 0;
+        this.estadoLeilao = "";
+
+        NomeLeilao = nomeLeilao;
+    }
+
     public Leilao(string tamanho, DateTime data, string nomeEquipaEvento, string nomeArtigo, string descricao, int autenticacao, string estadoArtigo, string urlImagem, string nomeLeilao, double taxaMinIncremento, DateTime dataFinal, double precoCompraAutomatica, double precoBase, int idCategoria, int idVendor, string estadoLeilao)
     {
         this.tamanho = tamanho;
@@ -34,8 +56,10 @@ public class Leilao{
         this.idCategoria = idCategoria;
         this.idVendor = idVendor;
         this.estadoLeilao = estadoLeilao;
+
+        NomeLeilao = nomeLeilao;
     }
 
-    public string getNomeLeilao {get;}
+    public string NomeLeilao { get; }
 
 }

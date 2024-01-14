@@ -1,6 +1,11 @@
 @page "/auctions"
 @rendermode InteractiveServer
 
+@inject IConfiguration _config
+@inject ISqlDataAccess _data
+
+@using DataLibrary
+
 <PageTitle>Auctions</PageTitle>
     
     <Header />
@@ -298,6 +303,23 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="css/auctions.css">
 
-@code {
 
+@code {
+    private List<Leilao> leiloes= new List<Leilao>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadAuctions();
+    }
+
+    private async Task LoadAuctions()
+    {
+        Test test = new Test(_config, _data);
+        leiloes = await test.GetAllAuctions();
+
+        for (int i = 0; i < leiloes.Count; i++)
+        {
+            Console.WriteLine($"Auction Name: {leiloes[i].NomeLeilao}");
+        }
+    }
 }
