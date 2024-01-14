@@ -44,7 +44,7 @@ public class Test{
         return leiloes;
     }
 
-    public async Task<int> InsertUsuario(string firstName, string lastName, string email, string password, string address, string phoneNumber, string bin){
+    public async Task<bool> InsertUsuario(string firstName, string lastName, string email, string password, string address, string phoneNumber, string bin){
 
         string sql = "INSERT INTO Utilizador (FirstName, LastName, Email, Password, Address, PhoneNumber, BIN) "+ 
                     "VALUES (@FirstName, @LastName, @Email, @Password, @Address, @PhoneNumber, @BIN)";
@@ -64,10 +64,10 @@ public class Test{
 
         if (connectionString != null)
         {
-            return await _data.Execute<int>(sql, parameters, connectionString);
+            await _data.ExecuteQuery<Task>(sql, parameters, connectionString);
         }
 
-        return 0;
+        return false;
     }
 
 }

@@ -60,82 +60,82 @@ public class Leilao
 
     public string GetTamanhoArtigo()
     {
-        return tamanhoArtigo;
+        return this.tamanhoArtigo;
     }
 
     public DateTime GetDataUsoArtigo()
     {
-        return dataUsoArtigo;
+        return this.dataUsoArtigo;
     }
 
     public string GetNomeEquipaEventoArtigo()
     {
-        return nomeEquipaEventoArtigo;
+        return this.nomeEquipaEventoArtigo;
     }
 
     public string GetNomeArtigo()
     {
-        return nomeArtigo;
+        return this.nomeArtigo;
     }
 
     public string GetDescricaoArtigo()
     {
-        return descricaoArtigo;
+        return this.descricaoArtigo;
     }
 
     public int GetNumeroAutenticacaoArtigo()
     {
-        return numeroAutenticacaoArtigo;
+        return this.numeroAutenticacaoArtigo;
     }
 
     public string GetEstadoArtigo()
     {
-        return estadoArtigo;
+        return this.estadoArtigo;
     }
 
     public string GetImagemArtigo()
     {
-        return imagemArtigo;
+        return this.imagemArtigo;
     }
 
     public string GetNomeLeilao()
     {
-        return nomeLeilao;
+        return this.nomeLeilao;
     }
 
     public double GetTaxaMinimaIncrementoLeilao()
     {
-        return taxaMinimaIncrementoLeilao;
+        return this.taxaMinimaIncrementoLeilao;
     }
 
     public DateTime GetDataFinalizacaoLeilao()
     {
-        return dataFinalizacaoLeilao;
+        return this.dataFinalizacaoLeilao;
     }
 
     public double GetPrecoCompraAutomaticoLeilao()
     {
-        return precoCompraAutomaticoLeilao;
+        return this.precoCompraAutomaticoLeilao;
     }
 
     public double GetPrecoBaseLeilao()
     {
-        return precoBaseLeilao;
+        return this.precoBaseLeilao;
     }
 
     public int GetIdCategoria()
     {
-        return idCategoria;
+        return this.idCategoria;
     }
 
     public double GetIdVendedor()
     {
-        return idVendedor;
+        return this.idVendedor;
     }
 
     public string GetEstadoLeilao()
     {
-        return estadoLeilao;
+        return this.estadoLeilao;
     }
 
 
