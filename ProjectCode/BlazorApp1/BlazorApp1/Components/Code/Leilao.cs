@@ -1,5 +1,6 @@
 public class Leilao
 {
+    private int idLeilao;
     private string tamanhoArtigo;
     private DateTime dataUsoArtigo;
     private string nomeEquipaEventoArtigo;
@@ -16,9 +17,11 @@ public class Leilao
     private int idCategoria;
     private double idVendedor;
     private string estadoLeilao;
+    private double highestBid;
 
     public Leilao()
     {
+        this.idLeilao = 0;
         this.tamanhoArtigo = "";
         this.dataUsoArtigo = DateTime.Now;
         this.nomeEquipaEventoArtigo = "";
@@ -35,10 +38,12 @@ public class Leilao
         this.idCategoria = 0;
         this.idVendedor = 0;
         this.estadoLeilao = "";
+        this.highestBid = 0;
     }
 
-    public Leilao(string tamanho, DateTime data, string nomeEquipaEvento, string nomeArtigo, string descricao, int autenticacao, string estadoArtigo, string urlImagem, string nomeLeilao, double taxaMinIncremento, DateTime dataFinal, double precoCompraAutomatica, double precoBase, int idCategoria, int idVendor, string estadoLeilao)
+    public Leilao(int idLeilao, string tamanho, DateTime data, string nomeEquipaEvento, string nomeArtigo, string descricao, int autenticacao, string estadoArtigo, string urlImagem, string nomeLeilao, double taxaMinIncremento, DateTime dataFinal, double precoCompraAutomatica, double precoBase, int idCategoria, int idVendor, string estadoLeilao)
     {
+        this.idLeilao = idLeilao;
         this.tamanhoArtigo = tamanho;
         this.dataUsoArtigo = data;
         this.nomeEquipaEventoArtigo = nomeEquipaEvento;
@@ -55,7 +60,13 @@ public class Leilao
         this.idCategoria = idCategoria;
         this.idVendedor = idVendor;
         this.estadoLeilao = estadoLeilao;
+        this.highestBid = 0;    
 
+    }
+
+    public int GetIdLeilao()
+    {
+        return this.idLeilao;
     }
 
     public string GetTamanhoArtigo()
@@ -138,10 +149,26 @@ public class Leilao
         return this.estadoLeilao;
     }
 
+    public double GetHighestBid()
+    {
+        return this.highestBid;
+    }
+
+    public string GetTimeLeft(){
+        TimeSpan timeLeft = this.dataFinalizacaoLeilao-DateTime.Now;
+        return $"Days: {timeLeft.Days}, Hours: {timeLeft.Hours}, Minutes: {timeLeft.Minutes}";
+    }
+
+    public void SetHighestBid(double highestBid)
+    {
+        this.highestBid = highestBid;
+    }
+
+
 
 public override string ToString()
 {
-    return $"Leilao: {GetNomeLeilao()}, Tamanho: {GetTamanhoArtigo()}, Data: {GetDataUsoArtigo().ToString("dd/MM/yyyy HH:mm:ss")}, NomeEquipaEvento: {GetNomeEquipaEventoArtigo()}, NomeArtigo: {GetNomeArtigo()}, Descricao: {GetDescricaoArtigo()}, Autenticacao: {GetNumeroAutenticacaoArtigo()}, EstadoArtigo: {GetEstadoArtigo()}, UrlImagem: {GetImagemArtigo()}, TaxaMinIncremento: {GetTaxaMinimaIncrementoLeilao()}, DataFinal: {GetDataFinalizacaoLeilao().ToString("dd/MM/yyyy HH:mm:ss")}, PrecoCompraAutomatica: {GetPrecoCompraAutomaticoLeilao()}, PrecoBase: {GetPrecoBaseLeilao()}, IdCategoria: {GetIdCategoria()}, IdVendor: {GetIdVendedor()}, EstadoLeilao: {GetEstadoLeilao()}";
+    return $"Id: {GetIdLeilao()}, Leilao: {GetNomeLeilao()}, Tamanho: {GetTamanhoArtigo()}, Data: {GetDataUsoArtigo().ToString("dd/MM/yyyy HH:mm:ss")}, NomeEquipaEvento: {GetNomeEquipaEventoArtigo()}, NomeArtigo: {GetNomeArtigo()}, Descricao: {GetDescricaoArtigo()}, Autenticacao: {GetNumeroAutenticacaoArtigo()}, EstadoArtigo: {GetEstadoArtigo()}, UrlImagem: {GetImagemArtigo()}, TaxaMinIncremento: {GetTaxaMinimaIncrementoLeilao()}, DataFinal: {GetDataFinalizacaoLeilao().ToString("dd/MM/yyyy HH:mm:ss")}, PrecoCompraAutomatica: {GetPrecoCompraAutomaticoLeilao()}, PrecoBase: {GetPrecoBaseLeilao()}, IdCategoria: {GetIdCategoria()}, IdVendor: {GetIdVendedor()}, EstadoLeilao: {GetEstadoLeilao()}";
 }
 
     

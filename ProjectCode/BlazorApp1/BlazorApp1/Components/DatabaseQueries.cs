@@ -32,7 +32,7 @@ public class DatabaseQueries{
 
     public async Task<List<Leilao>> GetAllAuctions()
     {
-        string sql = "SELECT * FROM ArtigoLeilao";
+        string sql = "SELECT * FROM ArtigoLeilao ORDER BY IdLeilao;";
 
         var parameters = new {};
         string connectionString = _config.GetConnectionString("DefaultConnection") ?? string.Empty;
@@ -42,8 +42,36 @@ public class DatabaseQueries{
         {
             leiloes = await _data.ExecuteQueryList<Leilao>(sql, parameters, connectionString);
         }
+
+
+        foreach (Leilao leilao in leiloes){
+            leilao.SetHighestBid(await GetHighestBid(leilao.GetIdLeilao()));
+        }
+
+
         return leiloes;
     }
+
+
+    public async Task<double> GetHighestBid(int auctionID)
+    {
+        string sql = "SELECT ValorLicitacao FROM Licitacao WHERE IdLeilao = @auctionID";
+
+        var parameters = new {auctionID};
+        string connectionString = _config.GetConnectionString("DefaultConnection") ?? string.Empty;
+
+        List<double> bids = new List<double>();
+        if (connectionString != null)
+        {
+            bids = await _data.ExecuteQueryList<double>(sql, parameters, connectionString);
+        }
+
+        if (bids.Count == 0) return 0;
+        else return bids.Max();
+
+    }
+
+
 
     public async Task<int> RegisterUser(string firstName, string lastName, string email, string password, string address, string phoneNumber, string bin){
 

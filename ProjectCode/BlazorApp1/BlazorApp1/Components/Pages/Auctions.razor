@@ -50,9 +50,10 @@
 
                             <div class="itemInfo col-md-8">
                                 <h5 class="itemTitle">@leilao.GetNomeLeilao()</h5>
-                                <p class="itemInfo">Current bid: $404.5</p>
+                                @if (leilao.GetHighestBid() == 0){ <p class="itemInfo">Current bid: None</p> }
+                                else{ <p class="itemInfo">Current bid: $@leilao.GetHighestBid()</p> }
                                 <p class="itemInfo">Buy Now: $@leilao.GetPrecoCompraAutomaticoLeilao()</p>
-                                <p class="itemTime"><small class="text-body-secondary">18h 20min</small></p>
+                                <p class="itemTime"><small class="text-body-secondary">@leilao.GetTimeLeft()</small></p>
                             </div>
                                 
                         </div>
@@ -120,13 +121,15 @@
     {
         DatabaseQueries dbQuery = new DatabaseQueries(_config, _data);
         leiloes = await dbQuery.GetAllAuctions();
+        
         pagination = new Pagination(leiloes.Count);
         bool flag = pagination.SetCurrentPage(GetCurrentPage());
- 
+
         if (!flag)
         {
             NavigationManager.NavigateTo("/notfound");
         }
+        
 
     }
 
