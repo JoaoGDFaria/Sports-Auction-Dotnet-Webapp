@@ -1,4 +1,5 @@
 using DataLibrary;
+using System.Data.SqlClient;
 
 public class Test{
 
@@ -44,30 +45,30 @@ public class Test{
         return leiloes;
     }
 
-    public async Task<bool> InsertUsuario(string firstName, string lastName, string email, string password, string address, string phoneNumber, string bin){
+    public async Task<int> RegisterUser(string firstName, string lastName, string email, string password, string address, string phoneNumber, string bin){
 
-        string sql = "INSERT INTO Utilizador (FirstName, LastName, Email, Password, Address, PhoneNumber, BIN) "+ 
-                    "VALUES (@FirstName, @LastName, @Email, @Password, @Address, @PhoneNumber, @BIN)";
+    string sql = "INSERT INTO Utilizador (PrimeiroNome, UltimoNome, Email, PalavraPasse, Morada, NumeroTelemovel, NIB) "+ 
+                "VALUES (@PrimeiroNome, @UltimoNome, @Email, @PalavraPasse, @Morada, @NumeroTelemovel, @NIB)";
 
-        var parameters = new
-        {
-            @FirstName = firstName,
-            @LastName = lastName,
-            @Email = email,
-            @Password = password,
-            @Address = address,
-            @PhoneNumber = phoneNumber,
-            @BIN = bin
-        };
+    var parameters = new
+    {
+        @PrimeiroNome = firstName,
+        @UltimoNome = lastName,
+        @Email = email,
+        @PalavraPasse = password,
+        @Morada = address,
+        @NumeroTelemovel = phoneNumber,
+        @NIB = bin
+    };
 
-        string connectionString = _config.GetConnectionString("DefaultConnection") ?? string.Empty;
+    string connectionString = _config.GetConnectionString("DefaultConnection") ?? string.Empty;
 
-        if (connectionString != null)
-        {
-            await _data.ExecuteQuery<Task>(sql, parameters, connectionString);
-        }
+    if (connectionString != null)
+    {
+        await _data.ExecuteQuery<int>(sql, parameters, connectionString);
+    } 
 
-        return false;
+    return 1;
     }
 
 }

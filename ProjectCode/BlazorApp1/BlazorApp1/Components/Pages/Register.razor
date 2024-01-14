@@ -18,11 +18,11 @@
                 <form>
                     <div class="form-outline form-white mb-4 field1">
                         <label class="form-label" for="typeEmailX">FIRST NAME</label>
-                            <input type="text" id="typeEmailX" class="form-control form-control-lg"  @bind="FirstName"/>
+                            <input type="text" id="typeEmailX" class="form-control form-control-lg"  @bind="PrimeiroNome"/>
                         </div>
                         <div class="form-outline form-white mb-4 field2">
                             <label class="form-label" for="typePasswordX">LAST NAME</label>
-                            <input type="text" id="typePasswordX" class="form-control form-control-lg"  @bind="LastName"/>
+                            <input type="text" id="typePasswordX" class="form-control form-control-lg"  @bind="UltimoNome"/>
                         </div>
                         <div class="form-outline form-white mb-4 field1">
                             <label class="form-label" for="typePasswordX">EMAIL</label>
@@ -30,19 +30,19 @@
                         </div>
                         <div class="form-outline form-white mb-4 field2">
                             <label class="form-label" for="typePasswordX">PASSWORD</label>
-                            <input type="password" id="typePasswordX" class="form-control form-control-lg"  @bind="Password"/>
+                            <input type="password" id="typePasswordX" class="form-control form-control-lg"  @bind="PalavraPasse"/>
                         </div>
                         <div class="form-outline form-white mb-4 field1">
                             <label class="form-label" for="typePasswordX">ADDRESS</label>
-                            <input type="text" id="typePasswordX" class="form-control form-control-lg"  @bind="Address"/>
+                            <input type="text" id="typePasswordX" class="form-control form-control-lg"  @bind="Morada"/>
                         </div>
                         <div class="form-outline form-white mb-4 field2">
                             <label class="form-label" for="typePasswordX">PHONE NUMBER</label>
-                            <input type="text" id="typePasswordX" class="form-control form-control-lg"  @bind="PhoneNumber"/>
+                            <input type="text" id="typePasswordX" class="form-control form-control-lg"  @bind="NumeroTelemovel"/>
                         </div>
                         <div class="form-outline form-white mb-4">
                             <label class="form-label" for="typePasswordX">BANK IDENTIFICATION NUMBER</label>
-                            <input type="text" id="typePasswordX" class="form-control form-control-lg"  @bind="BIN"/>
+                            <input type="text" id="typePasswordX" class="form-control form-control-lg"  @bind="NIB"/>
                         </div>
                     </form>
 
@@ -64,28 +64,31 @@
 <link rel="stylesheet" href="css/register.css">
 
 @code {
-    private string FirstName {get; set;} = string.Empty;
-    private string LastName {get; set;} = string.Empty;
+    private string PrimeiroNome {get; set;} = string.Empty;
+    
+    private string UltimoNome {get; set;} = string.Empty;
     private string Email {get; set;} = string.Empty;
-    private string Password {get; set;} = string.Empty;
-    private string Address {get; set;} = string.Empty;
-    private string PhoneNumber {get; set;} = string.Empty;
-    private string BIN {get; set;} = string.Empty;
+    private string PalavraPasse {get; set;} = string.Empty;
+    private string Morada {get; set;} = string.Empty;
+    private string NumeroTelemovel {get; set;} = string.Empty;
+    private string NIB {get; set;} = string.Empty;
+
 
     private async Task SubmitForm()
     {
         Test test = new Test(_config, _data);
-        int rowsAffected = await test.InsertUsuario(FirstName, LastName, Email, Password, Address, PhoneNumber, BIN);
+        int rowsAffected = await test.RegisterUser(PrimeiroNome, UltimoNome, Email, PalavraPasse, Morada, NumeroTelemovel, NIB);
 
         if (rowsAffected > 0)
         {
             // Inserção bem-sucedida, você pode adicionar lógica adicional aqui.
-            Console.WriteLine("Usuário inserido com sucesso!");
+            Console.WriteLine("Utilizador inserido com sucesso!");
         }
         else
         {
             // Falha na inserção, você pode adicionar lógica adicional aqui.
-            Console.WriteLine("Falha ao inserir usuário.");
+            Console.WriteLine("Falha ao inserir utilizador.");
         }
     }
+
 }
