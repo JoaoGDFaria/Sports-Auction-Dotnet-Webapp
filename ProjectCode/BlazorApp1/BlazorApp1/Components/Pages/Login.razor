@@ -3,6 +3,7 @@
 
 @inject IConfiguration _config
 @inject ISqlDataAccess _data
+@inject NavigationManager NavigationManager
 
 @using DataLibrary
 
@@ -14,23 +15,34 @@
             <div class="mb-md-5 mt-md-4 pb-5">
                 <img class="mb-4" src="./images/logo.png" alt="" width="100">
                 <h2 class="fw-bold mb-2 text-uppercase">LOG IN</h2>
+                
                 <div class="form-outline form-white mb-4">
                     <label class="form-label" for="typeEmailX">EMAIL</label>
                     <input type="email" id="typeEmailX" class="form-control form-control-lg input" @bind="Email"/>
                 </div>
+                
                 <div class="form-outline form-white mb-4">
                     <label class="form-label" for="typePasswordX">PASSWORD</label>
                     <input type="password" id="typePasswordX" class="form-control form-control-lg input" @bind="Password"/>
                 </div>
 
+                @if(showAlert){
+                    <div class="alert alert-danger" role="alert">
+                        Invalid email or password!
+                    </div>
+                } 
+
                 <div class="hyperlink">
-                    <p class="mb-0">Don't have an account? <a href="@("/signup")" class="text-white-50 fw-bold click">Sign Up</a>!</p>
+                    <p class="mb-0">Don't have an account? <a href="@("/signup")" class="text-black-50 fw-bold click">Sign Up</a>!</p>
                     <br />
                 </div>
+                
                 <div class="button d-flex justify-content-between buttons">
                     <button type="button" class="btn btn-danger">EXIT</button>
                     <button type="button" class="btn btn-success" @onclick="SubmitForm">SUBMIT</button>
                 </div>
+
+
             </div>
         </div>
     </div>
@@ -40,6 +52,8 @@
 <link rel="stylesheet" href="css/login.css">
 
 @code {
+
+    public bool showAlert {get; set;} = false;
 
     private string Email {get; set;} = string.Empty;
     private string Password {get; set;} = string.Empty;
@@ -51,15 +65,10 @@
         resultTask.Wait();
         bool isValid = resultTask.Result;
 
-        if (isValid){
-            Console.WriteLine("Entrou");
-        }
-        else{
-            Console.WriteLine("Não Entrou");
+        if(isValid){
+            NavigationManager.NavigateTo("/auctions");
         }
 
-        
-
-
+        showAlert = !isValid;
     }
 }
