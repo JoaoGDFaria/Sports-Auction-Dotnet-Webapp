@@ -72,16 +72,20 @@
     private string PhoneNumber {get; set;} = string.Empty;
     private string BIN {get; set;} = string.Empty;
 
-    private void SubmitForm(){
+    private async Task SubmitForm()
+    {
+        Test test = new Test(_config, _data);
+        int rowsAffected = await test.InsertUsuario(FirstName, LastName, Email, Password, Address, PhoneNumber, BIN);
 
-        //Console.WriteLine("First Name: " + FirstName);
-        //Console.WriteLine("Last Name: " + LastName);
-        //Console.WriteLine("Email: " + Email);
-        //Console.WriteLine("Password: " + Password);
-        //Console.WriteLine("Address: " + Address);
-        //Console.WriteLine("Phone Number: " + PhoneNumber);
-        //Console.WriteLine("BIN: " + BIN);
-
-
+        if (rowsAffected > 0)
+        {
+            // Inserção bem-sucedida, você pode adicionar lógica adicional aqui.
+            Console.WriteLine("Usuário inserido com sucesso!");
+        }
+        else
+        {
+            // Falha na inserção, você pode adicionar lógica adicional aqui.
+            Console.WriteLine("Falha ao inserir usuário.");
+        }
     }
 }

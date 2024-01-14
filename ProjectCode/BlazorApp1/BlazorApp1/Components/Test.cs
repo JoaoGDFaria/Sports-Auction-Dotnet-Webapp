@@ -44,4 +44,30 @@ public class Test{
         return leiloes;
     }
 
+    public async Task<int> InsertUsuario(string firstName, string lastName, string email, string password, string address, string phoneNumber, string bin){
+
+        string sql = "INSERT INTO Utilizador (FirstName, LastName, Email, Password, Address, PhoneNumber, BIN) "+ 
+                    "VALUES (@FirstName, @LastName, @Email, @Password, @Address, @PhoneNumber, @BIN)";
+
+        var parameters = new
+        {
+            @FirstName = firstName,
+            @LastName = lastName,
+            @Email = email,
+            @Password = password,
+            @Address = address,
+            @PhoneNumber = phoneNumber,
+            @BIN = bin
+        };
+
+        string connectionString = _config.GetConnectionString("DefaultConnection") ?? string.Empty;
+
+        if (connectionString != null)
+        {
+            return await _data.Execute<int>(sql, parameters, connectionString);
+        }
+
+        return 0;
+    }
+
 }
