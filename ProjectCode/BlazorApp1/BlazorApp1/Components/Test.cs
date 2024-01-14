@@ -71,4 +71,41 @@ public class Test{
     return 1;
     }
 
+    public async Task<int> AddItem(string nomeLeilao, string imagemArtigo, string precoBaseLeilao, string nomeArtigo, string numeroAutenticacaoArtigo, string precoCompraAutomaticoLeilao, string nomeEquipaEventoArtigo, string tamanhoArtigo, string taxaMinimaIncrementoLeilao, string descricaoArtigo, string estadoArtigo, string dataUsoArtigo, string dataFinalizacaoLeilao, string idCategoria){
+
+    string estadoLeilao = "a decorrer";
+    string idVendedor = "12324765";
+
+    string sql = "INSERT INTO ArtigoLeilao (NomeLeilao, ImagemArtigo, PrecoBaseLeilao, NomeArtigo, NumeroAutenticacaoArtigo, PrecoCompraAutomaticoLeilao, NomeEquipaEventoArtigo, TamanhoArtigo, TaxaMinimaIncrementoLeilao, DescricaoArtigo, EstadoArtigo, DataUsoArtigo, DataFinalizacaoLeilao, IdCategoria, IdVendedor, EstadoLeilao)" + 
+                "VALUES (@NomeLeilao, @ImagemArtigo, @PrecoBaseLeilao, @NomeArtigo, @NumeroAutenticacaoArtigo, @PrecoCompraAutomaticoLeilao, @NomeEquipaEventoArtigo, @TamanhoArtigo, @TaxaMinimaIncrementoLeilao, @DescricaoArtigo, @EstadoArtigo, @DataUsoArtigo, @DataFinalizacaoLeilao, @IdCategoria, @IdVendedor, @EstadoLeilao)";
+
+    var parameters = new
+    {
+        @NomeLeilao = nomeLeilao,
+        @ImagemArtigo = imagemArtigo,
+        @PrecoBaseLeilao = precoBaseLeilao,
+        @NomeArtigo = nomeArtigo,
+        @NumeroAutenticacaoArtigo = numeroAutenticacaoArtigo,
+        @PrecoCompraAutomaticoLeilao = precoCompraAutomaticoLeilao,
+        @NomeEquipaEventoArtigo = nomeEquipaEventoArtigo,
+        @TamanhoArtigo = tamanhoArtigo,
+        @TaxaMinimaIncrementoLeilao = taxaMinimaIncrementoLeilao,
+        @DescricaoArtigo = descricaoArtigo,
+        @EstadoArtigo = estadoArtigo,
+        @DataUsoArtigo = dataUsoArtigo,
+        @DataFinalizacaoLeilao = dataFinalizacaoLeilao,
+        @IdCategoria = idCategoria,
+        @IdVendedor = idVendedor,
+        @EstadoLeilao = estadoLeilao
+    };
+
+    string connectionString = _config.GetConnectionString("DefaultConnection") ?? string.Empty;
+
+    if (connectionString != null)
+    {
+        await _data.ExecuteQuery<int>(sql, parameters, connectionString);
+    } 
+
+    return 1;
+    }
 }
