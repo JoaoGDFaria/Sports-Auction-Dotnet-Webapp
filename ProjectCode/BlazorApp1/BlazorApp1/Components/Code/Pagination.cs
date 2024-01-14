@@ -2,7 +2,7 @@ public class Pagination{
     private int currentPage;
     private int totalPages;
     private int totalItems;  
-    private int itemsPerPage = 15;
+    private int itemsPerPage = 12;
 
     public Pagination(){
         this.currentPage = 1;
