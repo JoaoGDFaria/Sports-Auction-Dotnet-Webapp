@@ -1,6 +1,12 @@
 @page "/addItem"
 @rendermode InteractiveServer
 
+
+@inject IConfiguration _config
+@inject ISqlDataAccess _data
+
+@using DataLibrary
+
 <PageTitle>Add Item</PageTitle>
     
 <div id="addItem" class="d-flex align-items-center justify-content-center vh-80">
@@ -9,56 +15,56 @@
                 <div class = "row row-cols-1">
                         <div class="form-outline form-white mb-4 field">
                             <p>Auction Name</p>
-                            <input type="text" id="typeEmailX" class="form-control form-control-lg"  @bind="AuctionName" />
+                            <input type="text" id="typeEmailX" class="form-control form-control-lg"  @bind="NomeLeilao" />
                         </div>
                         <div class="form-outline form-white mb-4 field">
                             <p>Picture of the Item</p>
-                            <input type="text" id="typeEmailX" class="form-control form-control-lg"  @bind="ItemImage"/>
+                            <input type="text" id="typeEmailX" class="form-control form-control-lg"  @bind="ImagemArtigo"/>
                         </div>
                         <div class="form-outline form-white mb-4 field">
                             <p>Minimum Bid Amount(€)</p>
-                            <input type="text" id="typeEmailX" class="form-control form-control-lg" @bind="MinimumBid"/>
+                            <input type="text" id="typeEmailX" class="form-control form-control-lg" @bind="PrecoBaseLeilao"/>
                         </div>
                         <div class="form-outline form-white mb-4 field">
                             <p>Item Name</p>
-                            <input type="text" id="typeEmailX" class="form-control form-control-lg" @bind="ItemName"/>
+                            <input type="text" id="typeEmailX" class="form-control form-control-lg" @bind="NomeArtigo"/>
                         </div>
                         <div class="form-outline form-white mb-4 field">
                             <p>Authentication Number</p>
-                            <input type="text" id="typeEmailX" class="form-control form-control-lg" @bind="AuthenticationNumber"/>
+                            <input type="text" id="typeEmailX" class="form-control form-control-lg" @bind="NumeroAutenticacaoArtigo"/>
                         </div>
                         <div class="form-outline form-white mb-4 field">
                             <p>Buy Now Price(€)</p>
-                            <input type="text" id="typeEmailX" class="form-control form-control-lg" @bind="BuyNowPrice"/>
+                            <input type="text" id="typeEmailX" class="form-control form-control-lg" @bind="PrecoCompraAutomaticoLeilao"/>
                         </div>
                         <div class="form-outline form-white mb-4 field">
                             <p>Athlete/Team/Event Name</p>
-                            <input type="text" id="typeEmailX" class="form-control form-control-lg" @bind="AthleteName"/>
+                            <input type="text" id="typeEmailX" class="form-control form-control-lg" @bind="NomeEquipaEventoArtigo"/>
                         </div>
                         <div class="form-outline form-white mb-4 field">
                             <p>Size</p>
-                            <input type="text" id="typeEmailX" class="form-control form-control-lg" @bind="ItemSize"/>
+                            <input type="text" id="typeEmailX" class="form-control form-control-lg" @bind="TamanhoArtigo"/>
                         </div>
                         <div class="form-outline form-white mb-4 field">
                             <p>Minimum Bid Increment(€)</p>
-                            <input type="text" id="typeEmailX" class="form-control form-control-lg" @bind="MinimumBidIncrement"/>
+                            <input type="text" id="typeEmailX" class="form-control form-control-lg" @bind="TaxaMinimaIncrementoLeilao"/>
                         </div>
                         <div class="form-outline form-white mb-4 field">
                             <p>Description</p>
-                            <input type="text" id="typeEmailX" class="form-control form-control-lg" @bind="Description"/>
+                            <input type="text" id="typeEmailX" class="form-control form-control-lg" @bind="DescricaoArtigo"/>
                         </div>
                         <div class="form-outline form-white mb-4 field">
                             <p>Condition</p>
-                            <input type="text" id="typeEmailX" class="form-control form-control-lg" @bind="ItemCondition"/>
+                            <input type="text" id="typeEmailX" class="form-control form-control-lg" @bind="EstadoArtigo"/>
                         </div>
                         
                         <div class="form-outline form-white mb-4 field">
                             <p>Date of Use</p>
-                            <input type="text" id="typeEmailX" class="form-control form-control-lg" @bind="DateOfUse" />
+                            <input type="text" id="typeEmailX" class="form-control form-control-lg" @bind="DataUsoArtigo" />
                         </div>
                         <div class="form-outline form-white mb-4 field">
                             <p>Auction Closing Date(min. 1 day)</p>
-                            <input type="text" id="typeEmailX" class="form-control form-control-lg" @bind="ClosingDate"/>
+                            <input type="text" id="typeEmailX" class="form-control form-control-lg" @bind="DataFinalizacaoLeilao"/>
                         </div>
                         <div class="cont field">
                             <p class="al">Category</p>   
@@ -93,37 +99,35 @@
 
 @code {
 
-    private string AuctionName { get; set; } = string.Empty;
-    private string ItemImage { get; set; } = string.Empty;
-    private string MinimumBid { get; set; } = string.Empty;
-    private string ItemName { get; set; } = string.Empty;
-    private string AuthenticationNumber { get; set; } = string.Empty;
-    private string BuyNowPrice { get; set; } = string.Empty;
-    private string AthleteName { get; set; } = string.Empty;
-    private string ItemSize { get; set; } = string.Empty;
-    private string MinimumBidIncrement { get; set; } = string.Empty;
-    private string Description { get; set; } = string.Empty;
-    private string ItemCondition { get; set; } = string.Empty;
-    private string DateOfUse { get; set; } = string.Empty;
-    private string ClosingDate { get; set; } = string.Empty;
-    private string Category { get; set; } = string.Empty;
+    private string NomeLeilao { get; set; } = string.Empty;
+    private string ImagemArtigo { get; set; } = string.Empty;
+    private string PrecoBaseLeilao { get; set; } = string.Empty;
+    private string NomeArtigo { get; set; } = string.Empty;
+    private string NumeroAutenticacaoArtigo { get; set; } = string.Empty;
+    private string PrecoCompraAutomaticoLeilao{ get; set; } = string.Empty;
+    private string NomeEquipaEventoArtigo { get; set; } = string.Empty;
+    private string TamanhoArtigo { get; set; } = string.Empty;
+    private string TaxaMinimaIncrementoLeilao { get; set; } = string.Empty;
+    private string DescricaoArtigo { get; set; } = string.Empty;
+    private string EstadoArtigo { get; set; } = string.Empty;
+    private string DataUsoArtigo { get; set; } = string.Empty;
+    private string DataFinalizacaoLeilao { get; set; } = string.Empty;
+    private string IdCategoria { get; set; } = string.Empty;
 
-    private void SubmitForm(){
+    private async Task SubmitForm()
+    {
+        Test test = new Test(_config, _data);
+        int rowsAffected = await test.AddItem(NomeLeilao, ImagemArtigo, PrecoBaseLeilao, NomeArtigo, NumeroAutenticacaoArtigo, PrecoCompraAutomaticoLeilao, NomeEquipaEventoArtigo, TamanhoArtigo, TaxaMinimaIncrementoLeilao, DescricaoArtigo, EstadoArtigo, DataUsoArtigo, DataFinalizacaoLeilao, IdCategoria);
 
-        Console.WriteLine("Auction Name: " + AuctionName);
-        Console.WriteLine("Item Image: " + ItemImage);
-        Console.WriteLine("Minimum Bid: " + MinimumBid);
-        Console.WriteLine("Item Name: " + ItemName);
-        Console.WriteLine("Authentication Number: " + AuthenticationNumber);
-        Console.WriteLine("Buy Now Price: " + BuyNowPrice);
-        Console.WriteLine("Athlete Name: " + AthleteName);
-        Console.WriteLine("Item Size: " + ItemSize);
-        Console.WriteLine("Minimum Bid Increment: " + MinimumBidIncrement);
-        Console.WriteLine("Description: " + Description);
-        Console.WriteLine("Item Condition: " + ItemCondition);
-        Console.WriteLine("Date Of Use: " + DateOfUse);
-        Console.WriteLine("Closing Date: " + ClosingDate);
-        Console.WriteLine("Category: " + Category);
-
+        if (rowsAffected > 0)
+        {
+            // Inserção bem-sucedida, você pode adicionar lógica adicional aqui.
+            Console.WriteLine("Artigo inserido com sucesso!");
+        }
+        else
+        {
+            // Falha na inserção, você pode adicionar lógica adicional aqui.
+            Console.WriteLine("Falha ao inserir artigo.");
+        }
     }
 }
