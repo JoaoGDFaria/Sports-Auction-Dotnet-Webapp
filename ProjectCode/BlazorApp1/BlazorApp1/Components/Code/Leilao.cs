@@ -1,65 +1,153 @@
-public class Leilao{
-    private string tamanho;
-    private DateTime data;
-    private string nomeEquipaEvento;
+public class Leilao
+{
+    private string tamanhoArtigo;
+    private DateTime dataUsoArtigo;
+    private string nomeEquipaEventoArtigo;
     private string nomeArtigo;
-    private string descricao;
-    private int autenticacao;
+    private string descricaoArtigo;
+    private int numeroAutenticacaoArtigo;
     private string estadoArtigo;
-    private string urlImagem;
+    private string imagemArtigo;
     private string nomeLeilao;
-    private double taxaMinIncremento;
-    private DateTime dataFinal;
-    private double precoCompraAutomatica;
-    private double precoBase;
+    private double taxaMinimaIncrementoLeilao;
+    private DateTime dataFinalizacaoLeilao;
+    private double precoCompraAutomaticoLeilao;
+    private double precoBaseLeilao;
     private int idCategoria;
-    private int idVendor;
+    private double idVendedor;
     private string estadoLeilao;
-    
 
-    public Leilao(){
-        this.tamanho = "";
-        this.data = DateTime.Now;
-        this.nomeEquipaEvento = "";
+    public Leilao()
+    {
+        this.tamanhoArtigo = "";
+        this.dataUsoArtigo = DateTime.Now;
+        this.nomeEquipaEventoArtigo = "";
         this.nomeArtigo = "";
-        this.descricao = "";
-        this.autenticacao = 0;
+        this.descricaoArtigo = "";
+        this.numeroAutenticacaoArtigo = 0;
         this.estadoArtigo = "";
-        this.urlImagem = "";
+        this.imagemArtigo = "";
         this.nomeLeilao = "";
-        this.taxaMinIncremento = 0;
-        this.dataFinal = DateTime.Now;
-        this.precoCompraAutomatica = 0;
-        this.precoBase = 0;
+        this.taxaMinimaIncrementoLeilao = 0;
+        this.dataFinalizacaoLeilao = DateTime.Now;
+        this.precoCompraAutomaticoLeilao = 0;
+        this.precoBaseLeilao = 0;
         this.idCategoria = 0;
-        this.idVendor = 0;
+        this.idVendedor = 0;
         this.estadoLeilao = "";
-
-        NomeLeilao = nomeLeilao;
     }
 
     public Leilao(string tamanho, DateTime data, string nomeEquipaEvento, string nomeArtigo, string descricao, int autenticacao, string estadoArtigo, string urlImagem, string nomeLeilao, double taxaMinIncremento, DateTime dataFinal, double precoCompraAutomatica, double precoBase, int idCategoria, int idVendor, string estadoLeilao)
     {
-        this.tamanho = tamanho;
-        this.data = data;
-        this.nomeEquipaEvento = nomeEquipaEvento;
+        this.tamanhoArtigo = tamanho;
+        this.dataUsoArtigo = data;
+        this.nomeEquipaEventoArtigo = nomeEquipaEvento;
         this.nomeArtigo = nomeArtigo;
-        this.descricao = descricao;
-        this.autenticacao = autenticacao;
+        this.descricaoArtigo = descricao;
+        this.numeroAutenticacaoArtigo = autenticacao;
         this.estadoArtigo = estadoArtigo;
-        this.urlImagem = urlImagem;
+        this.imagemArtigo = urlImagem;
         this.nomeLeilao = nomeLeilao;
-        this.taxaMinIncremento = taxaMinIncremento;
-        this.dataFinal = dataFinal;
-        this.precoCompraAutomatica = precoCompraAutomatica;
-        this.precoBase = precoBase;
+        this.taxaMinimaIncrementoLeilao = taxaMinIncremento;
+        this.dataFinalizacaoLeilao = dataFinal;
+        this.precoCompraAutomaticoLeilao = precoCompraAutomatica;
+        this.precoBaseLeilao = precoBase;
         this.idCategoria = idCategoria;
-        this.idVendor = idVendor;
+        this.idVendedor = idVendor;
         this.estadoLeilao = estadoLeilao;
 
-        NomeLeilao = nomeLeilao;
     }
 
-    public string NomeLeilao { get; }
+    public string GetTamanhoArtigo()
+    {
+        return tamanhoArtigo;
+    }
 
+    public DateTime GetDataUsoArtigo()
+    {
+        return dataUsoArtigo;
+    }
+
+    public string GetNomeEquipaEventoArtigo()
+    {
+        return nomeEquipaEventoArtigo;
+    }
+
+    public string GetNomeArtigo()
+    {
+        return nomeArtigo;
+    }
+
+    public string GetDescricaoArtigo()
+    {
+        return descricaoArtigo;
+    }
+
+    public int GetNumeroAutenticacaoArtigo()
+    {
+        return numeroAutenticacaoArtigo;
+    }
+
+    public string GetEstadoArtigo()
+    {
+        return estadoArtigo;
+    }
+
+    public string GetImagemArtigo()
+    {
+        return imagemArtigo;
+    }
+
+    public string GetNomeLeilao()
+    {
+        return nomeLeilao;
+    }
+
+    public double GetTaxaMinimaIncrementoLeilao()
+    {
+        return taxaMinimaIncrementoLeilao;
+    }
+
+    public DateTime GetDataFinalizacaoLeilao()
+    {
+        return dataFinalizacaoLeilao;
+    }
+
+    public double GetPrecoCompraAutomaticoLeilao()
+    {
+        return precoCompraAutomaticoLeilao;
+    }
+
+    public double GetPrecoBaseLeilao()
+    {
+        return precoBaseLeilao;
+    }
+
+    public int GetIdCategoria()
+    {
+        return idCategoria;
+    }
+
+    public double GetIdVendedor()
+    {
+        return idVendedor;
+    }
+
+    public string GetEstadoLeilao()
+    {
+        return estadoLeilao;
+    }
+
+
+public override string ToString()
+{
+    return $"Leilao: {GetNomeLeilao()}, Tamanho: {GetTamanhoArtigo()}, Data: {GetDataUsoArtigo().ToString("dd/MM/yyyy HH:mm:ss")}, NomeEquipaEvento: {GetNomeEquipaEventoArtigo()}, NomeArtigo: {GetNomeArtigo()}, Descricao: {GetDescricaoArtigo()}, Autenticacao: {GetNumeroAutenticacaoArtigo()}, EstadoArtigo: {GetEstadoArtigo()}, UrlImagem: {GetImagemArtigo()}, TaxaMinIncremento: {GetTaxaMinimaIncrementoLeilao()}, DataFinal: {GetDataFinalizacaoLeilao().ToString("dd/MM/yyyy HH:mm:ss")}, PrecoCompraAutomatica: {GetPrecoCompraAutomaticoLeilao()}, PrecoBase: {GetPrecoBaseLeilao()}, IdCategoria: {GetIdCategoria()}, IdVendor: {GetIdVendedor()}, EstadoLeilao: {GetEstadoLeilao()}";
 }
+
+    
+}
+
+
+
+    
+

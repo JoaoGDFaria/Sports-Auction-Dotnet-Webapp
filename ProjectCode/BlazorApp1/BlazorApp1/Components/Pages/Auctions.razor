@@ -32,244 +32,24 @@
         </div>
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
-            <button class="itemButton">
-                <div class="item row g-0 ">
-                        
-                    <div class="imagem col-md-4 ">
-                        <img src="./images/item1.webp" class="img-fluid " >
-                    </div>
+            @foreach (var leilao in leiloes){
+                <button class="itemButton">
+                    <div class="item row g-0 ">
+                            
+                        <div class="imagem col-md-4 ">
+                            <img src="./images/item1.webp" class="img-fluid " >
+                        </div>
 
-                    <div class="itemInfo col-md-8">
-                        <h5 class="itemTitle">Camisola Cristiano Ronaldo, Sporting x Porto 1998</h5>
-                        <p class="itemInfo">Current bid: $404.5</p>
-                        <p class="itemInfo">Buy Now: $700</p>
-                        <p class="itemTime"><small class="text-body-secondary">18h 20min</small></p>
+                        <div class="itemInfo col-md-8">
+                            <h5 class="itemTitle">@leilao.GetNomeLeilao()</h5>
+                            <p class="itemInfo">Current bid: $404.5</p>
+                            <p class="itemInfo">Buy Now: $@leilao.GetPrecoCompraAutomaticoLeilao()</p>
+                            <p class="itemTime"><small class="text-body-secondary">18h 20min</small></p>
+                        </div>
+                            
                     </div>
-                        
-                </div>
-            </button>
-
-            <button class="itemButton">
-                <div class="item row g-0 ">
-                        
-                    <div class="imagem col-md-4 ">
-                        <img src="./images/item1.webp" class="img-fluid " >
-                    </div>
-
-                    <div class="itemInfo col-md-8">
-                        <h5 class="itemTitle">Camisola Cristiano Ronaldo, Sporting x Porto 1998</h5>
-                        <p class="itemInfo">Current bid: $404.5</p>
-                        <p class="itemInfo">Buy Now: $700</p>
-                        <p class="itemTime"><small class="text-body-secondary">18h 20min</small></p>
-                    </div>
-                        
-                </div>
-            </button>
-
-            <button class="itemButton">
-                <div class="item row g-0 ">
-                        
-                    <div class="imagem col-md-4 ">
-                        <img src="./images/item1.webp" class="img-fluid " >
-                    </div>
-
-                    <div class="itemInfo col-md-8">
-                        <h5 class="itemTitle">Camisola Cristiano Ronaldo, Sporting x Porto 1998</h5>
-                        <p class="itemInfo">Current bid: $404.5</p>
-                        <p class="itemInfo">Buy Now: $700</p>
-                        <p class="itemTime"><small class="text-body-secondary">18h 20min</small></p>
-                    </div>
-                        
-                </div>
-            </button>
-
-            <button class="itemButton">
-                <div class="item row g-0 ">
-                        
-                    <div class="imagem col-md-4 ">
-                        <img src="./images/item1.webp" class="img-fluid " >
-                    </div>
-
-                    <div class="itemInfo col-md-8">
-                        <h5 class="itemTitle">Camisola Cristiano Ronaldo, Sporting x Porto 1998</h5>
-                        <p class="itemInfo">Current bid: $404.5</p>
-                        <p class="itemInfo">Buy Now: $700</p>
-                        <p class="itemTime"><small class="text-body-secondary">18h 20min</small></p>
-                    </div>
-                        
-                </div>
-            </button>
-
-            <button class="itemButton">
-                <div class="item row g-0 ">
-                        
-                    <div class="imagem col-md-4 ">
-                        <img src="./images/item1.webp" class="img-fluid " >
-                    </div>
-
-                    <div class="itemInfo col-md-8">
-                        <h5 class="itemTitle">Camisola Cristiano Ronaldo, Sporting x Porto 1998</h5>
-                        <p class="itemInfo">Current bid: $404.5</p>
-                        <p class="itemInfo">Buy Now: $700</p>
-                        <p class="itemTime"><small class="text-body-secondary">18h 20min</small></p>
-                    </div>
-                        
-                </div>
-            </button>
-
-            <button class="itemButton">
-                <div class="item row g-0 ">
-                        
-                    <div class="imagem col-md-4 ">
-                        <img src="./images/item1.webp" class="img-fluid " >
-                    </div>
-
-                    <div class="itemInfo col-md-8">
-                        <h5 class="itemTitle">Camisola Cristiano Ronaldo, Sporting x Porto 1998</h5>
-                        <p class="itemInfo">Current bid: $404.5</p>
-                        <p class="itemInfo">Buy Now: $700</p>
-                        <p class="itemTime"><small class="text-body-secondary">18h 20min</small></p>
-                    </div>
-                        
-                </div>
-            </button>
-
-            <button class="itemButton">
-                <div class="item row g-0 ">
-                        
-                    <div class="imagem col-md-4 ">
-                        <img src="./images/item1.webp" class="img-fluid " >
-                    </div>
-
-                    <div class="itemInfo col-md-8">
-                        <h5 class="itemTitle">Camisola Cristiano Ronaldo, Sporting x Porto 1998</h5>
-                        <p class="itemInfo">Current bid: $404.5</p>
-                        <p class="itemInfo">Buy Now: $700</p>
-                        <p class="itemTime"><small class="text-body-secondary">18h 20min</small></p>
-                    </div>
-                        
-                </div>
-            </button>
-
-            <button class="itemButton">
-                <div class="item row g-0 ">
-                        
-                    <div class="imagem col-md-4 ">
-                        <img src="./images/item1.webp" class="img-fluid " >
-                    </div>
-
-                    <div class="itemInfo col-md-8">
-                        <h5 class="itemTitle">Camisola Cristiano Ronaldo, Sporting x Porto 1998</h5>
-                        <p class="itemInfo">Current bid: $404.5</p>
-                        <p class="itemInfo">Buy Now: $700</p>
-                        <p class="itemTime"><small class="text-body-secondary">18h 20min</small></p>
-                    </div>
-                        
-                </div>
-            </button>
-
-            <button class="itemButton">
-                <div class="item row g-0 ">
-                        
-                    <div class="imagem col-md-4 ">
-                        <img src="./images/item1.webp" class="img-fluid " >
-                    </div>
-
-                    <div class="itemInfo col-md-8">
-                        <h5 class="itemTitle">Camisola Cristiano Ronaldo, Sporting x Porto 1998</h5>
-                        <p class="itemInfo">Current bid: $404.5</p>
-                        <p class="itemInfo">Buy Now: $700</p>
-                        <p class="itemTime"><small class="text-body-secondary">18h 20min</small></p>
-                    </div>
-                        
-                </div>
-            </button>
-
-            <button class="itemButton">
-                <div class="item row g-0 ">
-                        
-                    <div class="imagem col-md-4 ">
-                        <img src="./images/item1.webp" class="img-fluid " >
-                    </div>
-
-                    <div class="itemInfo col-md-8">
-                        <h5 class="itemTitle">Camisola Cristiano Ronaldo, Sporting x Porto 1998</h5>
-                        <p class="itemInfo">Current bid: $404.5</p>
-                        <p class="itemInfo">Buy Now: $700</p>
-                        <p class="itemTime"><small class="text-body-secondary">18h 20min</small></p>
-                    </div>
-                        
-                </div>
-            </button>
-
-            <button class="itemButton">
-                <div class="item row g-0 ">
-                        
-                    <div class="imagem col-md-4 ">
-                        <img src="./images/item1.webp" class="img-fluid " >
-                    </div>
-
-                    <div class="itemInfo col-md-8">
-                        <h5 class="itemTitle">Camisola Cristiano Ronaldo, Sporting x Porto 1998</h5>
-                        <p class="itemInfo">Current bid: $404.5</p>
-                        <p class="itemInfo">Buy Now: $700</p>
-                        <p class="itemTime"><small class="text-body-secondary">18h 20min</small></p>
-                    </div>
-                        
-                </div>
-            </button>
-
-            <button class="itemButton">
-                <div class="item row g-0 ">
-                        
-                    <div class="imagem col-md-4 ">
-                        <img src="./images/item1.webp" class="img-fluid " >
-                    </div>
-
-                    <div class="itemInfo col-md-8">
-                        <h5 class="itemTitle">Camisola Cristiano Ronaldo, Sporting x Porto 1998</h5>
-                        <p class="itemInfo">Current bid: $404.5</p>
-                        <p class="itemInfo">Buy Now: $700</p>
-                        <p class="itemTime"><small class="text-body-secondary">18h 20min</small></p>
-                    </div>
-                        
-                </div>
-            </button>
-
-            <button class="itemButton">
-                <div class="item row g-0 ">
-                        
-                    <div class="imagem col-md-4 ">
-                        <img src="./images/item1.webp" class="img-fluid " >
-                    </div>
-
-                    <div class="itemInfo col-md-8">
-                        <h5 class="itemTitle">Camisola Cristiano Ronaldo, Sporting x Porto 1998</h5>
-                        <p class="itemInfo">Current bid: $404.5</p>
-                        <p class="itemInfo">Buy Now: $700</p>
-                        <p class="itemTime"><small class="text-body-secondary">18h 20min</small></p>
-                    </div>
-                        
-                </div>
-            </button>
-
-            <button class="itemButton">
-                <div class="item row g-0 ">
-                        
-                    <div class="imagem col-md-4 ">
-                        <img src="./images/item1.webp" class="img-fluid " >
-                    </div>
-
-                    <div class="itemInfo col-md-8">
-                        <h5 class="itemTitle">Camisola Cristiano Ronaldo, Sporting x Porto 1998</h5>
-                        <p class="itemInfo">Current bid: $404.5</p>
-                        <p class="itemInfo">Buy Now: $700</p>
-                        <p class="itemTime"><small class="text-body-secondary">18h 20min</small></p>
-                    </div>
-                        
-                </div>
-            </button>
-
+                </button>
+            }
 
 
         </div> 
@@ -317,9 +97,9 @@
         Test test = new Test(_config, _data);
         leiloes = await test.GetAllAuctions();
 
-        for (int i = 0; i < leiloes.Count; i++)
-        {
-            Console.WriteLine($"Auction Name: {leiloes[i].NomeLeilao}");
-        }
+        //for (int i = 0; i < leiloes.Count; i++)
+        //{
+        //    Console.WriteLine($"{leiloes[i].ToString()}");
+        //}
     }
 }
