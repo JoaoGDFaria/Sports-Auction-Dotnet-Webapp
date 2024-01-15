@@ -50,6 +50,30 @@ public class DatabaseQueries{
     }
 
 
+
+    public async Task<Leilao?> GetAuctionById(int id){
+
+        string sql = "SELECT * FROM ArtigoLeilao WHERE idLeilao = @id";
+
+        var parameters = new {id};
+        string connectionString = _config.GetConnectionString("DefaultConnection") ?? string.Empty;
+
+        List<Leilao> leiloes = new List<Leilao>();
+        if (connectionString != null)
+        {
+            leiloes = await _data.ExecuteQueryList<Leilao>(sql, parameters, connectionString);
+        }
+
+        foreach (Leilao leilao in leiloes){
+            leilao.SetLicitacoes(await GetAllBids(leilao.GetIdLeilao()));
+        }
+        
+        if(leiloes.Count == 1) return leiloes[0];
+
+        return null;
+    }
+
+
     public async Task<List<Licitacao>> GetAllBids(int idLeilao){
 
         string sql = "SELECT * FROM Licitacao WHERE IdLeilao = @idLeilao";

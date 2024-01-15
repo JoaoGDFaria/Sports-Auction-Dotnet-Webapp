@@ -47,7 +47,7 @@ namespace DataLibrary
                 var results = await connection.QueryAsync<T>(sql, parameters);
                 return results.ToList();
             }
-}
+        }
 
 
 
