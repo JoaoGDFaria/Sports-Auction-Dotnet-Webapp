@@ -123,7 +123,7 @@
     private async Task LoadAuctions()
     {
         DatabaseQueries dbQuery = new DatabaseQueries(_config, _data);
-        leiloes = await dbQuery.GetAllAuctions();
+        leiloes = await dbQuery.GetAllAuctionsWithoutUser(567890123451); //TEST ONLY
         
         pagination = new Pagination(leiloes.Count);
         bool flag = pagination.SetCurrentPage(GetCurrentPage());

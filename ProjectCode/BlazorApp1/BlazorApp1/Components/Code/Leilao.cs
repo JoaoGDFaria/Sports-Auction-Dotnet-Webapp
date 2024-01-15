@@ -17,7 +17,7 @@ public class Leilao{
     private int idCategoria;
     private double idVendedor;
     private string estadoLeilao;
-    private double highestBid;
+    private List<Licitacao> licitacoes;
 
     public Leilao(){
         this.idLeilao = 0;
@@ -37,7 +37,7 @@ public class Leilao{
         this.idCategoria = 0;
         this.idVendedor = 0;
         this.estadoLeilao = "";
-        this.highestBid = 0;
+        this.licitacoes = new List<Licitacao>();
     }
 
     public Leilao(int idLeilao, string tamanho, DateTime data, string nomeEquipaEvento, string nomeArtigo, string descricao, int autenticacao, string estadoArtigo, string urlImagem, string nomeLeilao, double taxaMinIncremento, DateTime dataFinal, double precoCompraAutomatica, double precoBase, int idCategoria, int idVendor, string estadoLeilao){
@@ -58,7 +58,7 @@ public class Leilao{
         this.idCategoria = idCategoria;
         this.idVendedor = idVendor;
         this.estadoLeilao = estadoLeilao;
-        this.highestBid = 0;    
+        this.licitacoes = new List<Licitacao>();  
 
     }
 
@@ -131,7 +131,12 @@ public class Leilao{
     }
 
     public double GetHighestBid(){
-        return this.highestBid;
+        if (licitacoes == null || !licitacoes.Any()){
+            return 0;
+        }
+        
+        double highestBid = licitacoes.Max(licitacao => licitacao.GetValorLicitacao());
+        return highestBid;
     }
 
     public string GetTimeLeft(){
@@ -139,10 +144,13 @@ public class Leilao{
         return $"Days: {timeLeft.Days}, Hours: {timeLeft.Hours}, Minutes: {timeLeft.Minutes}";
     }
 
-    public void SetHighestBid(double highestBid){
-        this.highestBid = highestBid;
+    public void AddLicitacao(Licitacao licitacao){
+        this.licitacoes.Add(licitacao);
     }
 
+    public void SetLicitacoes(List<Licitacao> licitacoes){
+        this.licitacoes = licitacoes;
+    }
 
 
     public override string ToString(){
