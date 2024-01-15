@@ -1,5 +1,6 @@
 USE MatchWornItems;
 
+
 -- Insert additional data into Categoria table
 INSERT INTO Categoria (Nome)
 VALUES
@@ -58,7 +59,7 @@ VALUES
     ('S', '2022-11-20', 'Barcelona', 'Shirt', 'Player-used shirt', 5, 'Excellent', 'image_url3',
     'Auction3', 2.00, '2023-04-01', 60.00, 30.00, 2, 234567890123,'A decorrer'),
     ('L', '2023-02-28', 'Manchester United', 'Cap', 'Team cap', 6, 'New', 'image_url4',
-    'Auction4', 1.50, '2023-05-01', 30.00, 15.00, 3, 214567890123,'A decorrer'),
+    'Auction4', 1.50, '2023-05-01', 120.00, 15.00, 3, 214567890123,'A decorrer'),
     ('XL', '2023-01-10', 'Juventus', 'Jersey', 'Game-worn jersey', 7, 'Good', 'image_url5',
     'Auction5', 4.00, '2023-06-01', 100.00, 50.00, 4, 987654321098,'A decorrer'),
     ('M', '2023-03-05', 'Bayern Munich', 'Football', 'Signed football', 8, 'Used', 'image_url6',
