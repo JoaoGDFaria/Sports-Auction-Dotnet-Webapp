@@ -1,30 +1,29 @@
 @page "/addItem"
-@rendermode InteractiveServer
-
-
 @inject IConfiguration _config
 @inject ISqlDataAccess _data
+
 
 @using DataLibrary
 
 <PageTitle>Add Item</PageTitle>
 
-    <Header />
-    
+<Header />
+
 <div id="addItem" class="d-flex align-items-center justify-content-center vh-80">
-        <div class="card bg-dark text-white">
-            <div class="card-body p-5 text-center aux">
-                <div class = "row row-cols-1">
-                        <div class="form-outline form-white mb-4 field">
+    <div class="card bg-dark text-white">
+        <div class="card-body p-5 text-center aux">
+            <div class="row row-cols-1">
+                <div class="form-outline form-white mb-4 field">
                             <p>Auction Name</p>
                             <input type="text" id="typeEmailX" class="form-control form-control-lg"  @bind="NomeLeilao" />
                         </div>
-                        <div class="form-outline form-white mb-4 field">
-                            <p>Picture of the Item</p>
-                            <input type="text" id="typeEmailX" class="form-control form-control-lg"  @bind="ImagemArtigo"/>
-                        </div>
-                        <div class="form-outline form-white mb-4 field">
-                            <p>Minimum Bid Amount(€)</p>
+                     
+                <div class="form-outline form-white mb-4 field">
+                    <p>Picture of the Item</p>
+                    <input type="file" id="imageInput" class="form-control form-control-lg" onchange="HandleImageSelection" />
+                </div>
+                <div class="form-outline form-white mb-4 field">
+                        <p>Minimum Bid Amount(€)</p>
                             <input type="text" id="typeEmailX" class="form-control form-control-lg" @bind="PrecoBaseLeilao"/>
                         </div>
                         <div class="form-outline form-white mb-4 field">
@@ -68,45 +67,34 @@
                             <p>Auction Closing Date(min. 1 day)</p>
                             <input type="text" id="typeEmailX" class="form-control form-control-lg" @bind="DataFinalizacaoLeilao"/>
                         </div>
-                        <div class="cont field">
-                            <p class="al">Category</p>   
-                            <button type="button" class="btn-primary dropdown-toggle form-control form-control-lg" data-bs-toggle="dropdown" aria-expanded="false"></button>
-                            <ul class="dropdown-menu scrollable-dropdown-menu">
-                                <li><a class="dropdown-item" href="#">AAA</a></li>
-                                <li><a class="dropdown-item" href="#">BBB</a></li>
-                                <li><a class="dropdown-item" href="#">CCC</a></li>
-                                <li><a class="dropdown-item" href="#">DDD</a></li>
-                                <li><a class="dropdown-item" href="#">EEE</a></li>
-                                <li><a class="dropdown-item" href="#">AAA</a></li>
-                                <li><a class="dropdown-item" href="#">BBB</a></li>
-                                <li><a class="dropdown-item" href="#">CCC</a></li>
-                                <li><a class="dropdown-item" href="#">DDD</a></li>
-                                <li><a class="dropdown-item" href="#">EEE</a></li>
-                            </ul>
-                    </div>
-                    <div class="button d-flex buttons">
-                        <button type="button" class="btn btn-success" @onclick="SubmitForm">SUBMIT</button>
-                        <button type="button" class="btn btn-danger">CANCEL</button>
-                    </div> 
-                </div>
-                
+                       <div class="form-outline form-white mb-4 field">
+                            <p>Category</p>
+                            <input type="text" id="typeEmailX" class="form-control form-control-lg" @bind="IdCategoria"/>
+                        </div>
 
+
+                <div class="button d-flex buttons">
+                    <button type="button" class="btn btn-success" @onclick="SubmitForm">SUBMIT</button>
+                    <button type="button" class="btn btn-danger">CANCEL</button>
+                </div>
+            </div>
         </div>
-    </div>    
+    </div>
 </div>
 
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
 <link rel="stylesheet" href="css/addItem.css">
 
 @code {
 
     private string NomeLeilao { get; set; } = string.Empty;
-    private string ImagemArtigo { get; set; } = string.Empty;
+    private byte[] ImagemArtigo { get; set; } = Array.Empty<byte>();
     private string PrecoBaseLeilao { get; set; } = string.Empty;
     private string NomeArtigo { get; set; } = string.Empty;
     private string NumeroAutenticacaoArtigo { get; set; } = string.Empty;
-    private string PrecoCompraAutomaticoLeilao{ get; set; } = string.Empty;
+    private string PrecoCompraAutomaticoLeilao { get; set; } = string.Empty;
     private string NomeEquipaEventoArtigo { get; set; } = string.Empty;
     private string TamanhoArtigo { get; set; } = string.Empty;
     private string TaxaMinimaIncrementoLeilao { get; set; } = string.Empty;
@@ -116,19 +104,39 @@
     private string DataFinalizacaoLeilao { get; set; } = string.Empty;
     private string IdCategoria { get; set; } = string.Empty;
 
+    private async Task HandleImageSelection(InputFileChangeEventArgs e)
+    {
+        var imageFile = e.File;
+
+        if (imageFile != null)
+        {
+            ImagemArtigo = await ConvertImageToByteArray(imageFile);
+        }
+    }
+
+    private async Task<byte[]> ConvertImageToByteArray(IBrowserFile imageFile)
+    {
+        using (var stream = imageFile.OpenReadStream())
+        {
+            using (var memoryStream = new MemoryStream())
+            {
+                await stream.CopyToAsync(memoryStream);
+                return memoryStream.ToArray();
+            }
+        }
+    }
+
     private async Task SubmitForm()
     {
         DatabaseQueries dbQuery = new DatabaseQueries(_config, _data);
-        int rowsAffected = await dbQuery.AddItem(NomeLeilao, ImagemArtigo, PrecoBaseLeilao, NomeArtigo, NumeroAutenticacaoArtigo, PrecoCompraAutomaticoLeilao, NomeEquipaEventoArtigo, TamanhoArtigo, TaxaMinimaIncrementoLeilao, DescricaoArtigo, EstadoArtigo, DataUsoArtigo, DataFinalizacaoLeilao, IdCategoria);
+        int rowsAffected = await dbQuery.AddItem(NomeLeilao, ImagemArtigo, PrecoBaseLeilao, NomeArtigo, NumeroAutenticacaoArtigo, PrecoCompraAutomaticoLeilao, NomeEquipaEventoArtigo, TamanhoArtigo, TaxaMinimaIncrementoLeilao, DescricaoArtigo, EstadoArtigo, DataUsoArtigo, DataFinalizacaoLeilao);
 
         if (rowsAffected > 0)
         {
-            // Inserção bem-sucedida, você pode adicionar lógica adicional aqui.
             Console.WriteLine("Artigo inserido com sucesso!");
         }
         else
         {
-            // Falha na inserção, você pode adicionar lógica adicional aqui.
             Console.WriteLine("Falha ao inserir artigo.");
         }
     }
