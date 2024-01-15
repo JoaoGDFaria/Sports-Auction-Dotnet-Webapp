@@ -42,8 +42,78 @@ public class DatabaseQueries{
         {
             leiloes = await _data.ExecuteQueryList<Leilao>(sql, parameters, connectionString);
         }
+
+        foreach (Leilao leilao in leiloes){
+            leilao.SetHighestBid(await GetHighestBid(leilao.GetIdLeilao()));
+        }
+
+        await GetAllBids();
+
         return leiloes;
     }
+
+
+       public async Task<double> GetHighestBid(int auctionID)
+    {
+        string sql = "SELECT ValorLicitacao FROM Licitacao WHERE IdLeilao = @auctionID";
+
+        var parameters = new {auctionID};
+        string connectionString = _config.GetConnectionString("DefaultConnection") ?? string.Empty;
+
+        List<double> bids = new List<double>();
+        if (connectionString != null)
+        {
+            bids = await _data.ExecuteQueryList<double>(sql, parameters, connectionString);
+        }
+
+        if (bids.Count == 0) return 0;
+        else return bids.Max();
+
+    }
+
+
+        public async Task<double> GetAllBids(){
+
+            string sql = "SELECT * FROM Licitacao";
+
+            var parameters = new {};
+            string connectionString = _config.GetConnectionString("DefaultConnection") ?? string.Empty;
+
+            List<Licitacao> bids = new List<Licitacao>();
+            if (connectionString != null)
+            {
+                bids = await _data.ExecuteQueryList<Licitacao>(sql, parameters, connectionString);
+            }
+
+            foreach (Licitacao licitacao in bids){
+                Console.WriteLine(licitacao.ToString());
+            }
+
+            return 0;
+
+        }
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////
     // USER QUERIES //////////////////////////////////////////////////////////////////////////////////////

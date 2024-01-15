@@ -52,7 +52,7 @@
                                 <h5 class="itemTitle">@leilao.GetNomeLeilao()</h5>
                                 <p class="currentBid">Current bid:</p>
                                 @if (leilao.GetHighestBid() == 0){ <p class="bid">None</p> }
-                                else{ <p class="bid">Current bid: $@leilao.GetHighestBid()</p> }
+                                else{ <p class="bid">$@leilao.GetHighestBid()</p> }
                                 <p class="buyNow">Buy Now:</p>
                                 <p class="buyNowPrice">$@leilao.GetPrecoCompraAutomaticoLeilao()</p>
                                 <p class="timeLeft">Time left:</p>
