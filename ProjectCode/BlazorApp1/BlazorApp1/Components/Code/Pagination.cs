@@ -48,7 +48,7 @@ public class Pagination{
 
 
     public bool SetCurrentPage(int page){
-        if(page > 0 && page <= this.totalPages){
+        if((page > 0 && page <= this.totalPages) || page == 1){
             this.currentPage = page;
             return true;
         }

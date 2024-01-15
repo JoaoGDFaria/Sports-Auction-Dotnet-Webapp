@@ -61,32 +61,34 @@
 
         </div> 
 
-        <nav aria-label="Page navigation example">
-            <ul class="pagination justify-content-center mt-4">
-                @if ((pagination.GetCurrentPage() - 1) < 1){
-                    <li class="page-item disabled"><a class="page-link" href="auctionsWon/@(pagination.GetCurrentPage()-1)">Previous</a></li>
-                }
-                else{
-                    <li class="page-item"><a class="page-link" href="auctionsWon/@(pagination.GetCurrentPage()-1)">Previous</a></li>
-                }
-                @for (int i = 1; i <= pagination.GetTotalPages(); i++){
-                    int currentPage = i;
-                    @if (currentPage == 1){
-                        <a class="page-link" href="auctionsWon">@i</a>
+        @if (leiloes.Count != 0){
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center mt-4">
+                    @if ((pagination.GetCurrentPage() - 1) < 1){
+                        <li class="page-item disabled"><a class="page-link" href="auctionsWon/@(pagination.GetCurrentPage()-1)">Previous</a></li>
                     }
                     else{
-                        <a class="page-link" href="auctionsWon/@currentPage">@i</a>
+                        <li class="page-item"><a class="page-link" href="auctionsWon/@(pagination.GetCurrentPage()-1)">Previous</a></li>
                     }
-                }
-                @if ((pagination.GetCurrentPage() + 1) > pagination.GetTotalPages()){
-                    <li class="page-item disabled"><a class="page-link" href="auctionsWon/@(pagination.GetCurrentPage()+1)">Next</a></li>
-                }
-                else{
-                    <li class="page-item"><a class="page-link" href="auctionsWon/@(pagination.GetCurrentPage()+1)">Next</a></li>
-                }
-                
-            </ul>
-        </nav>
+                    @for (int i = 1; i <= pagination.GetTotalPages(); i++){
+                        int currentPage = i;
+                        @if (currentPage == 1){
+                            <a class="page-link" href="auctionsWon">@i</a>
+                        }
+                        else{
+                            <a class="page-link" href="auctionsWon/@currentPage">@i</a>
+                        }
+                    }
+                    @if ((pagination.GetCurrentPage() + 1) > pagination.GetTotalPages()){
+                        <li class="page-item disabled"><a class="page-link" href="auctionsWon/@(pagination.GetCurrentPage()+1)">Next</a></li>
+                    }
+                    else{
+                        <li class="page-item"><a class="page-link" href="auctionsWon/@(pagination.GetCurrentPage()+1)">Next</a></li>
+                    }
+                    
+                </ul>
+            </nav>
+        }
         
     </div>
 
@@ -115,7 +117,7 @@
     private async Task LoadAuctionsWon()
     {
         DatabaseQueries dbQuery = new DatabaseQueries(_config, _data);
-        leiloes = await dbQuery.GetAllAuctionsWonByUser(567890123451); //TEST ONLY
+        leiloes = await dbQuery.GetAllAuctions(); //TEST ONLY
         
         pagination = new Pagination(leiloes.Count);
         bool flag = pagination.SetCurrentPage(GetCurrentPage());
