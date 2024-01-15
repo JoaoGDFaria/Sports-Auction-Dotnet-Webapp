@@ -29,6 +29,7 @@ body {
     text-align: center;
     border: none;
     cursor: pointer;
+    margin-left: -1.4em;
 }
 
 .botao:hover {

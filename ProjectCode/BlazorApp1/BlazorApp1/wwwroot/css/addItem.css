@@ -3,7 +3,7 @@
 }
 
 .form-control{
-  background-color: rgb(120, 118, 118) !important;
+  background-color: rgb(189, 188, 188) !important;
   border-color: black !important;
 }
 
@@ -27,11 +27,11 @@
 
 .card-body {
   font-size: 2vh;
-  background-color: rgb(175, 174, 174);
+  background-color: rgb(255, 255, 255);
 }
 
 .aux{
-  background-image: #BCBCBC;
+  background-image: #ffffff;
   color: black;
 }
 
