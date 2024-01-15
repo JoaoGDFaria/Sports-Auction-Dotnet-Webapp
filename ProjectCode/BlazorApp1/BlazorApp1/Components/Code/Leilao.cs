@@ -15,7 +15,7 @@ public class Leilao{
     private double precoCompraAutomaticoLeilao;
     private double precoBaseLeilao;
     private int idCategoria;
-    private double idVendedor;
+    private long idVendedor;
     private string estadoLeilao;
     private List<Licitacao> licitacoes;
 
@@ -122,7 +122,7 @@ public class Leilao{
         return this.idCategoria;
     }
 
-    public double GetIdVendedor(){
+    public long GetIdVendedor(){
         return this.idVendedor;
     }
 

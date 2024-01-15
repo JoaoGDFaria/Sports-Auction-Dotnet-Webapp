@@ -307,4 +307,32 @@ public class DatabaseQueries{
 
     return 1;
     }
+
+
+
+
+    public async Task<int> addBid(double valorLicitacao, long nibComprador, int idLeilao){
+
+        string sql = "INSERT INTO Licitacao (ValorLicitacao, NIBComprador, IdLeilao) "+ 
+                "VALUES (@ValorLicitacao, @NIBComprador, @IdLeilao)";
+
+        var parameters = new
+        {
+            @ValorLicitacao = valorLicitacao,
+            @NIBComprador = nibComprador,
+            @IdLeilao = idLeilao
+        };
+
+        string connectionString = _config.GetConnectionString("DefaultConnection") ?? string.Empty;
+
+        if (connectionString != null)
+        {
+            await _data.ExecuteQuery<int>(sql, parameters, connectionString);
+        } 
+
+        return 1;
+    }
+
+
+
 }
