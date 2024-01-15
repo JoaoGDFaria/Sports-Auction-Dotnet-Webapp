@@ -24,19 +24,19 @@
 
                 <div class="text-group-1">
                     <p class="text"><b>Name:</b></p>
-                    <p class="text-variable">Alan Varela FCPorto 2023/2024 Jersey</p>
+                    <p class="text-variable">@leilao.GetNomeLeilao()</p>
                     <p class="text"><b>Athlete:</b></p>
-                    <p class="text-variable">Alan Varela</p>
+                    <p class="text-variable">@leilao.GetNomeEquipaEventoArtigo()</p>
                     <p class="text"><b>Date of Use:</b></p>
-                    <p class="text-variable">08/10/2023</p>
+                    <p class="text-variable">@leilao.GetDataUsoArtigo()</p>
                     <p class="text"><b>Authentication Number:</b></p>
-                    <p class="text-variable">12331456</p>
+                    <p class="text-variable">@leilao.GetNumeroAutenticacaoArtigo()</p>
                     <p class="text"><b>Size:</b></p>
-                    <p class="text-variable">L</p>
+                    <p class="text-variable">@leilao.GetTamanhoArtigo()</p>
                     <p class="text"><b>Condition:</b></p>
-                    <p class="text-variable">Good</p>
+                    <p class="text-variable">@leilao.GetEstadoArtigo()</p>
                     <p class="text"><b>Category:</b></p>
-                    <p class="text-variable">Jersey</p>
+                    <p class="text-variable">@leilao.GetIdCategoria()</p>
                 </div>
             </div>
         </div>
@@ -44,19 +44,20 @@
         <div class="text-group-2 grid-info2">
             <div>
                 <p class="text"><b>Current Bid:</b></p>
-                <p class="text-variable">27.00€</p>   
+                @if (@leilao.GetHighestBid() == 0){ <p class="text-variable">None</p> }
+                else{ <p class="text-variable">$@leilao.GetHighestBid()</p> }
             </div>
             <div>
                 <p class="text"><b>Buy Now Price:</b></p>
-                <p class="text-variable">150.00€</p>
+                <p class="text-variable">$@leilao.GetPrecoCompraAutomaticoLeilao()</p>
             </div>
             <div>
                 <p class="text"><b>Time Left:</b></p>
-                <p class="text-variable">10 days 2 hours 5 minutes 33 seconds</p>
+                <p class="text-variable">@leilao.GetTimeLeft()</p>
             </div>
             <div>
                 <p class="text"><b>Minimum bid increments:</b></p>
-                <p class="text-variable">5.00€</p>
+                <p class="text-variable">$@leilao.GetTaxaMinimaIncrementoLeilao()</p>
             </div>
         </div>
         
@@ -68,10 +69,10 @@
             <p class="info"><b>Custom Bid:</b></p>
             <p class="info"></p>
             <p class="info"></p>
-            <button type="button" class="btn btn-success">32.00€</button>
+            <button type="button" class="btn btn-success">$@leilao.GetNextMinBid()</button>
             <input type="text" class="form-control input">
             <button type="button" class="btn btn-success">SUBMIT BID</button>
-            <button type="button" class="btn btn-danger">CANCEL</button>
+            <button type="button" class="btn btn-danger" @onclick="() => RedirectToMenu()">CANCEL</button>
         </div>
 
         <div class="container">
@@ -113,6 +114,11 @@
         }
 
         return leilao;
+    }
+
+    void RedirectToMenu()
+    {
+        NavigationManager.NavigateTo($"/auctions");
     }
 
 }

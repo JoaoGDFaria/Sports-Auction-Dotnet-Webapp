@@ -144,6 +144,12 @@ public class Leilao{
         return $"Days: {timeLeft.Days}, Hours: {timeLeft.Hours}, Minutes: {timeLeft.Minutes}";
     }
 
+    public double GetNextMinBid(){
+        double preco = this.GetHighestBid();
+        if(preco == 0) return this.GetPrecoBaseLeilao();
+        return this.GetHighestBid() + this.GetTaxaMinimaIncrementoLeilao();
+    }
+
     public void AddLicitacao(Licitacao licitacao){
         this.licitacoes.Add(licitacao);
     }

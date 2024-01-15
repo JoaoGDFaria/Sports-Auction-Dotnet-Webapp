@@ -41,7 +41,7 @@
                     Leilao leilao = leiloes[i];
 
 
-                    <button class="itemButton">
+                    <button class="itemButton" @onclick="() => RedirectToAuction(leilao.GetIdLeilao())">
                         <div class="item row g-0 ">
                                 
                             <div class="imagem col-md-4 ">
@@ -147,6 +147,12 @@
         else{
             return 1;
         }
+    }
+
+
+    void RedirectToAuction(int auctionId)
+    {
+        NavigationManager.NavigateTo($"/buyMenu/{auctionId}");
     }
 
 
