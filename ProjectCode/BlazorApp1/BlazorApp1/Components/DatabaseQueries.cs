@@ -71,7 +71,7 @@ public class DatabaseQueries{
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    //NOT TESTED //PARA A PAGINA AUCTIONS
+    //PARA A PAGINA AUCTIONS
     public async Task<List<Leilao>> GetAllAuctionsWithoutUser(long idUser){
 
         string sql = "SELECT * FROM ArtigoLeilao WHERE IdVendedor != @idUser";
@@ -92,7 +92,7 @@ public class DatabaseQueries{
     }
 
 
-    //NOT TESTED //PARA A PAGINA MYAUCTIONS
+    //PARA A PAGINA MYAUCTIONS
     public async Task<List<Leilao>> GetAllAuctionsOfUser(long idUser){
 
         string sql = "SELECT * FROM ArtigoLeilao WHERE IdVendedor = @idUser";
@@ -114,7 +114,25 @@ public class DatabaseQueries{
     }
 
 
+    public async Task<List<Leilao>> GetAllAuctionsWonByUser(long idUser){
 
+        string sql = "SELECT * FROM ArtigoLeilao WHERE IdVendedor = @idUser AND EstadoLeilao = 'Terminado'";
+
+        var parameters = new {idUser};
+        string connectionString = _config.GetConnectionString("DefaultConnection") ?? string.Empty;
+
+        List<Leilao> leiloes = new List<Leilao>();
+        if (connectionString != null){
+            leiloes = await _data.ExecuteQueryList<Leilao>(sql, parameters, connectionString);
+        }
+
+        foreach (Leilao leilao in leiloes){
+            leilao.SetLicitacoes(await GetAllBids(leilao.GetIdLeilao()));
+        }
+
+        return leiloes;
+
+    }
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////

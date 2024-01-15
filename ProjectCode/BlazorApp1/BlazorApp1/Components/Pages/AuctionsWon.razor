@@ -1,105 +1,143 @@
-@page "/auctionsWon"
+@page "/auctionsWon/{page:int?}"
 @rendermode InteractiveServer
+
+@inject IConfiguration _config
+@inject ISqlDataAccess _data
+@inject NavigationManager NavigationManager
+
+@using DataLibrary
 
 <PageTitle>Auctions Won</PageTitle>
     
     <Header />
 
+    <div class="cont">
+        <div class="btn-group-vertical fixed-button" role="group" aria-label="Vertical button group">
+            <div class="btn-group dropup" role="group">
+                <ul class="dropdown-menu scrollable-dropdown-menu">
+                    <li><a class="dropdown-item" href="#">AAA</a></li>
+                    <li><a class="dropdown-item" href="#">BBB</a></li>
+                    <li><a class="dropdown-item" href="#">CCC</a></li>
+                    <li><a class="dropdown-item" href="#">DDD</a></li>
+                    <li><a class="dropdown-item" href="#">EEE</a></li>
+                    <li><a class="dropdown-item" href="#">AAA</a></li>
+                    <li><a class="dropdown-item" href="#">BBB</a></li>
+                    <li><a class="dropdown-item" href="#">CCC</a></li>
+                    <li><a class="dropdown-item" href="#">DDD</a></li>
+                    <li><a class="dropdown-item" href="#">EEE</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            @if (leiloes.Count != 0)
+            {
 
-<div class="cont">
-        <div class="text-group-2 grid-info2">
+                @for (int i = pagination.GetStartIndex(); i <= pagination.GetEndIndex(); i++){
 
-            <button class="itemButton">
-                <div class="item row g-0 ">
-                        
-                    <div class="imagem col-md-4">
-                        <img src="./images/pogba.jpg" class="img-fluid ">
-                    </div>
 
-                    <div class="itemInfos col-md-8">
-                            <p class="itemInfo">Athlete: Paul Pogba</p>
-                            <p class="itemInfo">Sold at: <span class = "corPreco">99.50€</span></p>
-                            <p class="itemInfo">Date: 11/10/2023</p>
-                    </div>
-                        
-                </div>
-            </button>
+                    Leilao leilao = leiloes[i];
 
-            <button class="itemButton">
-                <div class="item row g-0 ">
-                        
-                    <div class="imagem col-md-4 ">
-                        <img src="./images/icardi.jpg" class="img-fluid ">
-                    </div>
 
-                    <div class="itemInfos col-md-8">
-                        <p class="itemInfo">Athlete: Mauro Icardi</p>
-                        <p class="itemInfo">Sold at: <span class = "corPreco">123.40€</span></p>
-                        <p class="itemInfo">Date: 04/10/2023</p>
-                    </div>
-                        
-                </div>
-            </button>
+                    <button class="itemButton">
+                        <div class="item row g-0 ">
+                                
+                            <div class="imagem col-md-4 ">
+                                <img src="./images/item1.webp" class="img-fluid " >
+                            </div>
 
-            <button class="itemButton">
-                <div class="item row g-0 ">
-                        
-                    <div class="imagem col-md-4 ">
-                        <img src="./images/" class="img-fluid ">
-                    </div>
+                            <div class="itemInfo col-md-8">
+                                <h5 class="itemTitle">@leilao.GetNomeLeilao()</h5>
+                                <p class="soldAt">Sold at:</p>
+                                <p class="bid">$@leilao.GetPrecoCompraAutomaticoLeilao()</p>
+                                <p class="dateBought">Bought in:</p>
+                                <p class="itemTime"><small class="text-body-secondary">@leilao.GetTimeLeft()</small></p>
+                            </div>
+                                
+                        </div>
+                    </button>
+                }
+            }
 
-                    <div class="itemInfos col-md-8">
-                        <p class="itemInfo">Competition: Stanley Cup</p>
-                        <p class="itemInfo">Sold at: <span class = "corPreco">22.40€</span></p>
-                        <p class="itemInfo">Date: 30/07/2023</p>
-                    </div>
-                        
-                </div>
-            </button>
 
-            <button class="itemButton">
-                <div class="item row g-0 ">
-                        
-                    <div class="imagem col-md-4 ">
-                        <img src="./images/fernandes.webp" class="img-fluid ">
-                    </div>
-
-                    <div class="itemInfos col-md-8">
-                        <p class="itemInfo">Athlete: B.Fernades</p>
-                        <p class="itemInfo">Sold at: <span class = "corPreco">350.00€</span></p>
-                        <p class="itemInfo">Date: 14/02/2023</p>
-                    </div>
-                        
-                </div>
-            </button>
         </div> 
 
         <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center mt-4">
-            <li class="page-item disabled">
-                <a class="page-link">Previous</a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-                <a class="page-link" href="#">Next</a>
-            </li>
+                @if ((pagination.GetCurrentPage() - 1) < 1){
+                    <li class="page-item disabled"><a class="page-link" href="auctionsWon/@(pagination.GetCurrentPage()-1)">Previous</a></li>
+                }
+                else{
+                    <li class="page-item"><a class="page-link" href="auctionsWon/@(pagination.GetCurrentPage()-1)">Previous</a></li>
+                }
+                @for (int i = 1; i <= pagination.GetTotalPages(); i++){
+                    int currentPage = i;
+                    @if (currentPage == 1){
+                        <a class="page-link" href="auctionsWon">@i</a>
+                    }
+                    else{
+                        <a class="page-link" href="auctionsWon/@currentPage">@i</a>
+                    }
+                }
+                @if ((pagination.GetCurrentPage() + 1) > pagination.GetTotalPages()){
+                    <li class="page-item disabled"><a class="page-link" href="auctionsWon/@(pagination.GetCurrentPage()+1)">Next</a></li>
+                }
+                else{
+                    <li class="page-item"><a class="page-link" href="auctionsWon/@(pagination.GetCurrentPage()+1)">Next</a></li>
+                }
+                
             </ul>
         </nav>
+        
     </div>
 
+    <div class="container">
+        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4">
 
-
-
-
-
-
-
-
-
+        </footer>
+    </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="css/auctionsWon.css">
 
 
+@code {
+
+    [Parameter] public int? page { get; set; }
+
+    private List<Leilao> leiloes= new List<Leilao>();
+    private Pagination pagination = new Pagination();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadAuctionsWon();
+    }
+
+    private async Task LoadAuctionsWon()
+    {
+        DatabaseQueries dbQuery = new DatabaseQueries(_config, _data);
+        leiloes = await dbQuery.GetAllAuctionsWonByUser(567890123451); //TEST ONLY
+        
+        pagination = new Pagination(leiloes.Count);
+        bool flag = pagination.SetCurrentPage(GetCurrentPage());
+
+        if (!flag)
+        {
+            NavigationManager.NavigateTo("/notfound");
+        }
+        
+
+    }
+
+    private int GetCurrentPage(){
+        var currentUrl = NavigationManager.Uri;
+        var pageStr = currentUrl.Split("/").Last();
+        if (int.TryParse(pageStr, out var currentPage)){
+            return currentPage;
+        }
+        else{
+            return 1;
+        }
+    }
+
+
+}
