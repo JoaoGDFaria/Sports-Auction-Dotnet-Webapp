@@ -7,6 +7,7 @@
     padding: 5% 0%;
 }
 
+
 body{
     background: url("../images/background.png") fixed;
     background-size: cover;
@@ -29,7 +30,7 @@ html, body {
 }
 
 .aux{
-    background-color: #E2DED0;
+    background-color: #ffffff;
     outline: 200px black;
 }
 
@@ -37,9 +38,6 @@ html, body {
     font-size: 2.5vh; /* Adjust font size as needed */
     color: black;
 }
-
-
-
 
 .row{
     display: flex;
