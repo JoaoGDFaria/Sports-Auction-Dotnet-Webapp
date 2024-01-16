@@ -2,7 +2,8 @@
 @rendermode InteractiveServer
 @inject IConfiguration _config
 @inject ISqlDataAccess _data
-@using System.Drawing;
+@using System.Drawing
+@inject NavigationManager NavigationManager
 
 
 @using DataLibrary
@@ -186,13 +187,12 @@
     private string DataUsoArtigo { get; set; } = string.Empty;
     private string DataFinalizacaoLeilao { get; set; } = string.Empty;
     private string IdCategoria { get; set; } = string.Empty;
-    private int numeroImagensInseridas = 1;
 
     private async Task SubmitForm()
     {
         DatabaseQueries test = new DatabaseQueries(_config, _data);
 
-        //int leiloes = await test.GetNumeroLeilao(); //TEST ONLY
+        int leiloes = await test.GetNumeroLeilao(); 
         
         byte[] imagemBytes = new byte[0];
         string nomeArquivo = string.Empty;
@@ -250,7 +250,7 @@
                 Imagem = nomeArquivo;
 
                 await SalvarImagemNoProjeto(ImagemArtigo, nomeArquivo);
-                numeroImagensInseridas++;
+
         
                 int rowsAffected = await test.AddItem(NomeLeilao, Imagem, PrecoBaseLeilao, 
                                                        NomeArtigo, NumeroAutenticacaoArtigo, 
@@ -349,7 +349,7 @@
 
     private bool validateBasePrice(string basePrice)
     {
-        bool valid = double.tryParse(basePrice, out _);
+        bool valid = double.TryParse(basePrice, out _);
 
         if (valid)
         {   
@@ -372,7 +372,7 @@
 
     private bool validateAuthNumber(string authNumber)
     {
-        bool valid = int.tryParse(authNumber, out _);
+        bool valid = int.TryParse(authNumber, out _);
 
         if (valid && authNumber.Length <= 10)
         {   
@@ -388,7 +388,7 @@
 
     private bool validateBuyNow(string buyNowPrice)
     {
-        bool valid = double.tryParse(buyNowPrice, out _);
+        bool valid = double.TryParse(buyNowPrice, out _);
 
         if (valid)
         {   
@@ -411,7 +411,7 @@
 
     private bool validateIncrement(string incrementPrice)
     {
-        bool valid = double.tryParse(incrementPrice, out _);
+        bool valid = double.TryParse(incrementPrice, out _);
 
         if (valid)
         {   
@@ -468,7 +468,7 @@
 
     private bool validateCategory(string cat)
     {
-        bool valid = int.tryParse(cat, out _);
+        bool valid = int.TryParse(cat, out _);
 
         if (valid)
         {   
