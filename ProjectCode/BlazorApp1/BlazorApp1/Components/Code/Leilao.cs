@@ -147,7 +147,12 @@ public class Leilao{
     public double GetNextMinBid(){
         double preco = this.GetHighestBid();
         if(preco == 0) return this.GetPrecoBaseLeilao();
-        return this.GetHighestBid() + this.GetTaxaMinimaIncrementoLeilao();
+
+        double nextBid = this.GetHighestBid() + this.GetTaxaMinimaIncrementoLeilao();
+        if(nextBid > this.GetPrecoCompraAutomaticoLeilao()){
+            nextBid = this.GetPrecoCompraAutomaticoLeilao();
+        }
+        return nextBid;
     }
 
     public void AddLicitacao(Licitacao licitacao){
@@ -156,6 +161,28 @@ public class Leilao{
 
     public void SetLicitacoes(List<Licitacao> licitacoes){
         this.licitacoes = licitacoes;
+    }
+
+    public void verificarEstadoDoLeilao(){
+        if(this.estadoLeilao == "A decorrer"){
+            if(this.dataFinalizacaoLeilao < DateTime.Now){
+                if(this.licitacoes.Count == 0) this.estadoLeilao = "Expirado";
+                else this.estadoLeilao = "Vendido";
+            }
+        }
+    }
+
+    public long determinarVencedor(){
+        if(this.estadoLeilao == "Vendido"){
+            double highestBid = this.GetHighestBid();
+
+            for(int i = 0; i < this.licitacoes.Count; i++){
+                if(this.licitacoes[i].GetValorLicitacao() == highestBid){
+                    return this.licitacoes[i].GetNIBComprador();
+                }
+            }
+        }
+        return 0;
     }
 
 

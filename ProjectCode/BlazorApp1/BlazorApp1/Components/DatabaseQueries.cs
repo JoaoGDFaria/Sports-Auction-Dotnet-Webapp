@@ -26,6 +26,20 @@ public class DatabaseQueries{
         return id!=0;
     }
 
+    public async Task<string> GetNomeCategoria(int idCategoria){
+
+        string sql = "SELECT Nome FROM Utilizador WHERE IdCategoria = @idCategoria";
+
+        var parameters = new { idCategoria };
+        string connectionString = _config.GetConnectionString("DefaultConnection") ?? string.Empty;
+
+        string nome = "";
+        if (connectionString != null){
+            nome = await _data.ExecuteQuery<string>(sql, parameters, connectionString);
+        }
+        return nome;
+    }
+
 
 
     public async Task<List<Leilao>> GetAllAuctions(){
@@ -48,6 +62,25 @@ public class DatabaseQueries{
 
         return leiloes;
     }
+
+    public async Task<List<Categoria>> GetAllCategories(){
+
+        string sql = "SELECT * FROM Categoria";
+
+        var parameters = new {};
+        string connectionString = _config.GetConnectionString("DefaultConnection") ?? string.Empty;
+
+        List<Categoria> leiloes = new List<Categoria>();
+        if (connectionString != null)
+        {
+            leiloes = await _data.ExecuteQueryList<Categoria>(sql, parameters, connectionString);
+        }
+
+        return leiloes;
+    }
+
+
+
 
 
 

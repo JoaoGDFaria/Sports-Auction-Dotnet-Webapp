@@ -4,6 +4,7 @@
 @inject IConfiguration _config
 @inject ISqlDataAccess _data
 @inject NavigationManager NavigationManager
+@using Microsoft.AspNetCore.Components
 
 @using DataLibrary
 
@@ -119,6 +120,17 @@
     protected override async Task OnInitializedAsync()
     {
         await LoadAuctions();
+
+
+        _ = Task.Run(async () =>
+        {
+            while (true)
+            {
+                await Task.Delay(TimeSpan.FromMinutes(1));
+                await InvokeAsync(() => StateHasChanged());
+                Console.WriteLine("State has changed");
+            }
+        });
     }
 
     private async Task LoadAuctions()
