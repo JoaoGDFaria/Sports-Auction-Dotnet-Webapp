@@ -137,8 +137,15 @@
         double parsedValue;
         try{
             parsedValue = Convert.ToDouble(priceInput);
+            parsedValue = Math.Round(parsedValue, 2);
         }
         catch (FormatException){
+            showPopupError = true;
+            priceInput = "";
+            StateHasChanged();
+            return;
+        }
+        if(parsedValue >= 100000000){
             showPopupError = true;
             priceInput = "";
             StateHasChanged();
