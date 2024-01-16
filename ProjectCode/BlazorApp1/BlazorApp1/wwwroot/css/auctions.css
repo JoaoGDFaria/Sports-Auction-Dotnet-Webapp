@@ -8,6 +8,7 @@ body {
     height: 100%;
     margin: 1em;
     margin-left: 2.4em;
+    overflow-x: hidden;
 }
 
 .header-iframe {
