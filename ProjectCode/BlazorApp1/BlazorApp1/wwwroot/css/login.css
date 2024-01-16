@@ -1,5 +1,4 @@
 
-
 .form-outline{
     text-align: left;
 }
@@ -17,6 +16,7 @@ body{
 }
 
 html, body {
+    overflow-x: hidden;
     height: 100%;
     margin: 0;
     padding: 0;
