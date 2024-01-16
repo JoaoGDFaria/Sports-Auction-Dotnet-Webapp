@@ -1,6 +1,8 @@
 @page "/addItem"
+@rendermode InteractiveServer
 @inject IConfiguration _config
 @inject ISqlDataAccess _data
+@using System.Drawing;
 
 
 @using DataLibrary
@@ -14,77 +16,67 @@
         <div class="card-body p-5 text-center aux">
             <div class="row row-cols-1">
                 <div class="form-outline form-white mb-4 field">
-                            <p>Auction Name</p>
-                            <input type="text" id="typeEmailX" class="form-control form-control-lg"  @bind="NomeLeilao" />
-                        </div>
-                     
-                <div class="form-outline form-white mb-4 field">
-                    <p>Picture of the Item</p>
-                    <input type="file" id="imageInput" class="form-control form-control-lg" onchange="HandleImageSelection" />
+                    <p>Auction Name</p>
+                    <input type="text" id="typeEmailX" class="form-control form-control-lg"  @bind="NomeLeilao" />
                 </div>
                 <div class="form-outline form-white mb-4 field">
-                        <p>Minimum Bid Amount(€)</p>
-                            <input type="text" id="typeEmailX" class="form-control form-control-lg" @bind="PrecoBaseLeilao"/>
-                        </div>
-                        <div class="form-outline form-white mb-4 field">
-                            <p>Item Name</p>
-                            <input type="text" id="typeEmailX" class="form-control form-control-lg" @bind="NomeArtigo"/>
-                        </div>
-                        <div class="form-outline form-white mb-4 field">
-                            <p>Authentication Number</p>
-                            <input type="text" id="typeEmailX" class="form-control form-control-lg" @bind="NumeroAutenticacaoArtigo"/>
-                        </div>
-                        <div class="form-outline form-white mb-4 field">
-                            <p>Buy Now Price(€)</p>
-                            <input type="text" id="typeEmailX" class="form-control form-control-lg" @bind="PrecoCompraAutomaticoLeilao"/>
-                        </div>
-                        <div class="form-outline form-white mb-4 field">
-                            <p>Athlete/Team/Event Name</p>
-                            <input type="text" id="typeEmailX" class="form-control form-control-lg" @bind="NomeEquipaEventoArtigo"/>
-                        </div>
-                        <div class="form-outline form-white mb-4 field">
-                            <p>Size</p>
-                            <input type="text" id="typeEmailX" class="form-control form-control-lg" @bind="TamanhoArtigo"/>
-                        </div>
-                        <div class="form-outline form-white mb-4 field">
-                            <p>Minimum Bid Increment(€)</p>
-                            <input type="text" id="typeEmailX" class="form-control form-control-lg" @bind="TaxaMinimaIncrementoLeilao"/>
-                        </div>
-                        <div class="form-outline form-white mb-4 field">
-                            <p>Description</p>
-                            <input type="text" id="typeEmailX" class="form-control form-control-lg" @bind="DescricaoArtigo"/>
-                        </div>
-                        <div class="form-outline form-white mb-4 field">
-                            <p>Condition</p>
-                            <input type="text" id="typeEmailX" class="form-control form-control-lg" @bind="EstadoArtigo"/>
-                        </div>
-                        
-                        <div class="form-outline form-white mb-4 field">
-                            <p>Date of Use</p>
-                            <input type="text" id="typeEmailX" class="form-control form-control-lg" @bind="DataUsoArtigo" />
-                        </div>
-                        <div class="form-outline form-white mb-4 field">
-                            <p>Auction Closing Date(min. 1 day)</p>
-                            <input type="text" id="typeEmailX" class="form-control form-control-lg" @bind="DataFinalizacaoLeilao"/>
-                        </div>
-                       <div class="form-outline form-white mb-4 field">
-                            <p>Category</p>
-                            <input type="text" id="typeEmailX" class="form-control form-control-lg" @bind="IdCategoria"/>
-                        </div>
-
-
+                    <p>Minimum Bid Amount(€)</p>
+                    <input type="text" id="typeEmailX" class="form-control form-control-lg" @bind="PrecoBaseLeilao"/>
+                </div>
+                <div class="form-outline form-white mb-4 field">
+                    <p>Item Name</p>
+                    <input type="text" id="typeEmailX" class="form-control form-control-lg" @bind="NomeArtigo"/>
+                </div>
+                <div class="form-outline form-white mb-4 field">
+                    <p>Authentication Number</p>
+                    <input type="text" id="typeEmailX" class="form-control form-control-lg" @bind="NumeroAutenticacaoArtigo"/>
+                </div>
+                <div class="form-outline form-white mb-4 field">
+                    <p>Buy Now Price(€)</p>
+                    <input type="text" id="typeEmailX" class="form-control form-control-lg" @bind="PrecoCompraAutomaticoLeilao"/>
+                </div>
+                <div class="form-outline form-white mb-4 field">
+                    <p>Athlete/Team/Event Name</p>
+                    <input type="text" id="typeEmailX" class="form-control form-control-lg" @bind="NomeEquipaEventoArtigo"/>
+                </div>
+                <div class="form-outline form-white mb-4 field">
+                    <p>Size</p>
+                    <input type="text" id="typeEmailX" class="form-control form-control-lg" @bind="TamanhoArtigo"/>
+                </div>
+                <div class="form-outline form-white mb-4 field">
+                    <p>Minimum Bid Increment(€)</p>
+                    <input type="text" id="typeEmailX" class="form-control form-control-lg" @bind="TaxaMinimaIncrementoLeilao"/>
+                </div>
+                <div class="form-outline form-white mb-4 field">
+                    <p>Description</p>
+                    <input type="text" id="typeEmailX" class="form-control form-control-lg" @bind="DescricaoArtigo"/>
+                </div>
+                <div class="form-outline form-white mb-4 field">
+                    <p>Condition</p>
+                    <input type="text" id="typeEmailX" class="form-control form-control-lg" @bind="EstadoArtigo"/>
+                </div>
+                <div class="form-outline form-white mb-4 field">
+                    <p>Date of Use</p>
+                    <input type="text" id="typeEmailX" class="form-control form-control-lg" @bind="DataUsoArtigo" />
+                </div>
+                <div class="form-outline form-white mb-4 field">
+                    <p>Auction Closing Date(min. 1 day)</p>
+                    <input type="text" id="typeEmailX" class="form-control form-control-lg" @bind="DataFinalizacaoLeilao"/>
+                </div>
+                <div class="form-outline form-white mb-4 field">
+                    <p>Category</p>
+                    <input type="text" id="typeEmailX" class="form-control form-control-lg" @bind="IdCategoria"/>
+                </div>
                 <div class="button d-flex buttons">
                     <button type="button" class="btn btn-success" @onclick="SubmitForm">SUBMIT</button>
                     <button type="button" class="btn btn-danger">CANCEL</button>
-                </div>
+                </div> 
             </div>
         </div>
     </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="css/addItem.css">
 
 @code {
@@ -104,35 +96,23 @@
     private string DataFinalizacaoLeilao { get; set; } = string.Empty;
     private string IdCategoria { get; set; } = string.Empty;
 
-    private async Task HandleImageSelection(InputFileChangeEventArgs e)
-    {
-        var imageFile = e.File;
-
-        if (imageFile != null)
-        {
-            ImagemArtigo = await ConvertImageToByteArray(imageFile);
-        }
-    }
-
-    private async Task<byte[]> ConvertImageToByteArray(IBrowserFile imageFile)
-    {
-        using (var stream = imageFile.OpenReadStream())
-        {
-            using (var memoryStream = new MemoryStream())
-            {
-                await stream.CopyToAsync(memoryStream);
-                return memoryStream.ToArray();
-            }
-        }
-    }
-
     private async Task SubmitForm()
     {
-        DatabaseQueries dbQuery = new DatabaseQueries(_config, _data);
-        int rowsAffected = await dbQuery.AddItem(NomeLeilao, ImagemArtigo, PrecoBaseLeilao, NomeArtigo, NumeroAutenticacaoArtigo, PrecoCompraAutomaticoLeilao, NomeEquipaEventoArtigo, TamanhoArtigo, TaxaMinimaIncrementoLeilao, DescricaoArtigo, EstadoArtigo, DataUsoArtigo, DataFinalizacaoLeilao);
+        DatabaseQueries test = new DatabaseQueries(_config, _data);
+        string caminhoDaImagem = "C:/Users/hugoa/Desktop/image.png";
+        ImagemArtigo = await CarregarImagem(caminhoDaImagem);
+        int rowsAffected = await test.AddItem(NomeLeilao, ImagemArtigo, PrecoBaseLeilao, NomeArtigo, NumeroAutenticacaoArtigo, PrecoCompraAutomaticoLeilao, NomeEquipaEventoArtigo, TamanhoArtigo, TaxaMinimaIncrementoLeilao, DescricaoArtigo, EstadoArtigo, DataUsoArtigo, DataFinalizacaoLeilao);
+        Console.WriteLine(rowsAffected);
+        Image imagem = ConverterBinarioParaImagem(ImagemArtigo);
+        string caminho = "C:/Users/hugoa/Desktop";
+        string nome = "teste1.png";
+        SaveImageToFile(imagem, caminho, nome);
 
+
+        
         if (rowsAffected > 0)
         {
+
             Console.WriteLine("Artigo inserido com sucesso!");
         }
         else
@@ -140,4 +120,70 @@
             Console.WriteLine("Falha ao inserir artigo.");
         }
     }
+
+
+    
+
+    private async Task<byte[]> CarregarImagem(string caminho)
+{
+    try
+    {
+        Console.WriteLine($"Caminho da imagem: {caminho}");
+
+        using (var stream = new FileStream(caminho, FileMode.Open))
+        {
+            Console.WriteLine($"Tamanho do arquivo: {stream.Length} bytes");
+
+            using (var memoryStream = new MemoryStream())
+            {
+                await stream.CopyToAsync(memoryStream);
+                Console.WriteLine($"Tamanho da memória: {memoryStream.Length} bytes");
+
+                return memoryStream.ToArray();
+            }
+        }
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Erro ao carregar a imagem: {ex.Message}");
+        return Array.Empty<byte>();
+    }
+}
+
+    private Image ConverterBinarioParaImagem(byte[] dadosBinarios)
+{
+    try
+    {
+        using (MemoryStream memoryStream = new MemoryStream(dadosBinarios))
+        {
+            return Image.FromStream(memoryStream);
+        }
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Erro ao converter de binário para imagem: {ex.Message}");
+        return null;
+    }
+}
+
+    private void SaveImageToFile(Image image, string directoryPath, string fileName)
+    {
+        try
+        {
+            // Ensure the directory exists
+            Directory.CreateDirectory(directoryPath);
+
+            // Combine directory path and file name to get the full file path
+            string filePath = Path.Combine(directoryPath, fileName);
+
+            // Save the image to the specified file path
+            image.Save(filePath);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error saving image to file: {ex.Message}");
+        }
+    }
+
+    
 }
