@@ -71,6 +71,77 @@
                     <p>Category</p>
                     <input type="text" id="typeEmailX" class="form-control form-control-lg" @bind="IdCategoria"/>
                 </div>
+
+                @if(nullError)
+                {
+                    <div class="alert alert-danger" role="alert">
+                        Please fill all the fields.
+                    </div>
+                }
+
+                @if(authNumberError)
+                {
+                    <div class="alert alert-danger" role="alert">
+                        This authentication number is already in use.
+                    </div>
+                }
+
+                @if(basePriceFormatError)
+                {
+                    <div class="alert alert-danger" role="alert">
+                        The start price should be less than 50,000€.
+                    </div>
+                }
+
+                @if(authFormatError)
+                {
+                    <div class="alert alert-danger" role="alert">
+                        The authentication number must be a number and have no more than 10 digits.
+                    </div>
+                }
+
+                @if(buyNowFormatError)
+                {
+                    <div class="alert alert-danger" role="alert">
+                        The buy now price should be less than 100,000€.
+                    </div>
+                }
+
+                @if(incrementFormatError)
+                {
+                    <div class="alert alert-danger" role="alert">
+                        The minimum bid increment should be less than 1,000€.
+                    </div>
+                }
+
+                @if(dateUseFormatError)
+                {
+                    <div class="alert alert-danger" role="alert">
+                        The date of use must be a valid date and in the past.
+                    </div>
+                }
+
+                @if(dateClosingFormatError)
+                {
+                    <div class="alert alert-danger" role="alert">
+                        The auction closing date must be a valid date and at least 1 day in the future.
+                    </div>
+                }
+
+                @if(categoryFormatError)
+                {
+                    <div class="alert alert-danger" role="alert">
+                        The category must be a number.
+                    </div>
+                }
+
+                @if(dataError)
+                {
+                    <div class="alert alert-danger" role="alert">
+                        Something went wrong, please try again.
+                    </div>
+                }
+
                 <div class="button d-flex buttons">
                     <button type="button" class="btn btn-success" @onclick="SubmitForm">SUBMIT</button>
                     <button type="button" class="btn btn-danger">CANCEL</button>
@@ -84,6 +155,21 @@
 <link rel="stylesheet" href="css/addItem.css">
 
 @code {
+
+    public bool nullError { get; set; } = false;
+
+    // Data base duplicate check
+    public bool authNumberError { get; set; } = false;
+
+    // Data format check
+    public bool basePriceFormatError { get; set; } = false;
+    public bool authFormatError { get; set; } = false;
+    public bool buyNowFormatError { get; set; } = false;
+    public bool incrementFormatError { get; set; } = false;
+    public bool dateUseFormatError { get; set; } = false;
+    public bool dateClosingFormatError { get; set; } = false; 
+    public bool categoryFormatError { get; set; } = false;
+    public bool dataError { get; set; } = false;
 
     private string NomeLeilao { get; set; } = string.Empty;
     private IBrowserFile? ImagemArtigo { get; set; }
@@ -105,38 +191,96 @@
     private async Task SubmitForm()
     {
         DatabaseQueries test = new DatabaseQueries(_config, _data);
-        int leiloes = await test.GetNumeroLeilao(); //TEST ONLY
+
+        //int leiloes = await test.GetNumeroLeilao(); //TEST ONLY
+        
         byte[] imagemBytes = new byte[0];
         string nomeArquivo = string.Empty;
 
-        if (ImagemArtigo != null)
-        {
-            imagemBytes = await ObterBytesDaImagem(ImagemArtigo);
-            nomeArquivo = $"Auction{leiloes}.{ObterFormatoDaFoto(ImagemArtigo)}";
+        // Clearing all errors
+        nullError = false;
+
+        authNumberError = false;
+
+        basePriceFormatError = false;
+        authFormatError = false;
+        buyNowFormatError = false;
+        incrementFormatError = false;
+        dateUseFormatError = false;
+        dateClosingFormatError = false;
+        categoryFormatError = false;
+        dataError = false;
+
+        if(string.IsNullOrEmpty(NomeLeilao) ||
+           string.IsNullOrEmpty(PrecoBaseLeilao) || 
+           string.IsNullOrEmpty(NomeArtigo) || 
+           string.IsNullOrEmpty(NumeroAutenticacaoArtigo) ||
+           string.IsNullOrEmpty(PrecoCompraAutomaticoLeilao) ||
+           string.IsNullOrEmpty(NomeEquipaEventoArtigo) ||
+           string.IsNullOrEmpty(TamanhoArtigo) ||
+           string.IsNullOrEmpty(TaxaMinimaIncrementoLeilao) ||
+           string.IsNullOrEmpty(DescricaoArtigo) ||
+           string.IsNullOrEmpty(EstadoArtigo) ||
+           string.IsNullOrEmpty(DataUsoArtigo) ||
+           string.IsNullOrEmpty(DataFinalizacaoLeilao) ||
+           string.IsNullOrEmpty(IdCategoria) ||
+           ImagemArtigo != null){
+
+            nullError = true;
+            return;
+        
+        }else{
+            if(validateAuthNumber(NumeroAutenticacaoArtigo) &&
+               validateBasePrice(PrecoBaseLeilao) &&
+               validateBuyNow(PrecoCompraAutomaticoLeilao) &&
+               validateIncrement(TaxaMinimaIncrementoLeilao) &&
+               validateDateUse(DataUsoArtigo) &&
+               validateDateClosing(DataFinalizacaoLeilao) &&
+               validateCategory(IdCategoria)){
+                
+                bool authCheck = await test.isThereAuthNumber(NumeroAutenticacaoArtigo);
+                if(authCheck){
+                    authNumberError = true;
+                    return;
+                }
+
+                imagemBytes = await ObterBytesDaImagem(ImagemArtigo);
+                nomeArquivo = $"Auction{leiloes}.{ObterFormatoDaFoto(ImagemArtigo)}";
+                
+                Imagem = nomeArquivo;
+
+                await SalvarImagemNoProjeto(ImagemArtigo, nomeArquivo);
+                numeroImagensInseridas++;
+        
+                int rowsAffected = await test.AddItem(NomeLeilao, Imagem, PrecoBaseLeilao, 
+                                                       NomeArtigo, NumeroAutenticacaoArtigo, 
+                                                       PrecoCompraAutomaticoLeilao,
+                                                       NomeEquipaEventoArtigo, TamanhoArtigo,
+                                                       TaxaMinimaIncrementoLeilao, 
+                                                       DescricaoArtigo, EstadoArtigo,
+                                                       DataUsoArtigo, DataFinalizacaoLeilao);
+
+
+                if (rowsAffected > 0)
+                {
+                    // Redirecting to myAuctions page
+                    NavigationManager.NavigateTo("/myAuctions");
+                    return;
+                }
+                else
+                {
+                    //  Something went wrong but we don't know what, so we just say something went wrong, 
+                    // please try again, and we don't redirect, because we don't know what happened, so we 
+                    // don't know if it's safe to redirect, so we just stay here, and we don't do anything, 
+                    // because we don't know what happened, so we don't know what to do, so we just stay here,
+                    // and we don't do anything, because we don't know what happened... 
+                    dataError = true;
+                    return;
+                }
+            }    
         }
 
-        Imagem = nomeArquivo;
-        int rowsAffected = await test.AddItem(NomeLeilao, Imagem, PrecoBaseLeilao, NomeArtigo, NumeroAutenticacaoArtigo, PrecoCompraAutomaticoLeilao,NomeEquipaEventoArtigo, TamanhoArtigo, TaxaMinimaIncrementoLeilao, DescricaoArtigo, EstadoArtigo,DataUsoArtigo, DataFinalizacaoLeilao);
 
-        Console.WriteLine(rowsAffected);
-
-        if (rowsAffected > 0)
-        {
-            Console.WriteLine("Artigo inserido com sucesso!");
-        }
-        else
-        {
-            Console.WriteLine("Falha ao inserir artigo.");
-        }
-
-        // Salva a imagem no projeto
-        if (ImagemArtigo != null)
-        {
-            await SalvarImagemNoProjeto(ImagemArtigo, nomeArquivo);
-            numeroImagensInseridas++;
-        }
-
-        Console.WriteLine("inserido na pasta");
     }
 
     private string ObterFormatoDaFoto(IBrowserFile file)
@@ -199,6 +343,142 @@
 
         if(await dbQuery.GetUser(GetCurrentUserID()) == false){
             NavigationManager.NavigateTo("/notfound");
+        }
+    }
+
+
+    private bool validateBasePrice(string basePrice)
+    {
+        bool valid = double.tryParse(basePrice, out _);
+
+        if (valid)
+        {   
+            double num = double.Parse(basePrice);
+            
+            if(num < 50000){
+                basePriceFormatError = false;
+                return true;
+            } else {
+                basePriceFormatError = true;
+                return false;
+            }
+        }
+        else
+        {
+            basePriceFormatError = true;
+            return false;
+        }
+    }
+
+    private bool validateAuthNumber(string authNumber)
+    {
+        bool valid = int.tryParse(authNumber, out _);
+
+        if (valid && authNumber.Length <= 10)
+        {   
+            authFormatError = false;
+            return true;
+        }
+        else
+        {
+            basePriceFormatError = true;
+            return false;
+        }
+    }
+
+    private bool validateBuyNow(string buyNowPrice)
+    {
+        bool valid = double.tryParse(buyNowPrice, out _);
+
+        if (valid)
+        {   
+            double num = double.Parse(buyNowPrice);
+            
+            if(num < 100000){
+                buyNowFormatError = false;
+                return true;
+            } else {
+                buyNowFormatError = true;
+                return false;
+            }
+        }
+        else
+        {
+            buyNowFormatError = true;
+            return false;
+        }
+    }
+
+    private bool validateIncrement(string incrementPrice)
+    {
+        bool valid = double.tryParse(incrementPrice, out _);
+
+        if (valid)
+        {   
+            double num = double.Parse(incrementPrice);
+            
+            if(num < 1000){
+                incrementFormatError = false;
+                return true;
+            } else {
+                incrementFormatError = true;
+                return false;
+            }
+        }
+        else
+        {
+            incrementFormatError = true;
+            return false;
+        }
+    }
+
+    private bool validateDateUse(string date)
+    {
+        DateTime tempDate;
+        bool isValid = DateTime.TryParseExact(date, "yyyy/MM/dd", null, System.Globalization.DateTimeStyles.None, out tempDate);
+
+        if(isValid && tempDate < DateTime.Now)
+        {
+            // The date is valid and in the past.
+            dateUseFormatError = false;
+            return true;
+        }
+        else
+        {
+            // The date is not valid or not in the past.
+            dateUseFormatError = true;
+            return false;
+        }
+    }
+
+    private bool validateDateClosing(string date)
+    {
+        DateTime tempDate;
+        bool isValid = DateTime.TryParseExact(date, "yyyy/MM/dd", null, System.Globalization.DateTimeStyles.None, out tempDate);
+    
+        if(isValid && tempDate > DateTime.Now.AddDays(1)){
+            dateUseFormatError = false;
+            return true;
+        }
+        else{
+            dateUseFormatError = true;
+            return false;
+        }
+    }
+
+    private bool validateCategory(string cat)
+    {
+        bool valid = int.tryParse(cat, out _);
+
+        if (valid)
+        {   
+            categoryFormatError = false;
+            return true;
+        }
+        else
+        {
+            categoryFormatError = true;
+            return false;
         }
     }
 
