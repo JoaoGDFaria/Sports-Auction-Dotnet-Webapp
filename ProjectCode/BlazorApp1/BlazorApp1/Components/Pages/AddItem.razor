@@ -1,7 +1,10 @@
 @page "/{userID:long}/addItem"
 @rendermode InteractiveServer
+
 @inject IConfiguration _config
 @inject ISqlDataAccess _data
+@inject NavigationManager NavigationManager
+@using Microsoft.AspNetCore.Components
 @using System.Drawing;
 
 
@@ -172,6 +175,16 @@
 
     private long GetCurrentUserID(){
         return userID ?? 0;
+    }
+
+
+    protected override async Task OnInitializedAsync(){
+
+        DatabaseQueries dbQuery = new DatabaseQueries(_config, _data);
+
+        if(await dbQuery.GetUser(GetCurrentUserID()) == false){
+            NavigationManager.NavigateTo("/notfound");
+        }
     }
 
 }

@@ -1,4 +1,4 @@
-@page "/myAuctions/{page:int?}"
+@page "/{userID:long}/myAuctions/{page:int?}"
 @rendermode InteractiveServer
 
 @inject IConfiguration _config
@@ -9,7 +9,7 @@
 
 <PageTitle>My Auctions</PageTitle>
     
-    <Header />
+    <Header userID="@GetCurrentUserID()" />
 
     <div class="cont">
         <div class="btn-group-vertical fixed-button" role="group" aria-label="Vertical button group">
@@ -69,25 +69,25 @@
             <nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-center mt-4">
                     @if ((pagination.GetCurrentPage() - 1) < 1){
-                        <li class="page-item disabled"><a class="page-link" href="myAuctions/@(pagination.GetCurrentPage()-1)">Previous</a></li>
+                        <li class="page-item disabled"><a class="page-link" href="@($"{GetCurrentUserID()}/myAuctions/{(pagination.GetCurrentPage() - 1)}")">Previous</a></li>
                     }
                     else{
-                        <li class="page-item"><a class="page-link" href="myAuctions/@(pagination.GetCurrentPage()-1)">Previous</a></li>
+                        <li class="page-item"><a class="page-link" href="@($"{GetCurrentUserID()}/myAuctions/{(pagination.GetCurrentPage() - 1)}")">Previous</a></li>
                     }
                     @for (int i = 1; i <= pagination.GetTotalPages(); i++){
                         int currentPage = i;
                         @if (currentPage == 1){
-                            <a class="page-link" href="myAuctions">@i</a>
+                            <a class="page-link" href="@($"{GetCurrentUserID()}/myAuctions")">@i</a>
                         }
                         else{
-                            <a class="page-link" href="myAuctions/@currentPage">@i</a>
+                            <a class="page-link" href="@($"{GetCurrentUserID()}/myAuctions/{currentPage}")">@i</a>
                         }
                     }
                     @if ((pagination.GetCurrentPage() + 1) > pagination.GetTotalPages()){
-                        <li class="page-item disabled"><a class="page-link" href="myAuctions/@(pagination.GetCurrentPage()+1)">Next</a></li>
+                        <li class="page-item disabled"><a class="page-link" href="@($"{GetCurrentUserID()}/myAuctions/{(pagination.GetCurrentPage() + 1)}")">Next</a></li>
                     }
                     else{
-                        <li class="page-item"><a class="page-link" href="myAuctions/@(pagination.GetCurrentPage()+1)">Next</a></li>
+                        <li class="page-item"><a class="page-link" href="@($"{GetCurrentUserID()}/myAuctions/{(pagination.GetCurrentPage() + 1)}")">Next</a></li>
                     }
                     
                 </ul>
@@ -107,7 +107,7 @@
 
 
 @code {
-
+    [Parameter] public long? userID { get; set; }
     [Parameter] public int? page { get; set; }
 
     private List<Leilao> leiloes= new List<Leilao>();
@@ -121,7 +121,12 @@
     private async Task LoadMyAuctions()
     {
         DatabaseQueries dbQuery = new DatabaseQueries(_config, _data);
-        leiloes = await dbQuery.GetAllAuctionsOfUser(567890123451); //TEST ONLY
+
+        if(await dbQuery.GetUser(GetCurrentUserID()) == false){
+            NavigationManager.NavigateTo("/notfound");
+        }
+
+        leiloes = await dbQuery.GetAllAuctionsOfUser(GetCurrentUserID());
         
         pagination = new Pagination(leiloes.Count);
         bool flag = pagination.SetCurrentPage(GetCurrentPage());
@@ -141,5 +146,9 @@
         else{
             return 1;
         }
+    }
+
+    private long GetCurrentUserID(){
+        return userID ?? 0;
     }
 }

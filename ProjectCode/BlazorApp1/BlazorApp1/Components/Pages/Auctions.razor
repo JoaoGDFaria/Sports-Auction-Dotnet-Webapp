@@ -135,15 +135,13 @@
         });
     }
 
-    private async Task LoadAuctions()
-    {
-        DatabaseQueries dbQuery = new DatabaseQueries(_config, _data);
+    private async Task LoadAuctions(){
 
+        DatabaseQueries dbQuery = new DatabaseQueries(_config, _data);
 
         if(await dbQuery.GetUser(GetCurrentUserID()) == false){
             NavigationManager.NavigateTo("/notfound");
         }
-
 
         leiloes = await dbQuery.GetAllAuctionsWithoutUser(GetCurrentUserID());
         
