@@ -34,7 +34,7 @@ CREATE TABLE ArtigoLeilao
 	DescricaoArtigo TEXT,
 	NumeroAutenticacaoArtigo INT NOT NULL UNIQUE,
 	EstadoArtigo VARCHAR(75) NOT NULL,
-	ImagemArtigo TEXT NOT NULL,
+	ImagemArtigo VARBINARY(MAX) NOT NULL,
 
 	NomeLeilao VARCHAR(75) NOT NULL,
 	TaxaMinimaIncrementoLeilao DECIMAL(10,2) NOT NULL,
