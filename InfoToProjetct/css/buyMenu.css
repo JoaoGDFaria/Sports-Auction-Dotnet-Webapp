@@ -1,3 +1,5 @@
+@import url('landscape.css');
+
 body {
     background: url("../images/back90.png") fixed;
     background-size: 100% 90%;
