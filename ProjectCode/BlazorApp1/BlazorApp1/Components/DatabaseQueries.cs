@@ -317,18 +317,19 @@ public class DatabaseQueries{
     // ITEM QUERIES //////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    public async Task<int> AddItem(string nomeLeilao, string precoBaseLeilao, string nomeArtigo, string numeroAutenticacaoArtigo, string precoCompraAutomaticoLeilao, string nomeEquipaEventoArtigo, string tamanhoArtigo, string taxaMinimaIncrementoLeilao, string descricaoArtigo, string estadoArtigo, string dataUsoArtigo, string dataFinalizacaoLeilao){
+    public async Task<int> AddItem(string nomeLeilao, string imagem, string precoBaseLeilao, string nomeArtigo, string numeroAutenticacaoArtigo, string precoCompraAutomaticoLeilao, string nomeEquipaEventoArtigo, string tamanhoArtigo, string taxaMinimaIncrementoLeilao, string descricaoArtigo, string estadoArtigo, string dataUsoArtigo, string dataFinalizacaoLeilao){
 
     string estadoLeilao = "a decorrer";
     string idVendedor = "584720193218";
     string idCategoria = "1";
 
-    string sql = "INSERT INTO ArtigoLeilao (NomeLeilao, PrecoBaseLeilao, NomeArtigo, NumeroAutenticacaoArtigo, PrecoCompraAutomaticoLeilao, NomeEquipaEventoArtigo, TamanhoArtigo, TaxaMinimaIncrementoLeilao, DescricaoArtigo, EstadoArtigo, DataUsoArtigo, DataFinalizacaoLeilao, IdCategoria, IdVendedor, EstadoLeilao)" + 
-                "VALUES (@NomeLeilao, @PrecoBaseLeilao, @NomeArtigo, @NumeroAutenticacaoArtigo, @PrecoCompraAutomaticoLeilao, @NomeEquipaEventoArtigo, @TamanhoArtigo, @TaxaMinimaIncrementoLeilao, @DescricaoArtigo, @EstadoArtigo, @DataUsoArtigo, @DataFinalizacaoLeilao, @IdCategoria, @IdVendedor, @EstadoLeilao)";
+    string sql = "INSERT INTO ArtigoLeilao (NomeLeilao, ImagemArtigo, PrecoBaseLeilao, NomeArtigo, NumeroAutenticacaoArtigo, PrecoCompraAutomaticoLeilao, NomeEquipaEventoArtigo, TamanhoArtigo, TaxaMinimaIncrementoLeilao, DescricaoArtigo, EstadoArtigo, DataUsoArtigo, DataFinalizacaoLeilao, IdCategoria, IdVendedor, EstadoLeilao)" + 
+                "VALUES (@NomeLeilao, @ImagemArtigo, @PrecoBaseLeilao, @NomeArtigo, @NumeroAutenticacaoArtigo, @PrecoCompraAutomaticoLeilao, @NomeEquipaEventoArtigo, @TamanhoArtigo, @TaxaMinimaIncrementoLeilao, @DescricaoArtigo, @EstadoArtigo, @DataUsoArtigo, @DataFinalizacaoLeilao, @IdCategoria, @IdVendedor, @EstadoLeilao)";
 
     var parameters = new
     {
         @NomeLeilao = nomeLeilao,
+        @ImagemArtigo = imagem,
         @PrecoBaseLeilao = precoBaseLeilao,
         @NomeArtigo = nomeArtigo,
         @NumeroAutenticacaoArtigo = numeroAutenticacaoArtigo,
@@ -358,6 +359,7 @@ public class DatabaseQueries{
 
 
 
+
     public async Task<int> addBid(double valorLicitacao, long nibComprador, int idLeilao){
 
         string sql = "INSERT INTO Licitacao (ValorLicitacao, NIBComprador, IdLeilao) "+ 
@@ -380,6 +382,19 @@ public class DatabaseQueries{
         return 1;
     }
 
+    public async Task<int> GetNumeroLeilao(){
+
+        string sql = "SELECT COUNT(*) FROM ArtigoLeilao";
+
+        var parameters = new {};
+        string connectionString = _config.GetConnectionString("DefaultConnection") ?? string.Empty;
+
+        int total = 0;
+        if (connectionString != null){
+            total = await _data.ExecuteQuery<int>(sql, parameters, connectionString);
+        }
+        return total+1;
+    }
 
 
 }

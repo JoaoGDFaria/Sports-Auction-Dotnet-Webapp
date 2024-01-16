@@ -1,10 +1,7 @@
-@page "/{userID:long}/addItem"
+@page "/addItem"
 @rendermode InteractiveServer
-
 @inject IConfiguration _config
 @inject ISqlDataAccess _data
-@inject NavigationManager NavigationManager
-@using Microsoft.AspNetCore.Components
 @using System.Drawing;
 
 
@@ -12,7 +9,7 @@
 
 <PageTitle>Add Item</PageTitle>
 
-    <Header userID="@GetCurrentUserID()" />
+<Header />
 
 <div id="addItem" class="d-flex align-items-center justify-content-center vh-80">
     <div class="card bg-dark text-white">
@@ -88,9 +85,9 @@
 
 @code {
 
-    [Parameter] public long? userID { get; set; }
     private string NomeLeilao { get; set; } = string.Empty;
-    private IBrowserFile ImagemArtigo { get; set; }
+    private IBrowserFile? ImagemArtigo { get; set; }
+    private string Imagem{ get; set;} = string.Empty;
     private string PrecoBaseLeilao { get; set; } = string.Empty;
     private string NomeArtigo { get; set; } = string.Empty;
     private string NumeroAutenticacaoArtigo { get; set; } = string.Empty;
@@ -103,14 +100,24 @@
     private string DataUsoArtigo { get; set; } = string.Empty;
     private string DataFinalizacaoLeilao { get; set; } = string.Empty;
     private string IdCategoria { get; set; } = string.Empty;
+    private int numeroImagensInseridas = 1;
 
     private async Task SubmitForm()
     {
         DatabaseQueries test = new DatabaseQueries(_config, _data);
-        byte[] imagemBytes = await ObterBytesDaImagem(ImagemArtigo);
+        int leiloes = await test.GetNumeroLeilao(); //TEST ONLY
+        byte[] imagemBytes = new byte[0];
+        string nomeArquivo = string.Empty;
 
+        if (ImagemArtigo != null)
+        {
+            imagemBytes = await ObterBytesDaImagem(ImagemArtigo);
+            nomeArquivo = $"Auction{leiloes}.{ObterFormatoDaFoto(ImagemArtigo)}";
+        }
 
-        int rowsAffected = await test.AddItem(NomeLeilao, PrecoBaseLeilao, NomeArtigo, NumeroAutenticacaoArtigo, PrecoCompraAutomaticoLeilao, NomeEquipaEventoArtigo, TamanhoArtigo, TaxaMinimaIncrementoLeilao, DescricaoArtigo, EstadoArtigo, DataUsoArtigo, DataFinalizacaoLeilao);
+        Imagem = nomeArquivo;
+        int rowsAffected = await test.AddItem(NomeLeilao, Imagem, PrecoBaseLeilao, NomeArtigo, NumeroAutenticacaoArtigo, PrecoCompraAutomaticoLeilao,NomeEquipaEventoArtigo, TamanhoArtigo, TaxaMinimaIncrementoLeilao, DescricaoArtigo, EstadoArtigo,DataUsoArtigo, DataFinalizacaoLeilao);
+
         Console.WriteLine(rowsAffected);
 
         if (rowsAffected > 0)
@@ -122,11 +129,19 @@
             Console.WriteLine("Falha ao inserir artigo.");
         }
 
-    
-            // Salva a imagem no projeto
-        await SalvarImagemNoProjeto(ImagemArtigo, "teste2.png");
+        // Salva a imagem no projeto
+        if (ImagemArtigo != null)
+        {
+            await SalvarImagemNoProjeto(ImagemArtigo, nomeArquivo);
+            numeroImagensInseridas++;
+        }
+
         Console.WriteLine("inserido na pasta");
-        
+    }
+
+    private string ObterFormatoDaFoto(IBrowserFile file)
+    {
+        return Path.GetExtension(file.Name).TrimStart('.');
     }
 
     private async Task<byte[]> ObterBytesDaImagem(IBrowserFile imagem)
