@@ -1,4 +1,4 @@
-@page "/addItem"
+@page "/{userID:long}/addItem"
 @rendermode InteractiveServer
 @inject IConfiguration _config
 @inject ISqlDataAccess _data
@@ -9,7 +9,7 @@
 
 <PageTitle>Add Item</PageTitle>
 
-<Header />
+    <Header userID="@GetCurrentUserID()" />
 
 <div id="addItem" class="d-flex align-items-center justify-content-center vh-80">
     <div class="card bg-dark text-white">
@@ -85,6 +85,7 @@
 
 @code {
 
+    [Parameter] public long? userID { get; set; }
     private string NomeLeilao { get; set; } = string.Empty;
     private IBrowserFile ImagemArtigo { get; set; }
     private string PrecoBaseLeilao { get; set; } = string.Empty;
@@ -167,4 +168,10 @@
             Console.WriteLine($"Erro ao salvar a imagem no projeto: {ex.Message}");
         }
     }
+
+
+    private long GetCurrentUserID(){
+        return userID ?? 0;
+    }
+
 }
