@@ -1,6 +1,4 @@
-@page "/buyMenu/{auctionID:int?}"
-
-
+@page "/{userID:long}/buyMenu/{auctionID:int?}"
 @rendermode InteractiveServer
 
 @inject IConfiguration _config
@@ -11,7 +9,7 @@
 
 <PageTitle>Buy Menu</PageTitle>
 
-    <Header />
+    <Header userID="@GetCurrentUserID()" />
 
     <div class="buyLayout">
         <div class="grid-info">
@@ -102,6 +100,7 @@
 
 @code {
 
+    [Parameter] public long? userID { get; set; }
     [Parameter] public int? auctionID { get; set; }
     Leilao leilao = new Leilao();
     private string priceInput = "";
@@ -115,11 +114,17 @@
     }
 
     private async Task<Leilao> GetCurrentAuction(){
+
+        DatabaseQueries dbQuery = new DatabaseQueries(_config, _data);
+        if(await dbQuery.GetUser(GetCurrentUserID()) == false){
+            NavigationManager.NavigateTo("/notfound");
+        }
+
+
         var currentUrl = NavigationManager.Uri;
         var pageStr = currentUrl.Split("/").Last();
         int.TryParse(pageStr, out var currentPage);
 
-        DatabaseQueries dbQuery = new DatabaseQueries(_config, _data);
         var auction = await dbQuery.GetAuctionById(currentPage); //TEST ONLY
         if (auction != null)
         {
@@ -182,11 +187,13 @@
 
     }
 
-
+    private long GetCurrentUserID(){
+        return userID ?? 0;
+    }
 
 
     void RedirectToMenu(){
-        NavigationManager.NavigateTo($"/auctions");
+        NavigationManager.NavigateTo($"{userID}/auctions");
     }
 
 }
