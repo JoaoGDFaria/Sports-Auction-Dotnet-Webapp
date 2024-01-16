@@ -1,5 +1,6 @@
 using DataLibrary;
 using System.Data.SqlClient;
+using System.Drawing;
 
 public class DatabaseQueries{
 
@@ -302,19 +303,18 @@ public class DatabaseQueries{
     // ITEM QUERIES //////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    public async Task<int> AddItem(string nomeLeilao, byte[] imagemArtigo, string precoBaseLeilao, string nomeArtigo, string numeroAutenticacaoArtigo, string precoCompraAutomaticoLeilao, string nomeEquipaEventoArtigo, string tamanhoArtigo, string taxaMinimaIncrementoLeilao, string descricaoArtigo, string estadoArtigo, string dataUsoArtigo, string dataFinalizacaoLeilao){
+    public async Task<int> AddItem(string nomeLeilao, string precoBaseLeilao, string nomeArtigo, string numeroAutenticacaoArtigo, string precoCompraAutomaticoLeilao, string nomeEquipaEventoArtigo, string tamanhoArtigo, string taxaMinimaIncrementoLeilao, string descricaoArtigo, string estadoArtigo, string dataUsoArtigo, string dataFinalizacaoLeilao){
 
-    string estadoLeilao = "A decorrer";
+    string estadoLeilao = "a decorrer";
     string idVendedor = "584720193218";
     string idCategoria = "1";
 
-    string sql = "INSERT INTO ArtigoLeilao (NomeLeilao, ImagemArtigo, PrecoBaseLeilao, NomeArtigo, NumeroAutenticacaoArtigo, PrecoCompraAutomaticoLeilao, NomeEquipaEventoArtigo, TamanhoArtigo, TaxaMinimaIncrementoLeilao, DescricaoArtigo, EstadoArtigo, DataUsoArtigo, DataFinalizacaoLeilao, IdCategoria, IdVendedor, EstadoLeilao)" + 
-                "VALUES (@NomeLeilao, @ImagemArtigo, @PrecoBaseLeilao, @NomeArtigo, @NumeroAutenticacaoArtigo, @PrecoCompraAutomaticoLeilao, @NomeEquipaEventoArtigo, @TamanhoArtigo, @TaxaMinimaIncrementoLeilao, @DescricaoArtigo, @EstadoArtigo, @DataUsoArtigo, @DataFinalizacaoLeilao, @IdCategoria, @IdVendedor, @EstadoLeilao)";
+    string sql = "INSERT INTO ArtigoLeilao (NomeLeilao, PrecoBaseLeilao, NomeArtigo, NumeroAutenticacaoArtigo, PrecoCompraAutomaticoLeilao, NomeEquipaEventoArtigo, TamanhoArtigo, TaxaMinimaIncrementoLeilao, DescricaoArtigo, EstadoArtigo, DataUsoArtigo, DataFinalizacaoLeilao, IdCategoria, IdVendedor, EstadoLeilao)" + 
+                "VALUES (@NomeLeilao, @PrecoBaseLeilao, @NomeArtigo, @NumeroAutenticacaoArtigo, @PrecoCompraAutomaticoLeilao, @NomeEquipaEventoArtigo, @TamanhoArtigo, @TaxaMinimaIncrementoLeilao, @DescricaoArtigo, @EstadoArtigo, @DataUsoArtigo, @DataFinalizacaoLeilao, @IdCategoria, @IdVendedor, @EstadoLeilao)";
 
     var parameters = new
     {
         @NomeLeilao = nomeLeilao,
-        @ImagemArtigo = imagemArtigo,
         @PrecoBaseLeilao = precoBaseLeilao,
         @NomeArtigo = nomeArtigo,
         @NumeroAutenticacaoArtigo = numeroAutenticacaoArtigo,
@@ -366,19 +366,6 @@ public class DatabaseQueries{
         return 1;
     }
 
-    public async Task<bool> isThereAuthNumber(string num){
-        string sql = "SELECT NumeroAutenticacaoArtigo FROM ArtigoLeilao WHERE NumeroAutenticacaoArtigo = @num";
-
-        var parameters = new { @num = num };
-        string connectionString = _config.GetConnectionString("DefaultConnection") ?? string.Empty;
-
-        string resultNum = string.Empty;
-        if (connectionString != null)
-        {
-            resultNum = await _data.ExecuteQuery<string>(sql, parameters, connectionString);
-        }
-        return !string.IsNullOrEmpty(resultNib);
-    }
 
 
 }

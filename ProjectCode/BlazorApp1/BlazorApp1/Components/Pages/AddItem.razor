@@ -20,6 +20,10 @@
                     <input type="text" id="typeEmailX" class="form-control form-control-lg"  @bind="NomeLeilao" />
                 </div>
                 <div class="form-outline form-white mb-4 field">
+                    <p>Select Image</p>
+                    <InputFile id="uploadImage" class="form-control form-control-lg" OnChange="HandleFileUpload" />
+                </div>
+                <div class="form-outline form-white mb-4 field">
                     <p>Minimum Bid Amount(€)</p>
                     <input type="text" id="typeEmailX" class="form-control form-control-lg" @bind="PrecoBaseLeilao"/>
                 </div>
@@ -67,77 +71,6 @@
                     <p>Category</p>
                     <input type="text" id="typeEmailX" class="form-control form-control-lg" @bind="IdCategoria"/>
                 </div>
-
-                @if(nullError)
-                {
-                    <div class="alert alert-danger" role="alert">
-                        Please fill all the fields.
-                    </div>
-                }
-
-                @if(authNumberError)
-                {
-                    <div class="alert alert-danger" role="alert">
-                        This authentication number is already in use.
-                    </div>
-                }
-
-                @if(basePriceFormatError)
-                {
-                    <div class="alert alert-danger" role="alert">
-                        The start price should be less than 50,000€.
-                    </div>
-                }
-
-                @if(authFormatError)
-                {
-                    <div class="alert alert-danger" role="alert">
-                        The authentication number must be a number and have no more than 10 digits.
-                    </div>
-                }
-
-                @if(buyNowFormatError)
-                {
-                    <div class="alert alert-danger" role="alert">
-                        The buy now price should be less than 100,000€.
-                    </div>
-                }
-
-                @if(incrementFormatError)
-                {
-                    <div class="alert alert-danger" role="alert">
-                        The minimum bid increment should be less than 1,000€.
-                    </div>
-                }
-
-                @if(dateUseFormatError)
-                {
-                    <div class="alert alert-danger" role="alert">
-                        The date of use must be a valid date and in the past.
-                    </div>
-                }
-
-                @if(dateClosingFormatError)
-                {
-                    <div class="alert alert-danger" role="alert">
-                        The auction closing date must be a valid date and at least 1 day in the future.
-                    </div>
-                }
-
-                @if(categoryFormatError)
-                {
-                    <div class="alert alert-danger" role="alert">
-                        The category must be a number.
-                    </div>
-                }
-
-                @if(dataError)
-                {
-                    <div class="alert alert-danger" role="alert">
-                        Something went wrong, please try again.
-                    </div>
-                }
-
                 <div class="button d-flex buttons">
                     <button type="button" class="btn btn-success" @onclick="SubmitForm">SUBMIT</button>
                     <button type="button" class="btn btn-danger">CANCEL</button>
@@ -152,25 +85,8 @@
 
 @code {
 
-    public bool nullError { get; set; } = false;
-
-    // Data base duplicate check
-    public bool authNumberError { get; set; } = false;
-
-    // Data format check
-    public bool basePriceFormatError { get; set; } = false;
-    public bool authFormatError { get; set; } = false;
-    public bool buyNowFormatError { get; set; } = false;
-    public bool incrementFormatError { get; set; } = false;
-    public bool dateUseFormatError { get; set; } = false;
-    public bool dateClosingFormatError { get; set; } = false; 
-    public bool categoryFormatError { get; set; } = false;
-
-    public bool dataError { get; set; } = false;
-
-    // Data
     private string NomeLeilao { get; set; } = string.Empty;
-    private byte[] ImagemArtigo { get; set; } = Array.Empty<byte>();
+    private IBrowserFile ImagemArtigo { get; set; }
     private string PrecoBaseLeilao { get; set; } = string.Empty;
     private string NomeArtigo { get; set; } = string.Empty;
     private string NumeroAutenticacaoArtigo { get; set; } = string.Empty;
@@ -186,278 +102,69 @@
 
     private async Task SubmitForm()
     {
-
-        // Clearing all errors
-        nullError = false;
-
-        authNumberError = false;
-
-        basePriceFormatError = false;
-        authFormatError = false;
-        buyNowFormatError = false;
-        incrementFormatError = false;
-        dateUseFormatError = false;
-        dateClosingFormatError = false;
-        categoryFormatError = false;
-        dataError = false;
-
         DatabaseQueries test = new DatabaseQueries(_config, _data);
-        
-        if(string.IsNullOrEmpty(NomeLeilao) ||
-           string.IsNullOrEmpty(PrecoBaseLeilao) || 
-           string.IsNullOrEmpty(NomeArtigo) || 
-           string.IsNullOrEmpty(NumeroAutenticacaoArtigo) ||
-           string.IsNullOrEmpty(PrecoCompraAutomaticoLeilao) ||
-           string.IsNullOrEmpty(NomeEquipaEventoArtigo) ||
-           string.IsNullOrEmpty(TamanhoArtigo) ||
-           string.IsNullOrEmpty(TaxaMinimaIncrementoLeilao) ||
-           string.IsNullOrEmpty(DescricaoArtigo) ||
-           string.IsNullOrEmpty(EstadoArtigo) ||
-           string.IsNullOrEmpty(DataUsoArtigo) ||
-           string.IsNullOrEmpty(DataFinalizacaoLeilao) ||
-           string.IsNullOrEmpty(IdCategoria)){
+        byte[] imagemBytes = await ObterBytesDaImagem(ImagemArtigo);
 
-            nullError = true;
-            return;
-        
-        }else{
-            if(validateAuthNumber(NumeroAutenticacaoArtigo) &&
-               validateBasePrice(PrecoBaseLeilao) &&
-               validateBuyNow(PrecoCompraAutomaticoLeilao) &&
-               validateIncrement(TaxaMinimaIncrementoLeilao) &&
-               validateDateUse(DataUsoArtigo) &&
-               validateDateClosing(DataFinalizacaoLeilao) &&
-               validateCategory(IdCategoria)){
-                
-                bool authCheck = await test.isThereAuthNumber(NumeroAutenticacaoArtigo);
-                if(authCheck){
-                    authNumberError = true;
-                    return;
-                }
-                
-                string caminhoDaImagem = "C:/Users/hugoa/Desktop/image.png";
-                ImagemArtigo = await CarregarImagem(caminhoDaImagem);
-                int rowsAffected = await test.AddItem(NomeLeilao, ImagemArtigo, PrecoBaseLeilao, NomeArtigo, NumeroAutenticacaoArtigo, PrecoCompraAutomaticoLeilao, NomeEquipaEventoArtigo, TamanhoArtigo, TaxaMinimaIncrementoLeilao, DescricaoArtigo, EstadoArtigo, DataUsoArtigo, DataFinalizacaoLeilao);
-                //Console.WriteLine(rowsAffected);
-                Image imagem = ConverterBinarioParaImagem(ImagemArtigo);
-                string caminho = "C:/Users/hugoa/Desktop";
-                string nome = "teste1.png";
-                SaveImageToFile(imagem, caminho, nome);
 
-                if (rowsAffected > 0)
-                {
-                    // Redirecting to myAuctions page
-                    NavigationManager.NavigateTo("/myAuctions");
-                    return;
-                }
-                else
-                {
-                    //  Something went wrong but we don't know what, so we just say something went wrong, 
-                    // please try again, and we don't redirect, because we don't know what happened, so we 
-                    // don't know if it's safe to redirect, so we just stay here, and we don't do anything, 
-                    // because we don't know what happened, so we don't know what to do, so we just stay here,
-                    // and we don't do anything, because we don't know what happened... 
-                    dataError = true;
-                    return;
-                }
-            }    
-        }
-    }
+        int rowsAffected = await test.AddItem(NomeLeilao, PrecoBaseLeilao, NomeArtigo, NumeroAutenticacaoArtigo, PrecoCompraAutomaticoLeilao, NomeEquipaEventoArtigo, TamanhoArtigo, TaxaMinimaIncrementoLeilao, DescricaoArtigo, EstadoArtigo, DataUsoArtigo, DataFinalizacaoLeilao);
+        Console.WriteLine(rowsAffected);
 
-    private async Task<byte[]> CarregarImagem(string caminho)
-{
-    try
-    {
-        Console.WriteLine($"Caminho da imagem: {caminho}");
-
-        using (var stream = new FileStream(caminho, FileMode.Open))
+        if (rowsAffected > 0)
         {
-            Console.WriteLine($"Tamanho do arquivo: {stream.Length} bytes");
-
-            using (var memoryStream = new MemoryStream())
-            {
-                await stream.CopyToAsync(memoryStream);
-                Console.WriteLine($"Tamanho da memória: {memoryStream.Length} bytes");
-
-                return memoryStream.ToArray();
-            }
+            Console.WriteLine("Artigo inserido com sucesso!");
         }
-    }
-    catch (Exception ex)
-    {
-        Console.WriteLine($"Erro ao carregar a imagem: {ex.Message}");
-        return Array.Empty<byte>();
-    }
-}
-
-    private Image ConverterBinarioParaImagem(byte[] dadosBinarios)
-{
-    try
-    {
-        using (MemoryStream memoryStream = new MemoryStream(dadosBinarios))
+        else
         {
-            return Image.FromStream(memoryStream);
+            Console.WriteLine("Falha ao inserir artigo.");
+        }
+
+    
+            // Salva a imagem no projeto
+        await SalvarImagemNoProjeto(ImagemArtigo, "teste2.png");
+        Console.WriteLine("inserido na pasta");
+        
+    }
+
+    private async Task<byte[]> ObterBytesDaImagem(IBrowserFile imagem)
+    {
+        using (var memoryStream = new MemoryStream())
+        {
+            await imagem.OpenReadStream().CopyToAsync(memoryStream);
+            return memoryStream.ToArray();
         }
     }
-    catch (Exception ex)
+    private async Task HandleFileUpload(InputFileChangeEventArgs e)
     {
-        Console.WriteLine($"Erro ao converter de binário para imagem: {ex.Message}");
-        return null;
-    }
-}
+        ImagemArtigo = e.File;
 
-    private void SaveImageToFile(Image image, string directoryPath, string fileName)
+        if (ImagemArtigo != null)
+        {
+            Console.WriteLine("OLAAAA");
+        }
+    }
+
+
+    private async Task SalvarImagemNoProjeto(IBrowserFile file, string nomeArquivo)
     {
         try
         {
-            // Ensure the directory exists
-            Directory.CreateDirectory(directoryPath);
+            @inject Microsoft.AspNetCore.Hosting.IWebHostEnvironment _hostingEnvironment;
+            var caminhoRoot = _hostingEnvironment.ContentRootPath;
+            var caminhoDestino = Path.Combine(caminhoRoot, "C:/Users/hugoa/Desktop/ProjetoLI4/LI4/ProjectCode/BlazorApp1/BlazorApp1/wwwroot/images", nomeArquivo);
 
-            // Combine directory path and file name to get the full file path
-            string filePath = Path.Combine(directoryPath, fileName);
+            // Certifique-se de que o diretório de destino existe
+            Directory.CreateDirectory(Path.GetDirectoryName(caminhoDestino));
 
-            // Save the image to the specified file path
-            image.Save(filePath);
+            // Copie o conteúdo do arquivo para o diretório de destino
+            using (var stream = new FileStream(caminhoDestino, FileMode.Create))
+            {
+                await file.OpenReadStream().CopyToAsync(stream);
+                Console.WriteLine("FIXE");
+            }
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Error saving image to file: {ex.Message}");
+            Console.WriteLine($"Erro ao salvar a imagem no projeto: {ex.Message}");
         }
     }
-
-    private bool validateBasePrice(string basePrice)
-    {
-        bool valid = double.tryParse(basePrice, out _);
-
-        if (valid)
-        {   
-            double num = double.Parse(basePrice);
-            
-            if(num < 50000){
-                basePriceFormatError = false;
-                return true;
-            } else {
-                basePriceFormatError = true;
-                return false;
-            }
-        }
-        else
-        {
-            basePriceFormatError = true;
-            return false;
-        }
-    }
-
-    private bool validateAuthNumber(string authNumber)
-    {
-        bool valid = int.tryParse(authNumber, out _);
-
-        if (valid && authNumber.Length <= 10)
-        {   
-            authFormatError = false;
-            return true;
-        }
-        else
-        {
-            basePriceFormatError = true;
-            return false;
-        }
-    }
-
-    private bool validateBuyNow(string buyNowPrice)
-    {
-        bool valid = double.tryParse(buyNowPrice, out _);
-
-        if (valid)
-        {   
-            double num = double.Parse(buyNowPrice);
-            
-            if(num < 100000){
-                buyNowFormatError = false;
-                return true;
-            } else {
-                buyNowFormatError = true;
-                return false;
-            }
-        }
-        else
-        {
-            buyNowFormatError = true;
-            return false;
-        }
-    }
-
-    private bool validateIncrement(string incrementPrice)
-    {
-        bool valid = double.tryParse(incrementPrice, out _);
-
-        if (valid)
-        {   
-            double num = double.Parse(incrementPrice);
-            
-            if(num < 1000){
-                incrementFormatError = false;
-                return true;
-            } else {
-                incrementFormatError = true;
-                return false;
-            }
-        }
-        else
-        {
-            incrementFormatError = true;
-            return false;
-        }
-    }
-
-    private bool validateDateUse(string date)
-    {
-        DateTime tempDate;
-        bool isValid = DateTime.TryParseExact(date, "yyyy/MM/dd", null, System.Globalization.DateTimeStyles.None, out tempDate);
-
-        if(isValid && tempDate < DateTime.Now)
-        {
-            // The date is valid and in the past.
-            dateUseFormatError = false;
-            return true;
-        }
-        else
-        {
-            // The date is not valid or not in the past.
-            dateUseFormatError = true;
-            return false;
-        }
-    }
-
-    private bool validateDateClosing(string date)
-    {
-        DateTime tempDate;
-        bool isValid = DateTime.TryParseExact(date, "yyyy/MM/dd", null, System.Globalization.DateTimeStyles.None, out tempDate);
-    
-        if(isValid && tempDate > DateTime.Now.AddDays(1)){
-            dateUseFormatError = false;
-            return true;
-        }
-        else{
-            dateUseFormatError = true;
-            return false;
-        }
-    }
-
-    private bool validateCategory(string cat)
-    {
-        bool valid = int.tryParse(cat, out _);
-
-        if (valid)
-        {   
-            categoryFormatError = false;
-            return true;
-        }
-        else
-        {
-            categoryFormatError = true;
-            return false;
-        }
-    }
-
 }
