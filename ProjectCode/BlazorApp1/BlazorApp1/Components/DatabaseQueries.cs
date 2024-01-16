@@ -13,7 +13,7 @@ public class DatabaseQueries{
         _data = data;
     }
 
-    public async Task<bool> GetLoginStatus(string email, string password){
+    public async Task<long> GetLoginStatus(string email, string password){
 
         string sql = "SELECT NIB FROM Utilizador WHERE Email = @email AND PalavraPasse = @password";
 
@@ -24,7 +24,7 @@ public class DatabaseQueries{
         if (connectionString != null){
             id = await _data.ExecuteQuery<long>(sql, parameters, connectionString);
         }
-        return id!=0;
+        return id;
     }
 
     public async Task<string> GetNomeCategoria(int idCategoria){
@@ -39,6 +39,20 @@ public class DatabaseQueries{
             nome = await _data.ExecuteQuery<string>(sql, parameters, connectionString);
         }
         return nome;
+    }
+
+    public async Task<bool> GetUser(long idUser){
+
+        string sql = "SELECT NumeroTelemovel FROM Utilizador WHERE NIB = @idUser";
+
+        var parameters = new { idUser };
+        string connectionString = _config.GetConnectionString("DefaultConnection") ?? string.Empty;
+
+        int id = 0;
+        if (connectionString != null){
+            id = await _data.ExecuteQuery<int>(sql, parameters, connectionString);
+        }
+        return id!=0;
     }
 
 
