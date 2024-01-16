@@ -20,6 +20,10 @@ body {
     margin-right: 5%;
 }
 
+.popup{
+    margin-top: 1em;
+}
+
 .grid-info{
     border: 0.3em solid black;
     border-radius: 0.8em;

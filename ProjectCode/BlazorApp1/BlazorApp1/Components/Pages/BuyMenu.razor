@@ -70,10 +70,23 @@
             <p class="info"></p>
             <p class="info"></p>
             <button type="button" class="btn btn-success" @onclick="PlaceBid">$@leilao.GetNextMinBid()</button>
-            <input type="text" class="form-control input" @bind="priceInput">
+            <input type="text" class="form-control input text-center" @bind="priceInput">
             <button type="button" class="btn btn-success" @onclick="ValidateTransaction">SUBMIT BID</button>
             <button type="button" class="btn btn-danger" @onclick="() => RedirectToMenu()">CANCEL</button>
         </div>
+
+
+        @if (showPopupSuccess){
+            <div class="popup alert alert-warning alert-dismissible fade show" role="alert" style="background-color: #4ac667; color: black;">
+                <strong>Bid for $@biddedValue was placed successfully!</strong>
+            </div>
+        }
+        else if(showPopupError){
+            <div class="popup alert alert-warning alert-dismissible fade show" role="alert" style="background-color: rgb(207, 35, 35); color: black;">
+                <strong>Error in placing bid!</strong>
+            </div>
+        }
+
 
         <div class="container">
             <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4">
@@ -92,6 +105,9 @@
     [Parameter] public int? auctionID { get; set; }
     Leilao leilao = new Leilao();
     private string priceInput = "";
+    private bool showPopupSuccess = false;
+    private bool showPopupError = false;
+    private double biddedValue = 0;
 
     protected override async Task OnInitializedAsync()
     {
@@ -123,21 +139,40 @@
             parsedValue = Convert.ToDouble(priceInput);
         }
         catch (FormatException){
+            showPopupError = true;
+            priceInput = "";
+            StateHasChanged();
             return;
         }
 
         if(parsedValue >= leilao.GetNextMinBid()){
             DatabaseQueries dbQuery = new DatabaseQueries(_config, _data);
+            biddedValue = parsedValue;
             int rowsAffected = await dbQuery.addBid(parsedValue, leilao.GetIdVendedor(), leilao.GetIdLeilao());
-            NavigationManager.NavigateTo(NavigationManager.Uri, forceLoad: true);
+            await GetCurrentAuction();
+            showPopupSuccess = true;
+            priceInput = "";
+            StateHasChanged();
+            showPopupSuccess = false;
         }
-        return;
+        else{
+            showPopupError = true;
+            priceInput = "";
+            StateHasChanged();
+        }
     }
 
     private async void PlaceBid(){
+        priceInput = "";
         DatabaseQueries dbQuery = new DatabaseQueries(_config, _data);
+        biddedValue = leilao.GetNextMinBid();
         int rowsAffected = await dbQuery.addBid(leilao.GetNextMinBid(), leilao.GetIdVendedor(), leilao.GetIdLeilao());
-        NavigationManager.NavigateTo(NavigationManager.Uri, forceLoad: true);
+        await GetCurrentAuction();
+        showPopupSuccess = true;
+        StateHasChanged();
+        showPopupSuccess = false;
+
+
     }
 
 
