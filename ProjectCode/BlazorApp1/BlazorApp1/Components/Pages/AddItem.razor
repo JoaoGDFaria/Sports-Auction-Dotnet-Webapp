@@ -99,15 +99,14 @@
     private async Task SubmitForm()
     {
         DatabaseQueries test = new DatabaseQueries(_config, _data);
-        string caminhoDaImagem = "C:/Users/hugoa/Desktop/image.png";
+        string caminhoDaImagem = "C:/Users/tumab/OneDrive/Imagens/a.png";
         ImagemArtigo = await CarregarImagem(caminhoDaImagem);
         int rowsAffected = await test.AddItem(NomeLeilao, ImagemArtigo, PrecoBaseLeilao, NomeArtigo, NumeroAutenticacaoArtigo, PrecoCompraAutomaticoLeilao, NomeEquipaEventoArtigo, TamanhoArtigo, TaxaMinimaIncrementoLeilao, DescricaoArtigo, EstadoArtigo, DataUsoArtigo, DataFinalizacaoLeilao);
         Console.WriteLine(rowsAffected);
         Image imagem = ConverterBinarioParaImagem(ImagemArtigo);
-        string caminho = "C:/Users/hugoa/Desktop";
+        string caminho = "C:/Users/tumab/OneDrive/Imagens";
         string nome = "teste1.png";
         SaveImageToFile(imagem, caminho, nome);
-
 
         
         if (rowsAffected > 0)
