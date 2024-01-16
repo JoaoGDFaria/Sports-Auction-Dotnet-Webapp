@@ -29,7 +29,7 @@ public class DatabaseQueries{
 
     public async Task<string> GetNomeCategoria(int idCategoria){
 
-        string sql = "SELECT Nome FROM Utilizador WHERE IdCategoria = @idCategoria";
+        string sql = "SELECT Nome FROM Categoria WHERE IdCategoria = @idCategoria";
 
         var parameters = new { idCategoria };
         string connectionString = _config.GetConnectionString("DefaultConnection") ?? string.Empty;
@@ -395,6 +395,21 @@ public class DatabaseQueries{
         }
         return total+1;
     }
+
+
+    public async Task<bool> isThereAuthNumber(string num){
+        string sql = "SELECT NumeroAutenticacaoArtigo FROM ArtigoLeilao WHERE NumeroAutenticacaoArtigo = @num";
+
+        var parameters = new { @num = num };
+        string connectionString = _config.GetConnectionString("DefaultConnection") ?? string.Empty;
+
+        string resultNum = string.Empty;
+        if (connectionString != null)
+        {
+            resultNum = await _data.ExecuteQuery<string>(sql, parameters, connectionString);
+        }
+        return !string.IsNullOrEmpty(resultNum);
+}
 
 
 }

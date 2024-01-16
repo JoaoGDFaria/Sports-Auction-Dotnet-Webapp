@@ -1,4 +1,4 @@
-@page "/addItem"
+@page "/{userID:long}/addItem"
 @rendermode InteractiveServer
 @inject IConfiguration _config
 @inject ISqlDataAccess _data
@@ -10,7 +10,7 @@
 
 <PageTitle>Add Item</PageTitle>
 
-<Header />
+<Header userID="@GetCurrentUserID()" />
 
 <div id="addItem" class="d-flex align-items-center justify-content-center vh-80">
     <div class="card bg-dark text-white">
@@ -157,6 +157,7 @@
 
 @code {
 
+    [Parameter] public long? userID { get; set; }
     public bool nullError { get; set; } = false;
 
     // Data base duplicate check
@@ -264,7 +265,7 @@
                 if (rowsAffected > 0)
                 {
                     // Redirecting to myAuctions page
-                    NavigationManager.NavigateTo("/myAuctions");
+                    NavigationManager.NavigateTo($"/{userID}/myAuctions");
                     return;
                 }
                 else

@@ -34,7 +34,9 @@
                     <p class="text"><b>Condition:</b></p>
                     <p class="text-variable">@leilao.GetEstadoArtigo()</p>
                     <p class="text"><b>Category:</b></p>
-                    <p class="text-variable">@leilao.GetIdCategoria()</p>
+                    @if (categoria != ""){
+                        <p class="text-variable">@categoria</p>
+                    }
                 </div>
             </div>
         </div>
@@ -107,6 +109,7 @@
     private bool showPopupSuccess = false;
     private bool showPopupError = false;
     private double biddedValue = 0;
+    private string categoria = "";
 
     protected override async Task OnInitializedAsync()
     {
@@ -121,6 +124,8 @@
         }
 
 
+
+
         var currentUrl = NavigationManager.Uri;
         var pageStr = currentUrl.Split("/").Last();
         int.TryParse(pageStr, out var currentPage);
@@ -129,6 +134,9 @@
         if (auction != null)
         {
             leilao = auction;
+
+            categoria = await GetCategoryName(leilao.GetIdCategoria());
+            StateHasChanged();
         }
         else{
             NavigationManager.NavigateTo("/notfound");
@@ -184,6 +192,14 @@
         StateHasChanged();
         showPopupSuccess = false;
 
+
+    }
+
+
+    private async Task<string> GetCategoryName(int idCategoria){
+        DatabaseQueries dbQuery = new DatabaseQueries(_config, _data);
+        string nomeCategoria = await dbQuery.GetNomeCategoria(idCategoria);
+        return nomeCategoria;
 
     }
 
