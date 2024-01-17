@@ -15,9 +15,9 @@
 
     <div class="cont">
         <div class="types">
-            <button type="button" class="btn btn-primary" @onclick="() => RedirectToCategory(0)">All</button>
+            <button type="button" class="butoum" @onclick="() => RedirectToCategory(0)">All</button>
             @foreach (var categoria in categorias){
-                <button type="button" class="btn btn-primary" @onclick="() => RedirectToCategory(categoria.GetIdCategoria())">@categoria.GetNome()</button>
+                <button type="button" class="butoum" @onclick="() => RedirectToCategory(categoria.GetIdCategoria())">@categoria.GetNome()</button>
             }
         </div>
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
