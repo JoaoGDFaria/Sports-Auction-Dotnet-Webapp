@@ -177,11 +177,18 @@ public class DatabaseQueries{
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     //PARA A PAGINA AUCTIONS
-    public async Task<List<Leilao>> GetAllAuctionsWithoutUser(long idUser){
+    public async Task<List<Leilao>> GetAllAuctionsWithoutUser(long idUser, int idCategoria){
+        string sql;
+        object parameters;
+        if(idCategoria == 0){
+            sql = "SELECT * FROM ArtigoLeilao WHERE IdVendedor != @idUser AND EstadoLeilao = 'A decorrer'";
+            parameters = new {idUser}; 
+        } 
+        else{
+            sql = "SELECT * FROM ArtigoLeilao WHERE IdVendedor != @idUser AND EstadoLeilao = 'A decorrer' AND IdCategoria=@idCategoria";
+            parameters = new {idUser, idCategoria};
+        }
 
-        string sql = "SELECT * FROM ArtigoLeilao WHERE IdVendedor != @idUser AND EstadoLeilao = 'A decorrer'";
-
-        var parameters = new {idUser};
         string connectionString = _config.GetConnectionString("DefaultConnection") ?? string.Empty;
 
         List<Leilao> leiloes = new List<Leilao>();

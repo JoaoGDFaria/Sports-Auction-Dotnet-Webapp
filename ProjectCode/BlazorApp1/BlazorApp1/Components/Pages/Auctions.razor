@@ -1,4 +1,4 @@
-@page "/{userID:long}/auctions/{page:int?}"
+@page "/{userID:long}/{category:int}/auctions/{page:int?}"
 @rendermode InteractiveServer
 
 @inject IConfiguration _config
@@ -15,9 +15,9 @@
 
     <div class="cont">
         <div class="types">
-            <button type="button" class="btn btn-primary">All</button>
+            <button type="button" class="btn btn-primary" @onclick="() => RedirectToCategory(0)">All</button>
             @foreach (var categoria in categorias){
-                <button type="button" class="btn btn-primary">@categoria.GetNome()</button>
+                <button type="button" class="btn btn-primary" @onclick="() => RedirectToCategory(categoria.GetIdCategoria())">@categoria.GetNome()</button>
             }
         </div>
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
@@ -59,25 +59,25 @@
             <nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-center mt-4">
                     @if ((pagination.GetCurrentPage() - 1) < 1){
-                        <li class="page-item disabled"><a class="page-link" href="@($"{GetCurrentUserID()}/auctions/{(pagination.GetCurrentPage() - 1)}")">Previous</a></li>
+                        <li class="page-item disabled"><a class="page-link" href="@($"{GetCurrentUserID()}/{GetCategory()}/auctions/{(pagination.GetCurrentPage() - 1)}")">Previous</a></li>
                     }
                     else{
-                        <li class="page-item"><a class="page-link" href="@($"{GetCurrentUserID()}/auctions/{(pagination.GetCurrentPage() - 1)}")">Previous</a></li>
+                        <li class="page-item"><a class="page-link" href="@($"{GetCurrentUserID()}/{GetCategory()}/auctions/{(pagination.GetCurrentPage() - 1)}")">Previous</a></li>
                     }
                     @for (int i = 1; i <= pagination.GetTotalPages(); i++){
                         int currentPage = i;
                         @if (currentPage == 1){
-                            <a class="page-link" href="@($"{GetCurrentUserID()}/auctions")">@i</a>
+                            <a class="page-link" href="@($"{GetCurrentUserID()}/{GetCategory()}/auctions")">@i</a>
                         }
                         else{
-                            <a class="page-link" href="@($"{GetCurrentUserID()}/auctions/{currentPage}")">@i</a>
+                            <a class="page-link" href="@($"{GetCurrentUserID()}/{GetCategory()}/auctions/{currentPage}")">@i</a>
                         }
                     }
                     @if ((pagination.GetCurrentPage() + 1) > pagination.GetTotalPages()){
-                        <li class="page-item disabled"><a class="page-link" href="@($"{GetCurrentUserID()}/auctions/{(pagination.GetCurrentPage() + 1)}")">Next</a></li>
+                        <li class="page-item disabled"><a class="page-link" href="@($"{GetCurrentUserID()}/{GetCategory()}/auctions/{(pagination.GetCurrentPage() + 1)}")">Next</a></li>
                     }
                     else{
-                        <li class="page-item"><a class="page-link" href="@($"{GetCurrentUserID()}/auctions/{(pagination.GetCurrentPage() + 1)}")">Next</a></li>
+                        <li class="page-item"><a class="page-link" href="@($"{GetCurrentUserID()}/{GetCategory()}/auctions/{(pagination.GetCurrentPage() + 1)}")">Next</a></li>
                     }
                     
                 </ul>
@@ -100,6 +100,7 @@
 @code {
 
     [Parameter] public long? userID { get; set; }
+    [Parameter] public int? category { get; set; }
     [Parameter] public int? page { get; set; }
 
     private List<Leilao> leiloes= new List<Leilao>();
@@ -131,7 +132,7 @@
             NavigationManager.NavigateTo("/notfound");
         }
 
-        leiloes = await dbQuery.GetAllAuctionsWithoutUser(GetCurrentUserID());
+        leiloes = await dbQuery.GetAllAuctionsWithoutUser(GetCurrentUserID(), GetCategory());
         categorias = await dbQuery.GetAllCategories();
         
         pagination = new Pagination(leiloes.Count);
@@ -160,9 +161,17 @@
         return userID ?? 0;
     }
 
+    private int GetCategory(){
+        return category ?? 0;
+    }
+
     void RedirectToAuction(int auctionId)
     {
         NavigationManager.NavigateTo($"{userID}/buyMenu/{auctionId}");
+    }
+
+    void RedirectToCategory(int id){
+        NavigationManager.NavigateTo($"{userID}/{id}/auctions");
     }
 
 }
