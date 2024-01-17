@@ -475,26 +475,12 @@
         }
     }
 
-    private bool ValidateImageFormat(IBrowserFile imagem)
+    private bool validateImageFormat(IBrowserFile imagem)
     {
         if (imagem != null)
         {
             string[] allowedExtensions = { ".jpg", ".jpeg", ".png", ".webp" };
-            string extension = Path.GetExtension(imagem.Name)?.ToLower();
-
-            return !string.IsNullOrEmpty(extension) && allowedExtensions.Contains(extension);
-        }
-
-        // Retorna true se a imagem for nula, já que a validação pode não ser aplicável nesse caso
-        return true;
-    }
-
-       private bool validateImageFormat(IBrowserFile imagem)
-    {
-        if (imagem != null)
-        {
-            string[] allowedExtensions = { ".jpg", ".jpeg", ".png", ".webp" };
-            string extension = Path.GetExtension(imagem.Name)?.ToLower();
+            string extension = Path.GetExtension(imagem.Name)?.ToLower() ?? string.Empty;
 
             if(string.IsNullOrEmpty(extension)||allowedExtensions.Contains(extension)){
                 imageError = false;
