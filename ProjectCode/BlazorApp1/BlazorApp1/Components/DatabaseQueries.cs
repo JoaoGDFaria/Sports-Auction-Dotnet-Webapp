@@ -393,14 +393,16 @@ public class DatabaseQueries{
 
     public async Task<int> addBid(double valorLicitacao, long nibComprador, int idLeilao){
 
-        string sql = "INSERT INTO Licitacao (ValorLicitacao, NIBComprador, IdLeilao) "+ 
-                "VALUES (@ValorLicitacao, @NIBComprador, @IdLeilao)";
+        DateTime dataLicitacao = DateTime.Now;
+        string sql = "INSERT INTO Licitacao (ValorLicitacao, NIBComprador, IdLeilao, DataLicitacao) "+ 
+                "VALUES (@ValorLicitacao, @NIBComprador, @IdLeilao, @DataLicitacao)";
 
         var parameters = new
         {
             @ValorLicitacao = valorLicitacao,
             @NIBComprador = nibComprador,
-            @IdLeilao = idLeilao
+            @IdLeilao = idLeilao,
+            @DataLicitacao = dataLicitacao
         };
 
         string connectionString = _config.GetConnectionString("DefaultConnection") ?? string.Empty;
