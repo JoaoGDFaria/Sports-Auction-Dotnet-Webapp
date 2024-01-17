@@ -268,11 +268,14 @@ public class DatabaseQueries{
             leiloes = await _data.ExecuteQueryList<Leilao>(sql, parameters, connectionString);
         }
 
+        List<Leilao> leiloesBided = new List<Leilao>();
         foreach (Leilao leilao in leiloes){
             leilao.SetLicitacoes(await GetAllBids(leilao.GetIdLeilao()));
+
+            if(!(leilao.GetEstadoLeilao()=="Vendido" && leilao.GetIdComprador()==idUser)) leiloesBided.Add(leilao);
         }
 
-        return leiloes;
+        return leiloesBided;
     }
 
 

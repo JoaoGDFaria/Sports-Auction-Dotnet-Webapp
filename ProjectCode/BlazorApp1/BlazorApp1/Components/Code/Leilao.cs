@@ -203,6 +203,19 @@ public class Leilao{
     }
 
 
+    public int GetStatusByUser(long idUser){
+        if(GetIdComprador()==idUser) return 0; //WINNING
+        else if(GetEstadoLeilao() == "Vendido") return 2; //LOST
+        else return 1; //OUTBIDDED
+    }
+
+    public string GetStatusText(int statusCode){
+        if(statusCode==0) return "Winning";
+        else if(statusCode==1) return "Outbidded";
+        else return "Lost";
+    }
+
+
     public override string ToString(){
         return $"Id: {GetIdLeilao()}, Leilao: {GetNomeLeilao()}, Tamanho: {GetTamanhoArtigo()}, Data: {GetDataUsoArtigo().ToString("dd/MM/yyyy HH:mm:ss")}, NomeEquipaEvento: {GetNomeEquipaEventoArtigo()}, NomeArtigo: {GetNomeArtigo()}, Descricao: {GetDescricaoArtigo()}, Autenticacao: {GetNumeroAutenticacaoArtigo()}, EstadoArtigo: {GetEstadoArtigo()}, UrlImagem: {GetImagemArtigo()}, TaxaMinIncremento: {GetTaxaMinimaIncrementoLeilao()}, DataFinal: {GetDataFinalizacaoLeilao().ToString("dd/MM/yyyy HH:mm:ss")}, PrecoCompraAutomatica: {GetPrecoCompraAutomaticoLeilao()}, PrecoBase: {GetPrecoBaseLeilao()}, IdCategoria: {GetIdCategoria()}, IdVendor: {GetIdVendedor()}, EstadoLeilao: {GetEstadoLeilao()}";
     }
