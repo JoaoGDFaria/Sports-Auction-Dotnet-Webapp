@@ -1,4 +1,4 @@
-@page "/addItem"
+@page "/{userID:long}/addItem"
 @rendermode InteractiveServer
 @inject IConfiguration _config
 @inject ISqlDataAccess _data
@@ -10,7 +10,7 @@
 
 <PageTitle>Add Item</PageTitle>
 
-<Header />
+<Header userID="@GetCurrentUserID()" />
 
 <div id="addItem" class="d-flex align-items-center justify-content-center vh-80">
     <div class="card bg-dark text-white">
@@ -70,7 +70,12 @@
                 </div>
                 <div class="form-outline form-white mb-4 field">
                     <p>Category</p>
-                    <input type="text" id="typeEmailX" class="form-control form-control-lg" @bind="IdCategoria"/>
+                    <div class=types>
+                        <button type="button" class="butoum">Shirt</button>
+                        <button type="button" class="butoum">Utensils</button>
+                        <button type="button" class="butoum">Ball</button>
+                        <button type="button" class="butoum">Other</button>
+                    </div>
                 </div>
 
                 @if(nullError)
@@ -80,6 +85,13 @@
                     </div>
                 }
 
+                @if(imageError)
+                {
+                    <div class="alert alert-danger" role="alert">
+                        The image format is invalid.
+                    </div>
+                }
+        
                 @if(authNumberError)
                 {
                     <div class="alert alert-danger" role="alert">
@@ -157,6 +169,7 @@
 
 @code {
 
+    [Parameter] public long? userID { get; set; }
     public bool nullError { get; set; } = false;
 
     // Data base duplicate check
@@ -171,6 +184,8 @@
     public bool dateClosingFormatError { get; set; } = false; 
     public bool categoryFormatError { get; set; } = false;
     public bool dataError { get; set; } = false;
+    public bool imageError { get; set; } = false;
+
 
     private string NomeLeilao { get; set; } = string.Empty;
     private IBrowserFile? ImagemArtigo { get; set; }
@@ -186,7 +201,7 @@
     private string EstadoArtigo { get; set; } = string.Empty;
     private string DataUsoArtigo { get; set; } = string.Empty;
     private string DataFinalizacaoLeilao { get; set; } = string.Empty;
-    private string IdCategoria { get; set; } = string.Empty;
+    private int IdCategoria { get; set; } = -1;
 
     private async Task SubmitForm()
     {
@@ -222,9 +237,7 @@
            string.IsNullOrEmpty(DescricaoArtigo) ||
            string.IsNullOrEmpty(EstadoArtigo) ||
            string.IsNullOrEmpty(DataUsoArtigo) ||
-           string.IsNullOrEmpty(DataFinalizacaoLeilao) ||
-           string.IsNullOrEmpty(IdCategoria) ||
-           ImagemArtigo != null){
+           string.IsNullOrEmpty(DataFinalizacaoLeilao)){
 
             nullError = true;
             return;
@@ -235,9 +248,10 @@
                validateBuyNow(PrecoCompraAutomaticoLeilao) &&
                validateIncrement(TaxaMinimaIncrementoLeilao) &&
                validateDateUse(DataUsoArtigo) &&
-               validateDateClosing(DataFinalizacaoLeilao) &&
-               validateCategory(IdCategoria)){
-                
+               validateDateClosing(DataFinalizacaoLeilao) && 
+               (ImagemArtigo != null) &&
+               validateImageFormat(ImagemArtigo)){
+
                 bool authCheck = await test.isThereAuthNumber(NumeroAutenticacaoArtigo);
                 if(authCheck){
                     authNumberError = true;
@@ -258,13 +272,13 @@
                                                        NomeEquipaEventoArtigo, TamanhoArtigo,
                                                        TaxaMinimaIncrementoLeilao, 
                                                        DescricaoArtigo, EstadoArtigo,
-                                                       DataUsoArtigo, DataFinalizacaoLeilao);
+                                                       DataUsoArtigo, DataFinalizacaoLeilao, GetCurrentUserID(),IdCategoria);
 
 
                 if (rowsAffected > 0)
                 {
                     // Redirecting to myAuctions page
-                    NavigationManager.NavigateTo("/myAuctions");
+                    NavigationManager.NavigateTo($"/{userID}/myAuctions");
                     return;
                 }
                 else
@@ -277,9 +291,9 @@
                     dataError = true;
                     return;
                 }
-            }    
+            }
+            return;    
         }
-
 
     }
 
@@ -365,8 +379,8 @@
         }
         else
         {
-            basePriceFormatError = true;
-            return false;
+            basePriceFormatError = false;
+            return true;
         }
     }
 
@@ -381,8 +395,8 @@
         }
         else
         {
-            basePriceFormatError = true;
-            return false;
+            basePriceFormatError = false;
+            return true;
         }
     }
 
@@ -404,8 +418,8 @@
         }
         else
         {
-            buyNowFormatError = true;
-            return false;
+            buyNowFormatError = false;
+            return true;
         }
     }
 
@@ -427,8 +441,8 @@
         }
         else
         {
-            incrementFormatError = true;
-            return false;
+            incrementFormatError = false;
+            return true;
         }
     }
 
@@ -446,8 +460,8 @@
         else
         {
             // The date is not valid or not in the past.
-            dateUseFormatError = true;
-            return false;
+            dateUseFormatError = false;
+            return true;
         }
     }
 
@@ -466,18 +480,24 @@
         }
     }
 
-    private bool validateCategory(string cat)
+    private bool validateImageFormat(IBrowserFile imagem)
     {
-        bool valid = int.TryParse(cat, out _);
-
-        if (valid)
-        {   
-            categoryFormatError = false;
-            return true;
-        }
-        else
+        if (imagem != null)
         {
-            categoryFormatError = true;
+            string[] allowedExtensions = { ".jpg", ".jpeg", ".png", ".webp" };
+            string extension = Path.GetExtension(imagem.Name)?.ToLower() ?? string.Empty;
+
+            if(string.IsNullOrEmpty(extension)||allowedExtensions.Contains(extension)){
+                imageError = false;
+                return true;
+            }
+            else{
+                imageError = true;
+                return false;
+            }
+        }
+        else {
+            imageError = true;
             return false;
         }
     }

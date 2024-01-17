@@ -47,14 +47,14 @@ body {
     width: 100%;
     overflow: hidden;
     border-radius: 10px;
-    border: 5px solid black;
+    object-fit: fill;
+    border: 5px solid rgb(0, 0, 0);
 }
 
-#image{
-    margin-left: 1em;
+.img-fluid{
     height: 100%;
     width: 100%;
-    object-fit: cover;
+    object-fit: fill;
 }
 
 .all-text{

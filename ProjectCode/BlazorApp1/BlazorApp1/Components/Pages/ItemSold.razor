@@ -1,0 +1,113 @@
+@page "/{userID:long}/itemSold/{page:int?}"
+
+@rendermode InteractiveServer
+
+@inject IConfiguration _config
+@inject ISqlDataAccess _data
+@inject NavigationManager NavigationManager
+@using Microsoft.AspNetCore.Components
+
+
+@using DataLibrary
+
+<PageTitle>Item Won</PageTitle>
+
+    <Header userID="@GetCurrentUserID()" />
+
+<div class="buyLayout">
+        <div class="grid-info">
+
+            <div id="image-display">
+                <img src="./images/@leilao.GetImagemArtigo()" class="img-fluid " >
+            </div>
+
+            <div class="all-text">
+
+                <div class="text-group-1">
+                    <p class="name"><b>Name:</b></p>
+                    <p class="name-variable">@leilao.GetNomeLeilao()</p>
+                    <p class="text"><b>Athlete:</b></p>
+                    <p class="text-variable">@leilao.GetNomeEquipaEventoArtigo()</p>
+                    <p class="text"><b>Date of Use:</b></p>
+                    <p class="text-variable">@leilao.GetDataUsoArtigo()</p>
+                    <p class="text"><b>Authentication Number:</b></p>
+                    <p class="text-variable">@leilao.GetNumeroAutenticacaoArtigo()</p>
+                    <p class="text"><b>Size:</b></p>
+                    <p class="text-variable">@leilao.GetTamanhoArtigo()</p>
+                    <p class="text"><b>Send to:</b></p>
+                    @if (morada != ""){
+                        <p class="text-variable">@morada</p>
+                    }
+                    <p class="text"><b>Current Status:</b></p>
+                    <p class="text-variable">@leilao.GetEstadoLeilao()</p>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4">
+            </footer>
+        </div>
+    </div>
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="css/itemSold.css">
+
+
+@code {
+
+    [Parameter] public long? userID { get; set; }
+    [Parameter] public int? page { get; set; }
+    Leilao leilao = new Leilao();
+    private string morada = "";
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        await GetCurrentAuction();
+    }
+
+    private async Task<Leilao> GetCurrentAuction(){
+
+        DatabaseQueries dbQuery = new DatabaseQueries(_config, _data);
+        if(await dbQuery.GetUser(GetCurrentUserID()) == false){
+            NavigationManager.NavigateTo("/notfound");
+        }
+
+
+
+        var currentUrl = NavigationManager.Uri;
+        var pageStr = currentUrl.Split("/").Last();
+        int.TryParse(pageStr, out var currentPage);
+
+        var auction = await dbQuery.GetAuctionById(currentPage); //TEST ONLY
+        if (auction != null)
+        {
+            leilao = auction;
+            morada = await GetAddressBuyer(leilao);
+            StateHasChanged();
+        }
+        else{
+            NavigationManager.NavigateTo("/notfound");
+        }
+
+        return leilao;
+    }
+
+
+    private async Task<string> GetAddressBuyer(Leilao leilao){
+        DatabaseQueries dbQuery = new DatabaseQueries(_config, _data);
+        string nomeCategoria = await dbQuery.GetAddress(leilao);
+        return nomeCategoria;
+    }
+
+
+    private long GetCurrentUserID(){
+        return userID ?? 0;
+    }
+
+
+}

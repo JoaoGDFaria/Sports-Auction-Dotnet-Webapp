@@ -24,6 +24,11 @@ html, body {
     padding: 0;
 }
 
+.text{
+    font-size: 2.5vh;
+    color: black;
+}
+
 .aux{
     background-color: #ffffff;
     color: black;

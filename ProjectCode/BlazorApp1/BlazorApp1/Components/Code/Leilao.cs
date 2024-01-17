@@ -139,6 +139,22 @@ public class Leilao{
         return highestBid;
     }
 
+
+    public long GetIdComprador(){
+        double highestBid = this.GetHighestBid();
+
+        if (licitacoes == null || !licitacoes.Any()){
+            return 0;
+        }
+        
+        for(int i = 0; i < this.licitacoes.Count; i++){
+            if(this.licitacoes[i].GetValorLicitacao() == highestBid){
+                return this.licitacoes[i].GetNIBComprador();
+            }
+        }
+        return 0;
+    }
+
     public string GetTimeLeft(){
         TimeSpan timeLeft = this.dataFinalizacaoLeilao-DateTime.Now;
         return $"Days: {timeLeft.Days}, Hours: {timeLeft.Hours}, Minutes: {timeLeft.Minutes}";
@@ -149,6 +165,7 @@ public class Leilao{
         if(preco == 0) return this.GetPrecoBaseLeilao();
 
         double nextBid = this.GetHighestBid() + this.GetTaxaMinimaIncrementoLeilao();
+        nextBid = Math.Round(nextBid, 2);
         if(nextBid > this.GetPrecoCompraAutomaticoLeilao()){
             nextBid = this.GetPrecoCompraAutomaticoLeilao();
         }
@@ -183,6 +200,33 @@ public class Leilao{
             }
         }
         return 0;
+    }
+
+
+    public int GetStatusByUserWon(long idUser){
+        if(GetIdComprador()==idUser) return 0; //WINNING
+        else if(GetEstadoLeilao() == "Vendido") return 2; //LOST
+        else return 1; //OUTBIDDED
+    }
+
+    public string GetStatusTextWon(int statusCode){
+        if(statusCode==0) return "Winning";
+        else if(statusCode==1) return "Outbidded";
+        else return "Lost";
+    }
+
+
+    
+    public int GetStatusByUserSold(){
+        if(GetEstadoLeilao() == "Vendido") return 0; //WON
+        else if(GetEstadoLeilao() == "A decorrer") return 1; //PENDING
+        else return 2; //EXPIRED
+    }
+
+    public string GetStatusTextSold(int statusCode){
+        if(statusCode==0) return "Won";
+        else if(statusCode==1) return "Pending";
+        else return "Expired";
     }
 
 

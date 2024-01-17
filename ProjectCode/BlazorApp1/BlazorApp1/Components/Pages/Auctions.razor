@@ -1,4 +1,4 @@
-@page "/{userID:long}/auctions/{page:int?}"
+@page "/{userID:long}/{category:int}/auctions/{page:int?}"
 @rendermode InteractiveServer
 
 @inject IConfiguration _config
@@ -14,24 +14,13 @@
     <Header userID="@GetCurrentUserID()" />
 
     <div class="cont">
-        <div class="btn-group-vertical fixed-button" role="group" aria-label="Vertical button group">
-            <div class="btn-group dropup" role="group">
-                <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                  Categories
-                </button>
-                <ul class="dropdown-menu scrollable-dropdown-menu">
-                    <li><a class="dropdown-item" href="#">AAA</a></li>
-                    <li><a class="dropdown-item" href="#">BBB</a></li>
-                    <li><a class="dropdown-item" href="#">CCC</a></li>
-                    <li><a class="dropdown-item" href="#">DDD</a></li>
-                    <li><a class="dropdown-item" href="#">EEE</a></li>
-                    <li><a class="dropdown-item" href="#">AAA</a></li>
-                    <li><a class="dropdown-item" href="#">BBB</a></li>
-                    <li><a class="dropdown-item" href="#">CCC</a></li>
-                    <li><a class="dropdown-item" href="#">DDD</a></li>
-                    <li><a class="dropdown-item" href="#">EEE</a></li>
-                </ul>
-            </div>
+        <div class="types">
+            @if(GetCategory()==0){ <button type="button" class="butoum-clicked" @onclick="() => RedirectToCategory(0)">All</button> }
+            else{ <button type="button" class="butoum" @onclick="() => RedirectToCategory(0)">All</button> }
+            @foreach (var categoria in categorias){
+                @if(GetCategory()==categoria.GetIdCategoria()){ <button type="button" class="butoum-clicked" @onclick="() => RedirectToCategory(categoria.GetIdCategoria())">@categoria.GetNome()</button> }
+                else{ <button type="button" class="butoum" @onclick="() => RedirectToCategory(categoria.GetIdCategoria())">@categoria.GetNome()</button> }
+            }
         </div>
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
             @if (leiloes.Count != 0)
@@ -47,7 +36,7 @@
                         <div class="item row g-0 ">
                                 
                             <div class="imagem col-md-4 ">
-                                <img src="./images/item1.webp" class="img-fluid " >
+                                <img src="./images/@leilao.GetImagemArtigo()" class="img-fluid " >
                             </div>
 
                             <div class="itemInfo col-md-8">
@@ -72,25 +61,25 @@
             <nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-center mt-4">
                     @if ((pagination.GetCurrentPage() - 1) < 1){
-                        <li class="page-item disabled"><a class="page-link" href="@($"{GetCurrentUserID()}/auctions/{(pagination.GetCurrentPage() - 1)}")">Previous</a></li>
+                        <li class="page-item disabled"><a class="page-link" href="@($"{GetCurrentUserID()}/{GetCategory()}/auctions/{(pagination.GetCurrentPage() - 1)}")">Previous</a></li>
                     }
                     else{
-                        <li class="page-item"><a class="page-link" href="@($"{GetCurrentUserID()}/auctions/{(pagination.GetCurrentPage() - 1)}")">Previous</a></li>
+                        <li class="page-item"><a class="page-link" href="@($"{GetCurrentUserID()}/{GetCategory()}/auctions/{(pagination.GetCurrentPage() - 1)}")">Previous</a></li>
                     }
                     @for (int i = 1; i <= pagination.GetTotalPages(); i++){
                         int currentPage = i;
                         @if (currentPage == 1){
-                            <a class="page-link" href="@($"{GetCurrentUserID()}/auctions")">@i</a>
+                            <a class="page-link" href="@($"{GetCurrentUserID()}/{GetCategory()}/auctions")">@i</a>
                         }
                         else{
-                            <a class="page-link" href="@($"{GetCurrentUserID()}/auctions/{currentPage}")">@i</a>
+                            <a class="page-link" href="@($"{GetCurrentUserID()}/{GetCategory()}/auctions/{currentPage}")">@i</a>
                         }
                     }
                     @if ((pagination.GetCurrentPage() + 1) > pagination.GetTotalPages()){
-                        <li class="page-item disabled"><a class="page-link" href="@($"{GetCurrentUserID()}/auctions/{(pagination.GetCurrentPage() + 1)}")">Next</a></li>
+                        <li class="page-item disabled"><a class="page-link" href="@($"{GetCurrentUserID()}/{GetCategory()}/auctions/{(pagination.GetCurrentPage() + 1)}")">Next</a></li>
                     }
                     else{
-                        <li class="page-item"><a class="page-link" href="@($"{GetCurrentUserID()}/auctions/{(pagination.GetCurrentPage() + 1)}")">Next</a></li>
+                        <li class="page-item"><a class="page-link" href="@($"{GetCurrentUserID()}/{GetCategory()}/auctions/{(pagination.GetCurrentPage() + 1)}")">Next</a></li>
                     }
                     
                 </ul>
@@ -98,7 +87,6 @@
         }
 
         <a href="./login"  target="_top"><button type="button" class="btn btn-warning">LOG OUT</button></a>
-        
     </div>
 
     <div class="container">
@@ -114,25 +102,28 @@
 @code {
 
     [Parameter] public long? userID { get; set; }
+    [Parameter] public int? category { get; set; }
     [Parameter] public int? page { get; set; }
 
     private List<Leilao> leiloes= new List<Leilao>();
+    private List<Categoria> categorias = new List<Categoria>();
     private Pagination pagination = new Pagination();
 
     protected override async Task OnInitializedAsync()
     {
+
         await LoadAuctions();
 
 
-        _ = Task.Run(async () =>
-        {
-            while (true)
-            {
-                await Task.Delay(TimeSpan.FromMinutes(1));
-                await InvokeAsync(() => StateHasChanged());
-                Console.WriteLine("State has changed");
-            }
-        });
+        //_ = Task.Run(async () =>
+        //{
+        //    while (true)
+        //    {
+        //        await Task.Delay(TimeSpan.FromMinutes(1));
+        //        await InvokeAsync(() => StateHasChanged());
+        //        Console.WriteLine("State has changed");
+        //    }
+        //});
     }
 
     private async Task LoadAuctions(){
@@ -143,7 +134,8 @@
             NavigationManager.NavigateTo("/notfound");
         }
 
-        leiloes = await dbQuery.GetAllAuctionsWithoutUser(GetCurrentUserID());
+        leiloes = await dbQuery.GetAllAuctionsWithoutUser(GetCurrentUserID(), GetCategory());
+        categorias = await dbQuery.GetAllCategories();
         
         pagination = new Pagination(leiloes.Count);
         bool flag = pagination.SetCurrentPage(GetCurrentPage());
@@ -167,9 +159,12 @@
         }
     }
 
-
     private long GetCurrentUserID(){
         return userID ?? 0;
+    }
+
+    private int GetCategory(){
+        return category ?? 0;
     }
 
     void RedirectToAuction(int auctionId)
@@ -177,5 +172,8 @@
         NavigationManager.NavigateTo($"{userID}/buyMenu/{auctionId}");
     }
 
+    void RedirectToCategory(int id){
+        NavigationManager.NavigateTo($"{userID}/{id}/auctions");
+    }
 
 }

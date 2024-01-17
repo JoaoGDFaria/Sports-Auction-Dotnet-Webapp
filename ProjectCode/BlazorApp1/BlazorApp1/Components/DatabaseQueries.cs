@@ -29,9 +29,41 @@ public class DatabaseQueries{
 
     public async Task<string> GetNomeCategoria(int idCategoria){
 
-        string sql = "SELECT Nome FROM Utilizador WHERE IdCategoria = @idCategoria";
+        string sql = "SELECT Nome FROM Categoria WHERE IdCategoria = @idCategoria";
 
         var parameters = new { idCategoria };
+        string connectionString = _config.GetConnectionString("DefaultConnection") ?? string.Empty;
+
+        string nome = "";
+        if (connectionString != null){
+            nome = await _data.ExecuteQuery<string>(sql, parameters, connectionString);
+        }
+        return nome;
+    }
+
+
+    public async Task<string> GetAddress(Leilao leilao){
+
+        double idComprador = leilao.GetIdComprador();
+
+        string sql = "SELECT Morada FROM Utilizador WHERE NIB = @idComprador";
+
+        var parameters = new { idComprador };
+        string connectionString = _config.GetConnectionString("DefaultConnection") ?? string.Empty;
+
+        string nome = "";
+        if (connectionString != null){
+            nome = await _data.ExecuteQuery<string>(sql, parameters, connectionString);
+        }
+        return nome;
+    }
+
+
+    public async Task<string> GetNameUser(long idUser){
+
+        string sql = "SELECT CONCAT(PrimeiroNome, ' ', UltimoNome) FROM Utilizador WHERE NIB = @idUser";
+
+        var parameters = new { idUser };
         string connectionString = _config.GetConnectionString("DefaultConnection") ?? string.Empty;
 
         string nome = "";
@@ -80,7 +112,7 @@ public class DatabaseQueries{
 
     public async Task<List<Categoria>> GetAllCategories(){
 
-        string sql = "SELECT * FROM Categoria";
+        string sql = "SELECT * FROM Categoria ORDER BY IdCategoria";
 
         var parameters = new {};
         string connectionString = _config.GetConnectionString("DefaultConnection") ?? string.Empty;
@@ -144,11 +176,18 @@ public class DatabaseQueries{
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     //PARA A PAGINA AUCTIONS
-    public async Task<List<Leilao>> GetAllAuctionsWithoutUser(long idUser){
+    public async Task<List<Leilao>> GetAllAuctionsWithoutUser(long idUser, int idCategoria){
+        string sql;
+        object parameters;
+        if(idCategoria == 0){
+            sql = "SELECT * FROM ArtigoLeilao WHERE IdVendedor != @idUser AND EstadoLeilao = 'A decorrer'";
+            parameters = new {idUser}; 
+        } 
+        else{
+            sql = "SELECT * FROM ArtigoLeilao WHERE IdVendedor != @idUser AND EstadoLeilao = 'A decorrer' AND IdCategoria=@idCategoria";
+            parameters = new {idUser, idCategoria};
+        }
 
-        string sql = "SELECT * FROM ArtigoLeilao WHERE IdVendedor != @idUser";
-
-        var parameters = new {idUser};
         string connectionString = _config.GetConnectionString("DefaultConnection") ?? string.Empty;
 
         List<Leilao> leiloes = new List<Leilao>();
@@ -188,9 +227,9 @@ public class DatabaseQueries{
 
     public async Task<List<Leilao>> GetAllAuctionsWonByUser(long idUser){
 
-        string sql = "SELECT * FROM ArtigoLeilao WHERE IdVendedor = @idUser AND EstadoLeilao = 'Terminado'";
+        string sql = "SELECT * FROM ArtigoLeilao WHERE EstadoLeilao = 'Vendido'";
 
-        var parameters = new {idUser};
+        var parameters = new {};
         string connectionString = _config.GetConnectionString("DefaultConnection") ?? string.Empty;
 
         List<Leilao> leiloes = new List<Leilao>();
@@ -198,11 +237,16 @@ public class DatabaseQueries{
             leiloes = await _data.ExecuteQueryList<Leilao>(sql, parameters, connectionString);
         }
 
+
+        List<Leilao> leiloesWon = new List<Leilao>();
         foreach (Leilao leilao in leiloes){
             leilao.SetLicitacoes(await GetAllBids(leilao.GetIdLeilao()));
-        }
 
-        return leiloes;
+            if(leilao.GetIdComprador()==idUser) leiloesWon.Add(leilao);
+        }
+        
+
+        return leiloesWon;
 
     }
 
@@ -223,11 +267,14 @@ public class DatabaseQueries{
             leiloes = await _data.ExecuteQueryList<Leilao>(sql, parameters, connectionString);
         }
 
+        List<Leilao> leiloesBided = new List<Leilao>();
         foreach (Leilao leilao in leiloes){
             leilao.SetLicitacoes(await GetAllBids(leilao.GetIdLeilao()));
+
+            if(!(leilao.GetEstadoLeilao()=="Vendido" && leilao.GetIdComprador()==idUser)) leiloesBided.Add(leilao);
         }
 
-        return leiloes;
+        return leiloesBided;
     }
 
 
@@ -317,11 +364,9 @@ public class DatabaseQueries{
     // ITEM QUERIES //////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    public async Task<int> AddItem(string nomeLeilao, string imagem, string precoBaseLeilao, string nomeArtigo, string numeroAutenticacaoArtigo, string precoCompraAutomaticoLeilao, string nomeEquipaEventoArtigo, string tamanhoArtigo, string taxaMinimaIncrementoLeilao, string descricaoArtigo, string estadoArtigo, string dataUsoArtigo, string dataFinalizacaoLeilao){
+    public async Task<int> AddItem(string nomeLeilao, string imagem, string precoBaseLeilao, string nomeArtigo, string numeroAutenticacaoArtigo, string precoCompraAutomaticoLeilao, string nomeEquipaEventoArtigo, string tamanhoArtigo, string taxaMinimaIncrementoLeilao, string descricaoArtigo, string estadoArtigo, string dataUsoArtigo, string dataFinalizacaoLeilao, long idVendedor, int idCategoria){
 
-    string estadoLeilao = "a decorrer";
-    string idVendedor = "584720193218";
-    string idCategoria = "1";
+    string estadoLeilao = "A decorrer";
 
     string sql = "INSERT INTO ArtigoLeilao (NomeLeilao, ImagemArtigo, PrecoBaseLeilao, NomeArtigo, NumeroAutenticacaoArtigo, PrecoCompraAutomaticoLeilao, NomeEquipaEventoArtigo, TamanhoArtigo, TaxaMinimaIncrementoLeilao, DescricaoArtigo, EstadoArtigo, DataUsoArtigo, DataFinalizacaoLeilao, IdCategoria, IdVendedor, EstadoLeilao)" + 
                 "VALUES (@NomeLeilao, @ImagemArtigo, @PrecoBaseLeilao, @NomeArtigo, @NumeroAutenticacaoArtigo, @PrecoCompraAutomaticoLeilao, @NomeEquipaEventoArtigo, @TamanhoArtigo, @TaxaMinimaIncrementoLeilao, @DescricaoArtigo, @EstadoArtigo, @DataUsoArtigo, @DataFinalizacaoLeilao, @IdCategoria, @IdVendedor, @EstadoLeilao)";
@@ -360,16 +405,18 @@ public class DatabaseQueries{
 
 
 
-    public async Task<int> addBid(double valorLicitacao, long nibComprador, int idLeilao){
+    public async Task<int> addBid(double valorLicitacao, long nibComprador, int idLeilao, double maxBid){
 
-        string sql = "INSERT INTO Licitacao (ValorLicitacao, NIBComprador, IdLeilao) "+ 
-                "VALUES (@ValorLicitacao, @NIBComprador, @IdLeilao)";
+        DateTime dataLicitacao = DateTime.Now;
+        string sql = "INSERT INTO Licitacao (ValorLicitacao, NIBComprador, IdLeilao, DataLicitacao) "+ 
+                "VALUES (@ValorLicitacao, @NIBComprador, @IdLeilao, @DataLicitacao)";
 
         var parameters = new
         {
             @ValorLicitacao = valorLicitacao,
             @NIBComprador = nibComprador,
-            @IdLeilao = idLeilao
+            @IdLeilao = idLeilao,
+            @DataLicitacao = dataLicitacao
         };
 
         string connectionString = _config.GetConnectionString("DefaultConnection") ?? string.Empty;
@@ -379,8 +426,33 @@ public class DatabaseQueries{
             await _data.ExecuteQuery<int>(sql, parameters, connectionString);
         } 
 
+
+        if(maxBid == valorLicitacao) updateEstadoLeilao(idLeilao, "Vendido");
+
         return 1;
     }
+
+
+
+    public async void updateEstadoLeilao(int idLeilao, string estadoLeilao){
+
+        DateTime dataLicitacao = DateTime.Now;
+        string sql = "UPDATE ArtigoLeilao SET EstadoLeilao = @estadoLeilao WHERE IdLeilao = @idLeilao";
+
+        var parameters = new {idLeilao, estadoLeilao};
+
+        string connectionString = _config.GetConnectionString("DefaultConnection") ?? string.Empty;
+
+        if (connectionString != null)
+        {
+            await _data.ExecuteQuery<int>(sql, parameters, connectionString);
+        } 
+
+    }
+
+
+
+
 
     public async Task<int> GetNumeroLeilao(){
 
@@ -395,6 +467,21 @@ public class DatabaseQueries{
         }
         return total+1;
     }
+
+
+    public async Task<bool> isThereAuthNumber(string num){
+        string sql = "SELECT NumeroAutenticacaoArtigo FROM ArtigoLeilao WHERE NumeroAutenticacaoArtigo = @num";
+
+        var parameters = new { @num = num };
+        string connectionString = _config.GetConnectionString("DefaultConnection") ?? string.Empty;
+
+        string resultNum = string.Empty;
+        if (connectionString != null)
+        {
+            resultNum = await _data.ExecuteQuery<string>(sql, parameters, connectionString);
+        }
+        return !string.IsNullOrEmpty(resultNum);
+}
 
 
 }

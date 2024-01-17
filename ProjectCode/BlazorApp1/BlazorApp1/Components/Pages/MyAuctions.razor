@@ -12,22 +12,7 @@
     <Header userID="@GetCurrentUserID()" />
 
     <div class="cont">
-        <div class="btn-group-vertical fixed-button" role="group" aria-label="Vertical button group">
-            <div class="btn-group dropup" role="group">
-                <ul class="dropdown-menu scrollable-dropdown-menu">
-                    <li><a class="dropdown-item" href="#">AAA</a></li>
-                    <li><a class="dropdown-item" href="#">BBB</a></li>
-                    <li><a class="dropdown-item" href="#">CCC</a></li>
-                    <li><a class="dropdown-item" href="#">DDD</a></li>
-                    <li><a class="dropdown-item" href="#">EEE</a></li>
-                    <li><a class="dropdown-item" href="#">AAA</a></li>
-                    <li><a class="dropdown-item" href="#">BBB</a></li>
-                    <li><a class="dropdown-item" href="#">CCC</a></li>
-                    <li><a class="dropdown-item" href="#">DDD</a></li>
-                    <li><a class="dropdown-item" href="#">EEE</a></li>
-                </ul>
-            </div>
-        </div>
+
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
             @if (leiloes.Count != 0)
             {
@@ -38,11 +23,20 @@
                     Leilao leilao = leiloes[i];
 
 
-                    <button class="itemButton">
+                    <button class="itemButton" @onclick="() => RedirectToAuction(leilao.GetIdLeilao())"
+                        style="@(leilao.GetStatusByUserSold() switch
+                        {
+                            0 => "background-color: rgb(211, 255, 213);",
+                            1 => "background-color: rgb(255, 255, 200); pointer-events: none;",
+                            2 => "background-color: rgb(255, 180, 180); pointer-events: none;",
+                            _ => ""
+                        })"
+                    >
+                    
                         <div class="item row g-0 ">
                                 
                             <div class="imagem col-md-4 ">
-                                <img src="./images/item1.webp" class="img-fluid " >
+                                <img src="./images/@leilao.GetImagemArtigo()" class="img-fluid " >
                             </div>
 
                             <div class="itemInfo col-md-8">
@@ -50,10 +44,10 @@
                                 <p class="currentBid">Current bid:</p>
                                 @if (leilao.GetHighestBid() == 0){ <p class="bid">None</p> }
                                 else{ <p class="bid">$@leilao.GetHighestBid()</p> }
-                                <p class="buyNow">Buy Now:</p>
-                                <p class="buyNowPrice">$@leilao.GetPrecoCompraAutomaticoLeilao()</p>
                                 <p class="timeLeft">Time left:</p>
                                 <p class="itemTime"><small class="text-body-secondary">@leilao.GetTimeLeft()</small></p>
+                                <p class="status">Status:</p>
+                                <p class="text">@leilao.GetStatusTextSold(leilao.GetStatusByUserSold())</p>
                             </div>
                                 
                         </div>
@@ -151,4 +145,11 @@
     private long GetCurrentUserID(){
         return userID ?? 0;
     }
+
+
+    void RedirectToAuction(int auctionId)
+    {
+        NavigationManager.NavigateTo($"{userID}/itemSold/{auctionId}");
+    }
+
 }

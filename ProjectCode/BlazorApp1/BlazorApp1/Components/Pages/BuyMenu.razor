@@ -15,7 +15,7 @@
         <div class="grid-info">
 
             <div id="image-display">
-                <img src="./images/item2.jpg" id="image">
+                <img src="./images/@leilao.GetImagemArtigo()" class="img-fluid " >
             </div>
 
             <div class="all-text">
@@ -34,7 +34,9 @@
                     <p class="text"><b>Condition:</b></p>
                     <p class="text-variable">@leilao.GetEstadoArtigo()</p>
                     <p class="text"><b>Category:</b></p>
-                    <p class="text-variable">@leilao.GetIdCategoria()</p>
+                    @if (categoria != ""){
+                        <p class="text-variable">@categoria</p>
+                    }
                 </div>
             </div>
         </div>
@@ -67,9 +69,9 @@
             <p class="info"><b>Custom Bid:</b></p>
             <p class="info"></p>
             <p class="info"></p>
-            <button type="button" class="btn btn-success" @onclick="PlaceBid">$@leilao.GetNextMinBid()</button>
+            <button type="button" class="btn btn-success" @onclick="PlaceBid" disabled="@isButtonDisabled()">$@leilao.GetNextMinBid()</button>
             <input type="text" class="form-control input text-center" @bind="priceInput">
-            <button type="button" class="btn btn-success" @onclick="ValidateTransaction">SUBMIT BID</button>
+            <button type="button" class="btn btn-success" @onclick="ValidateTransaction" disabled="@isButtonDisabled()">SUBMIT BID</button>
             <button type="button" class="btn btn-danger" @onclick="() => RedirectToMenu()">CANCEL</button>
         </div>
 
@@ -107,6 +109,7 @@
     private bool showPopupSuccess = false;
     private bool showPopupError = false;
     private double biddedValue = 0;
+    private string categoria = "";
 
     protected override async Task OnInitializedAsync()
     {
@@ -121,6 +124,8 @@
         }
 
 
+
+
         var currentUrl = NavigationManager.Uri;
         var pageStr = currentUrl.Split("/").Last();
         int.TryParse(pageStr, out var currentPage);
@@ -129,6 +134,9 @@
         if (auction != null)
         {
             leilao = auction;
+
+            categoria = await GetCategoryName(leilao.GetIdCategoria());
+            StateHasChanged();
         }
         else{
             NavigationManager.NavigateTo("/notfound");
@@ -157,10 +165,13 @@
             return;
         }
 
-        if(parsedValue >= leilao.GetNextMinBid()){
+        if(parsedValue >= leilao.GetNextMinBid() && parsedValue <= leilao.GetPrecoCompraAutomaticoLeilao()){
             DatabaseQueries dbQuery = new DatabaseQueries(_config, _data);
             biddedValue = parsedValue;
-            int rowsAffected = await dbQuery.addBid(parsedValue, leilao.GetIdVendedor(), leilao.GetIdLeilao());
+            if (userID.HasValue)
+            {
+                int rowsAffected = await dbQuery.addBid(parsedValue, (long)userID, leilao.GetIdLeilao(), leilao.GetPrecoCompraAutomaticoLeilao());
+            }
             await GetCurrentAuction();
             showPopupSuccess = true;
             priceInput = "";
@@ -178,7 +189,10 @@
         priceInput = "";
         DatabaseQueries dbQuery = new DatabaseQueries(_config, _data);
         biddedValue = leilao.GetNextMinBid();
-        int rowsAffected = await dbQuery.addBid(leilao.GetNextMinBid(), leilao.GetIdVendedor(), leilao.GetIdLeilao());
+        if (userID.HasValue)
+        {
+            int rowsAffected = await dbQuery.addBid(leilao.GetNextMinBid(), (long)userID, leilao.GetIdLeilao(), leilao.GetPrecoCompraAutomaticoLeilao());
+        }
         await GetCurrentAuction();
         showPopupSuccess = true;
         StateHasChanged();
@@ -187,13 +201,25 @@
 
     }
 
+
+    private bool isButtonDisabled(){
+        return leilao.GetHighestBid() == leilao.GetPrecoCompraAutomaticoLeilao();
+    }
+
+
+    private async Task<string> GetCategoryName(int idCategoria){
+        DatabaseQueries dbQuery = new DatabaseQueries(_config, _data);
+        string nomeCategoria = await dbQuery.GetNomeCategoria(idCategoria);
+        return nomeCategoria;
+    }
+
     private long GetCurrentUserID(){
         return userID ?? 0;
     }
 
 
     void RedirectToMenu(){
-        NavigationManager.NavigateTo($"{userID}/auctions");
+        NavigationManager.NavigateTo($"{userID}/0/auctions");
     }
 
 }

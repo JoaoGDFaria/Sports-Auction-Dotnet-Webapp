@@ -1,8 +1,8 @@
 @import url('landscape.css');
 
 body {
-    background: url("../images/back90.png") fixed;
-    background-size: 100% 90%;
+    background: url("../images/background.png") fixed;
+    background-size: 100% 100%;
     background-position: center bottom; 
     font-family: 'Doppio One', sans-serif;
     overflow-x: auto;
@@ -22,12 +22,38 @@ body {
     margin-right: 5%;
 }
 
+.name{
+    margin: 0.3em;
+    margin-top: -0.3em;
+}
+
+.name-variable{
+    margin: 0.2em;
+    background-color: #e3e3e3;
+    border-radius: 0.4em;
+    line-height: 2;
+    padding-left: 1%;
+}
+
+.status{
+    margin: 1em;
+    margin-left: 24.6em;
+    margin-top: -2em;
+}
+
+.status-variable{
+    margin-left: 24.6em;
+    margin-top: -0.8em;
+    background-color: #e3e3e3;
+    border-radius: 0.4em;
+    line-height: 2;
+    padding-left: 1%;
+}
+
+
 .grid-info{
     border: 0.3em solid black;
     border-radius: 0.8em;
-    border-bottom: 0;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
     background-color: rgb(255, 255, 255);
     display: grid;
     grid-template-columns: 1fr 2fr;
@@ -37,14 +63,12 @@ body {
     margin: 0;
 }
 
-#image-display{
-    margin-left: 1em;
+.img-fluid{
     height: 100%;
     width: 100%;
-    overflow: hidden;
-    border-radius: 10px;
-    border: 5px solid black;
+    object-fit: fill;
 }
+
 
 #image{
     margin-left: 1em;
@@ -55,33 +79,20 @@ body {
 
 .all-text{
     overflow: hidden;
-    margin: 1em;
+    margin: 0.2em;
 }
 
 .text{
-    margin: 1em;
+    margin: 0.5em;
 }
 
 .text-variable{
-    margin: 1em;
+    margin: 0.2em;
     background-color: #e3e3e3;
     border-radius: 0.4em;
     line-height: 2;
     padding-left: 1%;
 }
-
-.grid-buy{
-    margin-top: 0.5em;
-    background-color: rgb(255, 255, 255);
-    padding: 2%;
-    border: 0.2em solid black;
-    border-radius: 10px;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(2);
-    gap: 10px;
-}
-
 .info{
     margin: 1em;
 }
