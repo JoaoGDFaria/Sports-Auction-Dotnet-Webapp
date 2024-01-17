@@ -40,7 +40,10 @@ html, body {
     color: black;
 }
 
-
+.text{
+    font-size: 2.5vh;
+    color: black;
+}
 
 
 .row{
