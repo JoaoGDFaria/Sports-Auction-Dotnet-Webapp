@@ -63,15 +63,12 @@ body {
     margin: 0;
 }
 
-#image-display{
-    margin-top: 0em;
-    margin-left: 1em;
+.img-fluid{
     height: 100%;
     width: 100%;
-    overflow: hidden;
-    border-radius: 10px;
-    border: 5px solid black;
+    object-fit: fill;
 }
+
 
 #image{
     margin-left: 1em;
