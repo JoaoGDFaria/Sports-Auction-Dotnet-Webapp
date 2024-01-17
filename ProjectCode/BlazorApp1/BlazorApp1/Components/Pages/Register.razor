@@ -63,7 +63,7 @@
 
                     @if(nibError){
                         <div class="alert alert-danger" role="alert">
-                        Nib already exists!
+                        BIN already exists!
                         </div>
                     }
 
@@ -91,7 +91,7 @@
 
                     @if(nibFormatError){
                         <div class="alert alert-danger" role="alert">
-                        Nib must be a 9 digit number!
+                        BIN must be a 12 digit number!
                         </div>
                     }
 
@@ -123,7 +123,6 @@
 
 
                     <div class="button d-flex justify-content-between buttons">
-                        <button type="button" class="btn btn-danger"><a href="@("/")">EXIT</a></button>
                         <button type="button" class="btn btn-success" @onclick="SubmitForm">SUBMIT</button>
                 </div>
         </div>
@@ -238,9 +237,9 @@
 
     private bool validateNib(string nib)
     {
-        bool valid = int.TryParse(nib, out _);
-
-        if (!valid || nib.Length != 21)
+        bool valid = long.TryParse(nib, out _);
+        Console.WriteLine(nib.Length);
+        if (!valid || nib.Length != 12)
         {
             nibFormatError = true;
             return false;
