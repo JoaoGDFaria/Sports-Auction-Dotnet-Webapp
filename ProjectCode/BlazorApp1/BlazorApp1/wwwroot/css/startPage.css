@@ -1,0 +1,71 @@
+.form-outline{
+    text-align: left;
+}
+
+.hyperlink{
+    text-align: left;
+    padding: 5% 0%;
+}
+
+body{
+    background: url("../images/background.png") fixed;
+    background-size: cover;
+    
+    font-family: 'Doppio One', sans-serif;
+    width: 100%;
+
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+}
+
+html, body {
+    overflow-x: hidden;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#startPage {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%; /* Adjust the width as needed */
+    background-color: #ffffff;
+    outline: 200px black;
+}
+
+.card-body {
+    font-size: 2.5vh; /* Adjust font size as needed */
+    color: black;
+}
+
+.input{
+    width: 100%;
+}
+
+.a1{
+    
+}
+
+.a2{
+    
+}
+
+.textoInit{
+    font-family: 'Doppio One', sans-serif;
+    color: black;
+}
+
+.title{
+    font-size: 200vh;
+}
+
+.slogan{
+    font-size: 5vh;
+}
+
+.img{
+    width: 30%;
+    height: 30%;
+}
