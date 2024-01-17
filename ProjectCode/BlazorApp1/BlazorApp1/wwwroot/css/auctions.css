@@ -123,6 +123,17 @@ body {
     overflow-y: auto;
 }
 
+.types{
+    /*Centrar acima dos leilões*/
+    text-align: left;
+    margin-bottom: 1em;
+    margin-top: 1em;
+    margin-left: 3em;
+    font-size: 1.5em;
+    border-radius: 0.2em;
+    font-weight: bold;
+}
+
 .btn-warning{
     margin-left: 2em;
 }
