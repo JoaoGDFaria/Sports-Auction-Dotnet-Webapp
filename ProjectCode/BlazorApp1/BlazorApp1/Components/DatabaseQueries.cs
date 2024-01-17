@@ -228,9 +228,9 @@ public class DatabaseQueries{
 
     public async Task<List<Leilao>> GetAllAuctionsWonByUser(long idUser){
 
-        string sql = "SELECT * FROM ArtigoLeilao WHERE IdVendedor = @idUser AND EstadoLeilao = 'Terminado'";
+        string sql = "SELECT * FROM ArtigoLeilao WHERE EstadoLeilao = 'Vendido'";
 
-        var parameters = new {idUser};
+        var parameters = new {};
         string connectionString = _config.GetConnectionString("DefaultConnection") ?? string.Empty;
 
         List<Leilao> leiloes = new List<Leilao>();
@@ -238,11 +238,16 @@ public class DatabaseQueries{
             leiloes = await _data.ExecuteQueryList<Leilao>(sql, parameters, connectionString);
         }
 
+
+        List<Leilao> leiloesWon = new List<Leilao>();
         foreach (Leilao leilao in leiloes){
             leilao.SetLicitacoes(await GetAllBids(leilao.GetIdLeilao()));
-        }
 
-        return leiloes;
+            if(leilao.GetIdComprador()==idUser) leiloesWon.Add(leilao);
+        }
+        
+
+        return leiloesWon;
 
     }
 
