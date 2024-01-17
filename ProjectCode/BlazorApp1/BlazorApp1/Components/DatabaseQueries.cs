@@ -41,6 +41,20 @@ public class DatabaseQueries{
         return nome;
     }
 
+    public async Task<string> GetNameUser(long idUser){
+
+        string sql = "SELECT CONCAT(PrimeiroNome, ' ', UltimoNome) FROM Utilizador WHERE NIB = @idUser";
+
+        var parameters = new { idUser };
+        string connectionString = _config.GetConnectionString("DefaultConnection") ?? string.Empty;
+
+        string nome = "";
+        if (connectionString != null){
+            nome = await _data.ExecuteQuery<string>(sql, parameters, connectionString);
+        }
+        return nome;
+    }
+
     public async Task<bool> GetUser(long idUser){
 
         string sql = "SELECT NumeroTelemovel FROM Utilizador WHERE NIB = @idUser";

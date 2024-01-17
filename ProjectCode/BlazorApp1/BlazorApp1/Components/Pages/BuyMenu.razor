@@ -206,7 +206,6 @@
         DatabaseQueries dbQuery = new DatabaseQueries(_config, _data);
         string nomeCategoria = await dbQuery.GetNomeCategoria(idCategoria);
         return nomeCategoria;
-
     }
 
     private long GetCurrentUserID(){

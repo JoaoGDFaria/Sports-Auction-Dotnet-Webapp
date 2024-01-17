@@ -35,7 +35,9 @@
                     <p class="text"><b>Size:</b></p>
                     <p class="text-variable">@leilao.GetTamanhoArtigo()</p>
                     <p class="text"><b>Payment:</b></p>
-                    <p class="text-variable">Send $@leilao.GetHighestBid() to @leilao.GetIdLeilao() with the number @leilao.GetIdLeilao()</p>
+                    @if (nome != ""){
+                        <p class="text-variable">Send $@leilao.GetHighestBid() to @nome with the number @leilao.GetIdLeilao().</p>
+                    }
                     <p class="text"><b>Current Status:</b></p>
                     <p class="text-variable">@leilao.GetEstadoLeilao()</p>
                 </div>
@@ -60,6 +62,7 @@
     [Parameter] public long? userID { get; set; }
     [Parameter] public int? page { get; set; }
     Leilao leilao = new Leilao();
+    private string nome = "";
 
 
     protected override async Task OnInitializedAsync()
@@ -76,7 +79,6 @@
 
 
 
-
         var currentUrl = NavigationManager.Uri;
         var pageStr = currentUrl.Split("/").Last();
         int.TryParse(pageStr, out var currentPage);
@@ -85,12 +87,21 @@
         if (auction != null)
         {
             leilao = auction;
+            nome = await GetUserName(leilao.GetIdVendedor());
+            StateHasChanged();
         }
         else{
             NavigationManager.NavigateTo("/notfound");
         }
 
         return leilao;
+    }
+
+
+    private async Task<string> GetUserName(long idCategoria){
+        DatabaseQueries dbQuery = new DatabaseQueries(_config, _data);
+        string nomeCategoria = await dbQuery.GetNameUser(idCategoria);
+        return nomeCategoria;
     }
 
 
