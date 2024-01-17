@@ -203,16 +203,30 @@ public class Leilao{
     }
 
 
-    public int GetStatusByUser(long idUser){
+    public int GetStatusByUserWon(long idUser){
         if(GetIdComprador()==idUser) return 0; //WINNING
         else if(GetEstadoLeilao() == "Vendido") return 2; //LOST
         else return 1; //OUTBIDDED
     }
 
-    public string GetStatusText(int statusCode){
+    public string GetStatusTextWon(int statusCode){
         if(statusCode==0) return "Winning";
         else if(statusCode==1) return "Outbidded";
         else return "Lost";
+    }
+
+
+    
+    public int GetStatusByUserSold(){
+        if(GetEstadoLeilao() == "Vendido") return 0; //WON
+        else if(GetEstadoLeilao() == "A decorrer") return 1; //PENDING
+        else return 2; //EXPIRED
+    }
+
+    public string GetStatusTextSold(int statusCode){
+        if(statusCode==0) return "Won";
+        else if(statusCode==1) return "Pending";
+        else return "Expired";
     }
 
 

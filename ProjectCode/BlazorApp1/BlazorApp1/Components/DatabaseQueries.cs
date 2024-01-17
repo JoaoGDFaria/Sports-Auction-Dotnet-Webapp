@@ -45,7 +45,6 @@ public class DatabaseQueries{
     public async Task<string> GetAddress(Leilao leilao){
 
         double idComprador = leilao.GetIdComprador();
-        Console.WriteLine("aaa " +idComprador);
 
         string sql = "SELECT Morada FROM Utilizador WHERE NIB = @idComprador";
 

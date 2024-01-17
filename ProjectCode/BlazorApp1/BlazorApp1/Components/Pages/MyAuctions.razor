@@ -23,7 +23,16 @@
                     Leilao leilao = leiloes[i];
 
 
-                    <button class="itemButton" @onclick="() => RedirectToAuction(leilao.GetIdLeilao())">
+                    <button class="itemButton" @onclick="() => RedirectToAuction(leilao.GetIdLeilao())"
+                        style="@(leilao.GetStatusByUserSold() switch
+                        {
+                            0 => "background-color: rgb(211, 255, 213);",
+                            1 => "background-color: rgb(255, 255, 200); pointer-events: none;",
+                            2 => "background-color: rgb(255, 180, 180); pointer-events: none;",
+                            _ => ""
+                        })"
+                    >
+                    
                         <div class="item row g-0 ">
                                 
                             <div class="imagem col-md-4 ">
@@ -35,10 +44,10 @@
                                 <p class="currentBid">Current bid:</p>
                                 @if (leilao.GetHighestBid() == 0){ <p class="bid">None</p> }
                                 else{ <p class="bid">$@leilao.GetHighestBid()</p> }
-                                <p class="buyNow">Buy Now:</p>
-                                <p class="buyNowPrice">$@leilao.GetPrecoCompraAutomaticoLeilao()</p>
                                 <p class="timeLeft">Time left:</p>
                                 <p class="itemTime"><small class="text-body-secondary">@leilao.GetTimeLeft()</small></p>
+                                <p class="status">Status:</p>
+                                <p class="text">@leilao.GetStatusTextSold(leilao.GetStatusByUserSold())</p>
                             </div>
                                 
                         </div>
