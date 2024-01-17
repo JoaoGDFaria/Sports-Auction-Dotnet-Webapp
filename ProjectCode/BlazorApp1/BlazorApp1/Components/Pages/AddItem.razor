@@ -80,6 +80,13 @@
                     </div>
                 }
 
+                @if(imageError)
+                {
+                    <div class="alert alert-danger" role="alert">
+                        The image format is invalid.
+                    </div>
+                }
+        
                 @if(authNumberError)
                 {
                     <div class="alert alert-danger" role="alert">
@@ -172,6 +179,8 @@
     public bool dateClosingFormatError { get; set; } = false; 
     public bool categoryFormatError { get; set; } = false;
     public bool dataError { get; set; } = false;
+    public bool imageError { get; set; } = false;
+
 
     private string NomeLeilao { get; set; } = string.Empty;
     private IBrowserFile? ImagemArtigo { get; set; }
@@ -234,8 +243,10 @@
                validateBuyNow(PrecoCompraAutomaticoLeilao) &&
                validateIncrement(TaxaMinimaIncrementoLeilao) &&
                validateDateUse(DataUsoArtigo) &&
-               validateDateClosing(DataFinalizacaoLeilao)){
-                
+               validateDateClosing(DataFinalizacaoLeilao) && 
+               (ImagemArtigo != null) &&
+               validateImageFormat(ImagemArtigo)){
+
                 bool authCheck = await test.isThereAuthNumber(NumeroAutenticacaoArtigo);
                 if(authCheck){
                     authNumberError = true;
@@ -275,9 +286,9 @@
                     dataError = true;
                     return;
                 }
-            }    
+            }
+            return;    
         }
-
 
     }
 
@@ -363,8 +374,8 @@
         }
         else
         {
-            basePriceFormatError = true;
-            return false;
+            basePriceFormatError = false;
+            return true;
         }
     }
 
@@ -379,8 +390,8 @@
         }
         else
         {
-            basePriceFormatError = true;
-            return false;
+            basePriceFormatError = false;
+            return true;
         }
     }
 
@@ -402,8 +413,8 @@
         }
         else
         {
-            buyNowFormatError = true;
-            return false;
+            buyNowFormatError = false;
+            return true;
         }
     }
 
@@ -425,8 +436,8 @@
         }
         else
         {
-            incrementFormatError = true;
-            return false;
+            incrementFormatError = false;
+            return true;
         }
     }
 
@@ -444,8 +455,8 @@
         else
         {
             // The date is not valid or not in the past.
-            dateUseFormatError = true;
-            return false;
+            dateUseFormatError = false;
+            return true;
         }
     }
 
@@ -460,6 +471,42 @@
         }
         else{
             dateUseFormatError = true;
+            return false;
+        }
+    }
+
+    private bool ValidateImageFormat(IBrowserFile imagem)
+    {
+        if (imagem != null)
+        {
+            string[] allowedExtensions = { ".jpg", ".jpeg", ".png", ".webp" };
+            string extension = Path.GetExtension(imagem.Name)?.ToLower();
+
+            return !string.IsNullOrEmpty(extension) && allowedExtensions.Contains(extension);
+        }
+
+        // Retorna true se a imagem for nula, já que a validação pode não ser aplicável nesse caso
+        return true;
+    }
+
+       private bool validateImageFormat(IBrowserFile imagem)
+    {
+        if (imagem != null)
+        {
+            string[] allowedExtensions = { ".jpg", ".jpeg", ".png", ".webp" };
+            string extension = Path.GetExtension(imagem.Name)?.ToLower();
+
+            if(string.IsNullOrEmpty(extension)||allowedExtensions.Contains(extension)){
+                imageError = false;
+                return true;
+            }
+            else{
+                imageError = true;
+                return false;
+            }
+        }
+        else {
+            imageError = true;
             return false;
         }
     }
