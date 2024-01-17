@@ -154,7 +154,7 @@
 
                 <div class="button d-flex buttons">
                     <button type="button" class="btn btn-success" @onclick="SubmitForm">SUBMIT</button>
-                    <button type="button" class="btn btn-danger">CANCEL</button>
+                    <button type="button" class="btn btn-danger" @onclick="() => RedirectToMenu()"> CANCEL</button>
                 </div> 
             </div>
         </div>
@@ -535,6 +535,10 @@
             }
         }
         return 1;
+    }
+
+    void RedirectToMenu(){
+        NavigationManager.NavigateTo($"{userID}/0/auctions");
     }
 
 }
