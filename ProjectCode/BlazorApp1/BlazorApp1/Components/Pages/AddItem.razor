@@ -144,13 +144,6 @@
                     </div>
                 }
 
-                @if(categoryFormatError)
-                {
-                    <div class="alert alert-danger" role="alert">
-                        The category must be a number.
-                    </div>
-                }
-
                 @if(dataError)
                 {
                     <div class="alert alert-danger" role="alert">
@@ -186,7 +179,6 @@
     public bool incrementFormatError { get; set; } = false;
     public bool dateUseFormatError { get; set; } = false;
     public bool dateClosingFormatError { get; set; } = false; 
-    public bool categoryFormatError { get; set; } = false;
     public bool dataError { get; set; } = false;
     public bool imageError { get; set; } = false;
 
@@ -209,6 +201,7 @@
 
     private async Task SubmitForm()
     {
+
         DatabaseQueries test = new DatabaseQueries(_config, _data);
 
         int leiloes = await test.GetNumeroLeilao(); 
@@ -227,7 +220,6 @@
         incrementFormatError = false;
         dateUseFormatError = false;
         dateClosingFormatError = false;
-        categoryFormatError = false;
         dataError = false;
 
         if(string.IsNullOrEmpty(NomeLeilao) ||
@@ -276,7 +268,7 @@
                                                        NomeEquipaEventoArtigo, TamanhoArtigo,
                                                        TaxaMinimaIncrementoLeilao, 
                                                        DescricaoArtigo, EstadoArtigo,
-                                                       DataUsoArtigo, DataFinalizacaoLeilao, GetCurrentUserID(),IdCategoria);
+                                                       DataUsoArtigo, DataFinalizacaoLeilao, GetCurrentUserID(),GetCategory());
 
 
                 if (rowsAffected > 0)
@@ -383,8 +375,8 @@
         }
         else
         {
-            basePriceFormatError = false;
-            return true;
+            basePriceFormatError = true;
+            return false;
         }
     }
 
@@ -399,8 +391,8 @@
         }
         else
         {
-            basePriceFormatError = false;
-            return true;
+            authFormatError = true;
+            return false;
         }
     }
 
@@ -422,8 +414,8 @@
         }
         else
         {
-            buyNowFormatError = false;
-            return true;
+            buyNowFormatError = true;
+            return false;
         }
     }
 
@@ -445,8 +437,8 @@
         }
         else
         {
-            incrementFormatError = false;
-            return true;
+            incrementFormatError = true;
+            return false;
         }
     }
 
@@ -464,8 +456,8 @@
         else
         {
             // The date is not valid or not in the past.
-            dateUseFormatError = false;
-            return true;
+            dateUseFormatError = true;
+            return false;
         }
     }
 
@@ -519,6 +511,15 @@
             }
         }
 
+    }
+
+    private int GetCategory(){
+        for(int i = 1; i <= 4; i++){
+            if(buttonCSS[i] == "background-color: rgb(49, 123, 214);"){
+                return i;
+            }
+        }
+        return 1;
     }
 
 }
