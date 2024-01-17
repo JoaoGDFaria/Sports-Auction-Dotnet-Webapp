@@ -1,4 +1,3 @@
-
 USE MatchWornItems;
 GO
 
@@ -60,3 +59,8 @@ CREATE TABLE Licitacao
 	FOREIGN KEY (IdLeilao) REFERENCES ArtigoLeilao(IdLeilao)
 );
 
+
+CREATE TABLE NumeroAutenticacaoValido
+(
+	NumeroAutenticacaoValido INT NOT NULL
+);
