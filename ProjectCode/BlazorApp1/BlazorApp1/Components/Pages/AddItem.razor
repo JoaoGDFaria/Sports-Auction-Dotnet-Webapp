@@ -4,6 +4,7 @@
 @inject ISqlDataAccess _data
 @using System.Drawing
 @inject NavigationManager NavigationManager
+@inject Microsoft.AspNetCore.Hosting.IWebHostEnvironment _hostingEnvironment;
 
 
 @using DataLibrary
@@ -306,7 +307,7 @@
             return memoryStream.ToArray();
         }
     }
-    private async Task HandleFileUpload(InputFileChangeEventArgs e)
+    private void HandleFileUpload(InputFileChangeEventArgs e)
     {
         ImagemArtigo = e.File;
 
@@ -318,28 +319,33 @@
 
 
     private async Task SalvarImagemNoProjeto(IBrowserFile file, string nomeArquivo)
+{
+    try
     {
-        try
+        var caminhoRoot = _hostingEnvironment.ContentRootPath;
+        var caminhoDestino = Path.Combine(caminhoRoot, "C:/Users/hugoa/Desktop/ProjetoLI4/LI4/ProjectCode/BlazorApp1/BlazorApp1/wwwroot/images", nomeArquivo);
+
+        var directoryPath = Path.GetDirectoryName(caminhoDestino);
+        if (!string.IsNullOrEmpty(directoryPath))
         {
-            @inject Microsoft.AspNetCore.Hosting.IWebHostEnvironment _hostingEnvironment;
-            var caminhoRoot = _hostingEnvironment.ContentRootPath;
-            var caminhoDestino = Path.Combine(caminhoRoot, "C:/Users/hugoa/Desktop/ProjetoLI4/LI4/ProjectCode/BlazorApp1/BlazorApp1/wwwroot/images", nomeArquivo);
+            Directory.CreateDirectory(directoryPath);
 
-            // Certifique-se de que o diretório de destino existe
-            Directory.CreateDirectory(Path.GetDirectoryName(caminhoDestino));
-
-            // Copie o conteúdo do arquivo para o diretório de destino
             using (var stream = new FileStream(caminhoDestino, FileMode.Create))
             {
                 await file.OpenReadStream().CopyToAsync(stream);
-                Console.WriteLine("FIXE");
+                Console.WriteLine("Image guardada com sucesso");
             }
         }
-        catch (Exception ex)
+        else
         {
-            Console.WriteLine($"Erro ao salvar a imagem no projeto: {ex.Message}");
+            Console.WriteLine("Error: Directory path is null or empty.");
         }
     }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Error saving the image to the project: {ex.Message}");
+    }
+}
 
 
     private long GetCurrentUserID(){
