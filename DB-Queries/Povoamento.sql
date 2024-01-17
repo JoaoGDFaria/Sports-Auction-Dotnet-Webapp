@@ -113,13 +113,13 @@ INSERT INTO ArtigoLeilao (
     12500.00, 62.50, 1, '567890123451', 'A decorrer'),
     ('XL', '2023-11-24', 'Villarreal', 'Football', 'Replica football',
     '24', 'Good', 'Auction21.jpg', 'Villareal presentation ball', 3.50, '2024-01-13',
-    95.00, 20.00, 3, '584720193218', 'A decorrer'),
+    95.00, 20.00, 3, '584720193218', 'Expirado'),
     ('S', '2023-11-25', 'Celta Vigo', 'Shirt', 'Team-logo shirt',
     '25', 'New', 'Auction22.jpg', 'Aspas used shirt', 2.25, '2024-01-14',
-    700.00, 35.00, 1, '891122456789', 'A decorrer'),
+    700.00, 35.00, 1, '891122456789', 'Vendido'),
     ('L', '2023-11-26', 'Espanyol', 'Cap', 'Autographed team cap',
     '26', 'Excellent', 'Auction23.webp', 'Used hat by Braithwaite', 2.10, '2024-01-15',
-    50.00, 25.00, 4, '584720193218', 'A decorrer');
+    50.00, 25.00, 4, '584720193218', 'Vendido');
 
 
 
