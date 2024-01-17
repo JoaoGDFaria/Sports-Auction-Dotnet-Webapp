@@ -15,9 +15,11 @@
 
     <div class="cont">
         <div class="types">
-            <button type="button" class="butoum" @onclick="() => RedirectToCategory(0)">All</button>
+            @if(GetCategory()==0){ <button type="button" class="butoum-clicked" @onclick="() => RedirectToCategory(0)">All</button> }
+            else{ <button type="button" class="butoum" @onclick="() => RedirectToCategory(0)">All</button> }
             @foreach (var categoria in categorias){
-                <button type="button" class="butoum" @onclick="() => RedirectToCategory(categoria.GetIdCategoria())">@categoria.GetNome()</button>
+                @if(GetCategory()==categoria.GetIdCategoria()){ <button type="button" class="butoum-clicked" @onclick="() => RedirectToCategory(categoria.GetIdCategoria())">@categoria.GetNome()</button> }
+                else{ <button type="button" class="butoum" @onclick="() => RedirectToCategory(categoria.GetIdCategoria())">@categoria.GetNome()</button> }
             }
         </div>
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
@@ -113,15 +115,15 @@
         await LoadAuctions();
 
 
-        _ = Task.Run(async () =>
-        {
-            while (true)
-            {
-                await Task.Delay(TimeSpan.FromMinutes(1));
-                await InvokeAsync(() => StateHasChanged());
-                Console.WriteLine("State has changed");
-            }
-        });
+        //_ = Task.Run(async () =>
+        //{
+        //    while (true)
+        //    {
+        //        await Task.Delay(TimeSpan.FromMinutes(1));
+        //        await InvokeAsync(() => StateHasChanged());
+        //        Console.WriteLine("State has changed");
+        //    }
+        //});
     }
 
     private async Task LoadAuctions(){
