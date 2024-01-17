@@ -74,6 +74,10 @@ public class Leilao{
         return this.dataUsoArtigo;
     }
 
+    public DateOnly GetDataUsoArtigoDateOnly(){
+        return DateOnly.FromDateTime(this.dataUsoArtigo);
+    }
+
     public string GetNomeEquipaEventoArtigo(){
         return this.nomeEquipaEventoArtigo;
     }
