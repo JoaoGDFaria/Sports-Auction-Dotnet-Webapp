@@ -415,6 +415,14 @@ public class DatabaseQueries{
         return 1;
     }
 
+
+
+    
+
+
+
+
+
     public async Task<int> GetNumeroLeilao(){
 
         string sql = "SELECT COUNT(*) FROM ArtigoLeilao";

@@ -69,9 +69,9 @@
             <p class="info"><b>Custom Bid:</b></p>
             <p class="info"></p>
             <p class="info"></p>
-            <button type="button" class="btn btn-success" @onclick="PlaceBid">$@leilao.GetNextMinBid()</button>
+            <button type="button" class="btn btn-success" @onclick="PlaceBid" disabled="@isButtonDisabled()">$@leilao.GetNextMinBid()</button>
             <input type="text" class="form-control input text-center" @bind="priceInput">
-            <button type="button" class="btn btn-success" @onclick="ValidateTransaction">SUBMIT BID</button>
+            <button type="button" class="btn btn-success" @onclick="ValidateTransaction" disabled="@isButtonDisabled()">SUBMIT BID</button>
             <button type="button" class="btn btn-danger" @onclick="() => RedirectToMenu()">CANCEL</button>
         </div>
 
@@ -165,7 +165,7 @@
             return;
         }
 
-        if(parsedValue >= leilao.GetNextMinBid()){
+        if(parsedValue >= leilao.GetNextMinBid() && parsedValue <= leilao.GetPrecoCompraAutomaticoLeilao()){
             DatabaseQueries dbQuery = new DatabaseQueries(_config, _data);
             biddedValue = parsedValue;
             if (userID.HasValue)
@@ -199,6 +199,11 @@
         showPopupSuccess = false;
 
 
+    }
+
+
+    private bool isButtonDisabled(){
+        return leilao.GetHighestBid() == leilao.GetPrecoCompraAutomaticoLeilao();
     }
 
 
