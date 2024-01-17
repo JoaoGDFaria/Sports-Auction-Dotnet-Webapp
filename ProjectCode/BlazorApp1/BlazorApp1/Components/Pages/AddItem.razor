@@ -73,12 +73,11 @@
 
 
                     <div class=types>
-                        <button type="button" class="butoum">Shirt</button>
-                        <button type="button" class="butoum">Utensils</button>
-                        <button type="button" class="butoum">Ball</button>
-                        <button type="button" class="butoum">Other</button>
+                        <button type="button" class="butoum firstbutton" @onclick="() => ChangeButton(1)" style="@buttonCSS[1]">Shirt</button>
+                        <button type="button" class="butoum" @onclick="() => ChangeButton(2)" style="@buttonCSS[2]">Utensils</button>
+                        <button type="button" class="butoum" @onclick="() => ChangeButton(3)" style="@buttonCSS[3]">Ball</button>
+                        <button type="button" class="butoum" @onclick="() => ChangeButton(4)" style="@buttonCSS[4]">Other</button>
                     </div>
-
                     
                 </div>
 
@@ -174,6 +173,7 @@
 @code {
 
     [Parameter] public long? userID { get; set; }
+    private string[] buttonCSS = new string[5];
     public bool nullError { get; set; } = false;
 
     // Data base duplicate check
@@ -504,6 +504,21 @@
             imageError = true;
             return false;
         }
+    }
+
+
+
+    private void ChangeButton(int buttonId)
+    {
+        
+        buttonCSS[buttonId] = "background-color: rgb(49, 123, 214);";
+
+        for(int i = 1; i <= 4; i++){
+            if(i != buttonId){
+                buttonCSS[i] = "background-color: rgb(189, 188, 188);";
+            }
+        }
+
     }
 
 }
