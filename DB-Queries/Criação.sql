@@ -55,7 +55,7 @@ CREATE TABLE Licitacao
 	ValorLicitacao DECIMAL(10,2) NOT NULL,
 	NIBComprador BIGINT NOT NULL,
 	IdLeilao INT NOT NULL,
-
+	DataLicitacao DATETIME NOT NULL,
 	FOREIGN KEY (NIBComprador) REFERENCES Utilizador(NIB),
 	FOREIGN KEY (IdLeilao) REFERENCES ArtigoLeilao(IdLeilao)
 );
