@@ -47,7 +47,7 @@
                         <div class="item row g-0 ">
                                 
                             <div class="imagem col-md-4 ">
-                                <img src="./images/item1.webp" class="img-fluid " >
+                                <img src="./images/@leilao.GetImagemArtigo()" class="img-fluid " >
                             </div>
 
                             <div class="itemInfo col-md-8">
@@ -121,6 +121,7 @@
 
     protected override async Task OnInitializedAsync()
     {
+
         await LoadAuctions();
 
 
@@ -166,7 +167,6 @@
             return 1;
         }
     }
-
 
     private long GetCurrentUserID(){
         return userID ?? 0;
