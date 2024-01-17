@@ -70,7 +70,12 @@
                 </div>
                 <div class="form-outline form-white mb-4 field">
                     <p>Category</p>
-                    <input type="text" id="typeEmailX" class="form-control form-control-lg" @bind="IdCategoria"/>
+                    <div class=types>
+                        <button type="button" class="butoum">Shirt</button>
+                        <button type="button" class="butoum">Utensils</button>
+                        <button type="button" class="butoum">Ball</button>
+                        <button type="button" class="butoum">Other</button>
+                    </div>
                 </div>
 
                 @if(nullError)

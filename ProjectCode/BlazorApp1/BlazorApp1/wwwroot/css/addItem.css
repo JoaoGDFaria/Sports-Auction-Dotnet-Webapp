@@ -68,3 +68,20 @@ body{
 p{
   margin:0;
 }
+
+.types{
+  display: flex;
+  justify-content: space-between;
+  padding-top: 1.4em;
+  gap: 0.1em;
+}
+
+.butoum{
+  text-size-adjust: auto;
+  min-width: 23%;
+  min-height: 100%;
+  margin-top: -1.3em;
+  background-color: rgb(189, 188, 188);
+  color: #ffffff;
+  border-radius: 0.4em;
+}
