@@ -139,6 +139,22 @@ public class Leilao{
         return highestBid;
     }
 
+
+    public long GetIdComprador(){
+        double highestBid = this.GetHighestBid();
+
+        if (licitacoes == null || !licitacoes.Any()){
+            return 0;
+        }
+        
+        for(int i = 0; i < this.licitacoes.Count; i++){
+            if(this.licitacoes[i].GetValorLicitacao() == highestBid){
+                return this.licitacoes[i].GetNIBComprador();
+            }
+        }
+        return 0;
+    }
+
     public string GetTimeLeft(){
         TimeSpan timeLeft = this.dataFinalizacaoLeilao-DateTime.Now;
         return $"Days: {timeLeft.Days}, Hours: {timeLeft.Hours}, Minutes: {timeLeft.Minutes}";

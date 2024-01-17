@@ -41,6 +41,25 @@ public class DatabaseQueries{
         return nome;
     }
 
+
+    public async Task<string> GetAddress(Leilao leilao){
+
+        double idComprador = leilao.GetIdComprador();
+        Console.WriteLine("aaa " +idComprador);
+
+        string sql = "SELECT Morada FROM Utilizador WHERE NIB = @idComprador";
+
+        var parameters = new { idComprador };
+        string connectionString = _config.GetConnectionString("DefaultConnection") ?? string.Empty;
+
+        string nome = "";
+        if (connectionString != null){
+            nome = await _data.ExecuteQuery<string>(sql, parameters, connectionString);
+        }
+        return nome;
+    }
+
+
     public async Task<string> GetNameUser(long idUser){
 
         string sql = "SELECT CONCAT(PrimeiroNome, ' ', UltimoNome) FROM Utilizador WHERE NIB = @idUser";
