@@ -187,7 +187,7 @@
     private string EstadoArtigo { get; set; } = string.Empty;
     private string DataUsoArtigo { get; set; } = string.Empty;
     private string DataFinalizacaoLeilao { get; set; } = string.Empty;
-    private string IdCategoria { get; set; } = string.Empty;
+    private int IdCategoria { get; set; } = -1;
 
     private async Task SubmitForm()
     {
@@ -223,9 +223,7 @@
            string.IsNullOrEmpty(DescricaoArtigo) ||
            string.IsNullOrEmpty(EstadoArtigo) ||
            string.IsNullOrEmpty(DataUsoArtigo) ||
-           string.IsNullOrEmpty(DataFinalizacaoLeilao) ||
-           string.IsNullOrEmpty(IdCategoria) ||
-           ImagemArtigo != null){
+           string.IsNullOrEmpty(DataFinalizacaoLeilao)){
 
             nullError = true;
             return;
@@ -236,8 +234,7 @@
                validateBuyNow(PrecoCompraAutomaticoLeilao) &&
                validateIncrement(TaxaMinimaIncrementoLeilao) &&
                validateDateUse(DataUsoArtigo) &&
-               validateDateClosing(DataFinalizacaoLeilao) &&
-               validateCategory(IdCategoria)){
+               validateDateClosing(DataFinalizacaoLeilao)){
                 
                 bool authCheck = await test.isThereAuthNumber(NumeroAutenticacaoArtigo);
                 if(authCheck){
@@ -259,7 +256,7 @@
                                                        NomeEquipaEventoArtigo, TamanhoArtigo,
                                                        TaxaMinimaIncrementoLeilao, 
                                                        DescricaoArtigo, EstadoArtigo,
-                                                       DataUsoArtigo, DataFinalizacaoLeilao);
+                                                       DataUsoArtigo, DataFinalizacaoLeilao, GetCurrentUserID(),IdCategoria);
 
 
                 if (rowsAffected > 0)
@@ -463,22 +460,6 @@
         }
         else{
             dateUseFormatError = true;
-            return false;
-        }
-    }
-
-    private bool validateCategory(string cat)
-    {
-        bool valid = int.TryParse(cat, out _);
-
-        if (valid)
-        {   
-            categoryFormatError = false;
-            return true;
-        }
-        else
-        {
-            categoryFormatError = true;
             return false;
         }
     }
