@@ -52,7 +52,6 @@ CREATE TABLE ArtigoLeilao
 CREATE TABLE Licitacao
 (
 	IdLicitacao INT IDENTITY(1,1) PRIMARY KEY,
-
 	ValorLicitacao DECIMAL(10,2) NOT NULL,
 	NIBComprador BIGINT NOT NULL,
 	IdLeilao INT NOT NULL,
