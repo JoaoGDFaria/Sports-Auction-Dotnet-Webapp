@@ -112,7 +112,7 @@
                 @if(authFormatError)
                 {
                     <div class="alert alert-danger" role="alert">
-                        The authentication number must be a number and have no more than 10 digits.
+                        The authentication number must be a valid number and have 6 digits.
                     </div>
                 }
 
@@ -239,7 +239,7 @@
             return;
         
         }else{
-            if(validateAuthNumber(NumeroAutenticacaoArtigo) &&
+            if(await validateAuthNumber(NumeroAutenticacaoArtigo) &&
                validateBasePrice(PrecoBaseLeilao) &&
                validateBuyNow(PrecoCompraAutomaticoLeilao) &&
                validateIncrement(TaxaMinimaIncrementoLeilao) &&
@@ -380,14 +380,23 @@
         }
     }
 
-    private bool validateAuthNumber(string authNumber)
+    private async Task<bool> validateAuthNumber(string authNumber)
     {
-        bool valid = int.TryParse(authNumber, out _);
+        DatabaseQueries dbQuery = new DatabaseQueries(_config, _data);
 
-        if (valid && authNumber.Length <= 10)
-        {   
-            authFormatError = false;
-            return true;
+        bool cont = await dbQuery.GetAuthenticationNumber(authNumber); 
+        if (cont == true && authNumber.Length == 6)  
+        {
+            if (cont == false)
+            {
+                authFormatError = true;
+                return false;
+            }
+            else
+            {
+                authFormatError = false;
+                return true;
+            }
         }
         else
         {

@@ -481,7 +481,22 @@ public class DatabaseQueries{
             resultNum = await _data.ExecuteQuery<string>(sql, parameters, connectionString);
         }
         return !string.IsNullOrEmpty(resultNum);
-}
+    }
+
+    public async Task<bool> GetAuthenticationNumber(string authenticationNumber){
+
+        string sql = "SELECT NumeroAutenticacaoValido FROM NumeroAutenticacaoValido WHERE NumeroAutenticacaoValido = @authenticationNumber";
+
+        var parameters = new {@authenticationNumber = authenticationNumber};
+        string connectionString = _config.GetConnectionString("DefaultConnection") ?? string.Empty;
+
+        int id = 0;
+        if (connectionString != null){
+            id = await _data.ExecuteQuery<int>(sql, parameters, connectionString);
+        }
+        return id!=0;
+    }
+
 
 
 }
