@@ -170,7 +170,7 @@
             biddedValue = parsedValue;
             if (userID.HasValue)
             {
-                int rowsAffected = await dbQuery.addBid(parsedValue, (long)userID, leilao.GetIdLeilao());
+                int rowsAffected = await dbQuery.addBid(parsedValue, (long)userID, leilao.GetIdLeilao(), leilao.GetPrecoCompraAutomaticoLeilao());
             }
             await GetCurrentAuction();
             showPopupSuccess = true;
@@ -191,7 +191,7 @@
         biddedValue = leilao.GetNextMinBid();
         if (userID.HasValue)
         {
-            int rowsAffected = await dbQuery.addBid(leilao.GetNextMinBid(), (long)userID, leilao.GetIdLeilao());
+            int rowsAffected = await dbQuery.addBid(leilao.GetNextMinBid(), (long)userID, leilao.GetIdLeilao(), leilao.GetPrecoCompraAutomaticoLeilao());
         }
         await GetCurrentAuction();
         showPopupSuccess = true;

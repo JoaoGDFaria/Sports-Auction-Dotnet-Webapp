@@ -165,6 +165,7 @@ public class Leilao{
         if(preco == 0) return this.GetPrecoBaseLeilao();
 
         double nextBid = this.GetHighestBid() + this.GetTaxaMinimaIncrementoLeilao();
+        nextBid = Math.Round(nextBid, 2);
         if(nextBid > this.GetPrecoCompraAutomaticoLeilao()){
             nextBid = this.GetPrecoCompraAutomaticoLeilao();
         }

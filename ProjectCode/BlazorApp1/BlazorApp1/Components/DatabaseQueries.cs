@@ -179,7 +179,7 @@ public class DatabaseQueries{
     //PARA A PAGINA AUCTIONS
     public async Task<List<Leilao>> GetAllAuctionsWithoutUser(long idUser){
 
-        string sql = "SELECT * FROM ArtigoLeilao WHERE IdVendedor != @idUser";
+        string sql = "SELECT * FROM ArtigoLeilao WHERE IdVendedor != @idUser AND EstadoLeilao = 'A decorrer'";
 
         var parameters = new {idUser};
         string connectionString = _config.GetConnectionString("DefaultConnection") ?? string.Empty;
@@ -391,7 +391,7 @@ public class DatabaseQueries{
 
 
 
-    public async Task<int> addBid(double valorLicitacao, long nibComprador, int idLeilao){
+    public async Task<int> addBid(double valorLicitacao, long nibComprador, int idLeilao, double maxBid){
 
         DateTime dataLicitacao = DateTime.Now;
         string sql = "INSERT INTO Licitacao (ValorLicitacao, NIBComprador, IdLeilao, DataLicitacao) "+ 
@@ -412,12 +412,29 @@ public class DatabaseQueries{
             await _data.ExecuteQuery<int>(sql, parameters, connectionString);
         } 
 
+
+        if(maxBid == valorLicitacao) updateEstadoLeilao(idLeilao, "Vendido");
+
         return 1;
     }
 
 
 
-    
+    public async void updateEstadoLeilao(int idLeilao, string estadoLeilao){
+
+        DateTime dataLicitacao = DateTime.Now;
+        string sql = "UPDATE ArtigoLeilao SET EstadoLeilao = @estadoLeilao WHERE IdLeilao = @idLeilao";
+
+        var parameters = new {idLeilao, estadoLeilao};
+
+        string connectionString = _config.GetConnectionString("DefaultConnection") ?? string.Empty;
+
+        if (connectionString != null)
+        {
+            await _data.ExecuteQuery<int>(sql, parameters, connectionString);
+        } 
+
+    }
 
 
 
