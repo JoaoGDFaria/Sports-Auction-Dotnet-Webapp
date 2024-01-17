@@ -113,7 +113,7 @@ public class DatabaseQueries{
 
     public async Task<List<Categoria>> GetAllCategories(){
 
-        string sql = "SELECT * FROM Categoria";
+        string sql = "SELECT * FROM Categoria ORDER BY IdCategoria";
 
         var parameters = new {};
         string connectionString = _config.GetConnectionString("DefaultConnection") ?? string.Empty;

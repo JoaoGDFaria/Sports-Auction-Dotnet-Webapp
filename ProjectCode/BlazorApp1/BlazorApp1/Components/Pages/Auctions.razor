@@ -16,10 +16,9 @@
     <div class="cont">
         <div class="types">
             <button type="button" class="btn btn-primary">All</button>
-            <button type="button" class="btn btn-primary">Shirts</button>
-            <button type="button" class="btn btn-primary">Utensils</button>
-            <button type="button" class="btn btn-primary">Balls</button>
-            <button type="button" class="btn btn-primary">Others</button>
+            @foreach (var categoria in categorias){
+                <button type="button" class="btn btn-primary">@categoria.GetNome()</button>
+            }
         </div>
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
             @if (leiloes.Count != 0)
@@ -104,6 +103,7 @@
     [Parameter] public int? page { get; set; }
 
     private List<Leilao> leiloes= new List<Leilao>();
+    private List<Categoria> categorias = new List<Categoria>();
     private Pagination pagination = new Pagination();
 
     protected override async Task OnInitializedAsync()
@@ -132,6 +132,7 @@
         }
 
         leiloes = await dbQuery.GetAllAuctionsWithoutUser(GetCurrentUserID());
+        categorias = await dbQuery.GetAllCategories();
         
         pagination = new Pagination(leiloes.Count);
         bool flag = pagination.SetCurrentPage(GetCurrentPage());
