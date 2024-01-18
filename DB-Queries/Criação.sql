@@ -64,3 +64,12 @@ CREATE TABLE NumeroAutenticacaoValido
 (
 	NumeroAutenticacaoValido INT NOT NULL
 );
+
+
+CREATE TABLE Logs
+(
+	NIB BIGINT PRIMARY KEY,
+	Status BIT NOT NULL,
+
+	FOREIGN KEY (NIB) REFERENCES Utilizador(NIB)
+);
