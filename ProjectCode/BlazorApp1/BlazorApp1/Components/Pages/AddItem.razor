@@ -375,7 +375,7 @@
 
     protected override async Task OnInitializedAsync(){
 
-        BackgroundTimer.SetAllFalse();
+        BackgroundTimer.SetAllFalse(GetCurrentUserID());
         DatabaseQueries dbQuery = new DatabaseQueries(_config, _data);
 
         if(await dbQuery.GetUser(GetCurrentUserID()) == false){

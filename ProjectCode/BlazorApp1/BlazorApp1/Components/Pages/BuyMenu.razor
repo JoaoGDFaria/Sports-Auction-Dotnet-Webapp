@@ -113,12 +113,12 @@
 
     protected override async Task OnInitializedAsync()
     {
-        BackgroundTimer.SetAllFalse();
+        BackgroundTimer.SetAllFalse(GetCurrentUserID());
         startBackgroundTimer();
         await GetCurrentAuction();
     }
 
-    private async Task<Leilao> GetCurrentAuction(){
+    private async Task GetCurrentAuction(){
 
         DatabaseQueries dbQuery = new DatabaseQueries(_config, _data);
         if(await dbQuery.GetUser(GetCurrentUserID()) == false){
@@ -132,7 +132,7 @@
         var pageStr = currentUrl.Split("/").Last();
         int.TryParse(pageStr, out var currentPage);
 
-        var auction = await dbQuery.GetAuctionById(currentPage); //TEST ONLY
+        var auction = await dbQuery.GetAuctionById(currentPage);
         if (auction != null && auction.GetIdVendedor() != GetCurrentUserID() && auction.GetEstadoLeilao() != "Expirado")
         {
             leilao = auction;
@@ -144,11 +144,12 @@
             NavigationManager.NavigateTo("/notfound");
         }
 
-        return leilao;
     }
 
 
     private async void ValidateTransaction(){
+        showPopupError = false;
+        showPopupSuccess = false;
         double parsedValue;
         try{
             parsedValue = Convert.ToDouble(priceInput);
@@ -178,7 +179,6 @@
             showPopupSuccess = true;
             priceInput = "";
             StateHasChanged();
-            showPopupSuccess = false;
         }
         else{
             showPopupError = true;
@@ -188,6 +188,8 @@
     }
 
     private async void PlaceBid(){
+        showPopupSuccess = false;
+        showPopupError = false;
         priceInput = "";
         DatabaseQueries dbQuery = new DatabaseQueries(_config, _data);
         biddedValue = leilao.GetNextMinBid();
@@ -198,7 +200,6 @@
         await GetCurrentAuction();
         showPopupSuccess = true;
         StateHasChanged();
-        showPopupSuccess = false;
 
 
     }
@@ -224,19 +225,21 @@
         NavigationManager.NavigateTo($"{userID}/0/auctions");
     }
 
-
+    #pragma warning disable CS4014
     private void startBackgroundTimer(){
-        BackgroundTimer.SetHasStarted(3);
+        BackgroundTimer.SetHasStarted(3, GetCurrentUserID());
         Console.WriteLine("Starting background timer");
         _ = Task.Run(async () =>
         {
-            while (BackgroundTimer.GetHasStarted(3))
+            while (BackgroundTimer.GetHasStarted(3, GetCurrentUserID()))
             {
-                await Task.Delay(TimeSpan.FromSeconds(1));
+                GetCurrentAuction();
+                await Task.Delay(TimeSpan.FromSeconds(0.1));
                 await InvokeAsync(() => StateHasChanged());
                 Console.WriteLine("State has changed");
             }
         });
     }
+    #pragma warning restore CS4014
 
 }

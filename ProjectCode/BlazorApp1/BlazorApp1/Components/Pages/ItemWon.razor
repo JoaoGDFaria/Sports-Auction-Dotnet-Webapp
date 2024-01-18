@@ -67,7 +67,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        BackgroundTimer.SetAllFalse();
+        BackgroundTimer.SetAllFalse(GetCurrentUserID());
         await GetCurrentAuction();
     }
 

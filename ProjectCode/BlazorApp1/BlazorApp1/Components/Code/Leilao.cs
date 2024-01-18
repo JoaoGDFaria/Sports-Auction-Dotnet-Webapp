@@ -169,6 +169,7 @@ public class Leilao{
         if(diferenca.Days < 0 || diferenca.Hours < 0 || diferenca.Minutes < 0 || diferenca.Seconds < 0){
             res = "Ended";
         }
+        else if(this.GetEstadoLeilao() == "Vendido") res = "Ended";
         return res;
     }
 
@@ -236,7 +237,7 @@ public class Leilao{
     }
 
     public string GetStatusTextSold(int statusCode){
-        if(statusCode==0) return "Won";
+        if(statusCode==0) return "Sold";
         else if(statusCode==1) return "Pending";
         else return "Expired";
     }

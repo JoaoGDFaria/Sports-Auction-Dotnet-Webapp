@@ -109,7 +109,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        BackgroundTimer.SetAllFalse();
+        BackgroundTimer.SetAllFalse(GetCurrentUserID());
         startBackgroundTimer();
         await LoadMyAuctions();
     }
@@ -158,12 +158,13 @@
 
 
     private void startBackgroundTimer(){
-        BackgroundTimer.SetHasStarted(1);
+        BackgroundTimer.SetHasStarted(1, GetCurrentUserID());
         Console.WriteLine("Starting background timer");
         _ = Task.Run(async () =>
         {
-            while (BackgroundTimer.GetHasStarted(1))
+            while (BackgroundTimer.GetHasStarted(1, GetCurrentUserID()))
             {
+                await LoadMyAuctions();
                 await Task.Delay(TimeSpan.FromSeconds(1));
                 await InvokeAsync(() => StateHasChanged());
                 Console.WriteLine("State has changed");
