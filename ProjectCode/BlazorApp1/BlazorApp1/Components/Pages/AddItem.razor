@@ -62,11 +62,11 @@
                     <input type="text" id="typeEmailX" class="form-control form-control-lg" @bind="EstadoArtigo"/>
                 </div>
                 <div class="form-outline form-white mb-4 field">
-                    <p>Date of Use</p>
+                    <p>Date of Use Ex:YYYY/MM/DD</p>
                     <input type="text" id="typeEmailX" class="form-control form-control-lg" @bind="DataUsoArtigo" />
                 </div>
                 <div class="form-outline form-white mb-4 field">
-                    <p>Auction Closing Date(min. 1 day)</p>
+                    <p>Auction Closing Date(min. 1 day) Ex:YYYY/MM/DD</p>
                     <input type="text" id="typeEmailX" class="form-control form-control-lg" @bind="DataFinalizacaoLeilao"/>
                 </div>
                 <div class="form-outline form-white mb-4 field">
@@ -93,6 +93,13 @@
                 {
                     <div class="alert alert-danger" role="alert">
                         The image format is invalid.
+                    </div>
+                }
+
+                @if(sizeError)
+                {
+                    <div class="alert alert-danger" role="alert">
+                        The maximum image size is 5Mb.
                     </div>
                 }
         
@@ -182,6 +189,7 @@
     public bool dateClosingFormatError { get; set; } = false; 
     public bool dataError { get; set; } = false;
     public bool imageError { get; set; } = false;
+    public bool sizeError { get; set; } = false;
 
 
     private string NomeLeilao { get; set; } = string.Empty;
@@ -223,6 +231,7 @@
         dateUseFormatError = false;
         dateClosingFormatError = false;
         dataError = false;
+        sizeError = false;
 
         if(string.IsNullOrEmpty(NomeLeilao) ||
            string.IsNullOrEmpty(PrecoBaseLeilao) || 
@@ -248,7 +257,8 @@
                validateDateUse(DataUsoArtigo) &&
                validateDateClosing(DataFinalizacaoLeilao) && 
                (ImagemArtigo != null) &&
-               validateImageFormat(ImagemArtigo)){
+               validateImageFormat(ImagemArtigo) &&
+               validateImageSize(ImagemArtigo)){
 
                 bool authCheck = await test.isThereAuthNumber(NumeroAutenticacaoArtigo);
                 if(authCheck){
@@ -541,6 +551,30 @@
 
     void RedirectToMenu(){
         NavigationManager.NavigateTo($"{userID}/0/auctions");
+    }
+
+    private bool validateImageSize(IBrowserFile imagem)
+    {
+        if (imagem != null)
+        {
+            long maxSizeBytes = 5 * 1024 * 1024;
+
+            if (imagem.Size <= maxSizeBytes)
+            {
+                sizeError = false;
+                return true;
+            }
+            else
+            {
+                sizeError = true;
+                return false;
+            }
+        }
+        else
+        {
+            sizeError = true;
+            return false;
+        }
     }
 
 }
