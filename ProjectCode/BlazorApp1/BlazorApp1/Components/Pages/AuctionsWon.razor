@@ -97,6 +97,7 @@
 
     protected override async Task OnInitializedAsync()
     {
+        BackgroundTimer.SetAllFalse();
         await LoadAuctionsWon();
     }
 

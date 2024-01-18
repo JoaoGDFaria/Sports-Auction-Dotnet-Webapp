@@ -200,6 +200,7 @@
     private string DataFinalizacaoLeilao { get; set; } = string.Empty;
     private int IdCategoria { get; set; } = -1;
 
+
     private async Task SubmitForm()
     {
 
@@ -355,6 +356,7 @@
 
     protected override async Task OnInitializedAsync(){
 
+        BackgroundTimer.SetAllFalse();
         DatabaseQueries dbQuery = new DatabaseQueries(_config, _data);
 
         if(await dbQuery.GetUser(GetCurrentUserID()) == false){

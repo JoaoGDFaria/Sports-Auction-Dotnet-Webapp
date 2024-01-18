@@ -113,6 +113,8 @@
 
     protected override async Task OnInitializedAsync()
     {
+        BackgroundTimer.SetAllFalse();
+        startBackgroundTimer();
         await GetCurrentAuction();
     }
 
@@ -220,6 +222,21 @@
 
     void RedirectToMenu(){
         NavigationManager.NavigateTo($"{userID}/0/auctions");
+    }
+
+
+    private void startBackgroundTimer(){
+        BackgroundTimer.SetHasStarted(3);
+        Console.WriteLine("Starting background timer");
+        _ = Task.Run(async () =>
+        {
+            while (BackgroundTimer.GetHasStarted(3))
+            {
+                await Task.Delay(TimeSpan.FromSeconds(1));
+                await InvokeAsync(() => StateHasChanged());
+                Console.WriteLine("State has changed");
+            }
+        });
     }
 
 }

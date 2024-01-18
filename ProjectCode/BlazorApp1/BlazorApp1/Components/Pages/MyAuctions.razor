@@ -109,6 +109,8 @@
 
     protected override async Task OnInitializedAsync()
     {
+        BackgroundTimer.SetAllFalse();
+        startBackgroundTimer();
         await LoadMyAuctions();
     }
 
@@ -150,6 +152,23 @@
     void RedirectToAuction(int auctionId)
     {
         NavigationManager.NavigateTo($"{userID}/itemSold/{auctionId}");
+    }
+
+
+
+
+    private void startBackgroundTimer(){
+        BackgroundTimer.SetHasStarted(1);
+        Console.WriteLine("Starting background timer");
+        _ = Task.Run(async () =>
+        {
+            while (BackgroundTimer.GetHasStarted(1))
+            {
+                await Task.Delay(TimeSpan.FromSeconds(1));
+                await InvokeAsync(() => StateHasChanged());
+                Console.WriteLine("State has changed");
+            }
+        });
     }
 
 }
