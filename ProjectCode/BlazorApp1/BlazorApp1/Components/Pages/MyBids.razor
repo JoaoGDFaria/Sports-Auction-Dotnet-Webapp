@@ -44,7 +44,12 @@
                                 @if (leilao.GetHighestBid() == 0){ <p class="bid">None</p> }
                                 else{ <p class="bid">$@leilao.GetHighestBid()</p> }
                                 <p class="timeLeft">Time left:</p>
-                                <p class="itemTime"><small class="text-body-secondary">@leilao.GetTimeLeft()</small></p>
+                                @if(leilao.GetStatusTextWon(leilao.GetStatusByUserWon(GetCurrentUserID())) != "Lost"){
+                                    <p class="itemTime"><small class="text-body-secondary">@leilao.GetTimeLeft()</small></p>
+                                }
+                                else{
+                                    <p class="itemTime"><small class="text-body-secondary">None</small></p>
+                                }
                                 <p class="status">Status:</p>
                                 <p class="text">@leilao.GetStatusTextWon(leilao.GetStatusByUserWon(GetCurrentUserID()))</p>
                             </div>
