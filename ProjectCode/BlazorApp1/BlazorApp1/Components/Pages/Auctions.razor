@@ -47,7 +47,7 @@
                                 <p class="buyNow">Buy Now:</p>
                                 <p class="buyNowPrice">$@leilao.GetPrecoCompraAutomaticoLeilao()</p>
                                 <p class="timeLeft">Time left:</p>
-                                <p class="itemTime"><small class="text-body-secondary">@leilao.GetTimeLeft()</small></p>
+                                <p class="itemTime"><small class="text-body-secondary">@GetTimeLeftOrEnded(leilao)</small></p>
                             </div>
                                 
                         </div>
@@ -179,6 +179,21 @@
                 Console.WriteLine("State has changed");
             }
         });
+    }
+
+
+    private string GetTimeLeftOrEnded(Leilao leilao){
+        DatabaseQueries dbQuery = new DatabaseQueries(_config, _data);
+        string tempo = leilao.GetTimeLeft();
+        if(tempo == "Ended"){
+            if(leilao.GetHighestBid() == 0){
+                dbQuery.updateEstadoLeilao(leilao.GetIdLeilao(), "Expirado");
+            }
+            else{
+                dbQuery.updateEstadoLeilao(leilao.GetIdLeilao(), "Vendido");
+            }
+        }
+        return tempo;
     }
 
 

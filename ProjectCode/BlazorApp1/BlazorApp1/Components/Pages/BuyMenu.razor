@@ -133,7 +133,7 @@
         int.TryParse(pageStr, out var currentPage);
 
         var auction = await dbQuery.GetAuctionById(currentPage); //TEST ONLY
-        if (auction != null)
+        if (auction != null && auction.GetIdVendedor() != GetCurrentUserID() && auction.GetEstadoLeilao() != "Expirado")
         {
             leilao = auction;
 
