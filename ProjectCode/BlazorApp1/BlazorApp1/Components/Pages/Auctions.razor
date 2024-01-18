@@ -86,7 +86,7 @@
             </nav>
         }
 
-        <a href="./login"  target="_top"><button type="button" class="btn btn-warning">LOG OUT</button></a>
+        <a   target="_top"><button type="button" class="btn btn-warning" @onclick =RedirectToLogin>LOG OUT</button></a>
     </div>
 
     <div class="container">
@@ -164,6 +164,11 @@
 
     void RedirectToCategory(int id){
         NavigationManager.NavigateTo($"{userID}/{id}/auctions");
+    }
+
+    void RedirectToLogin(){
+        BackgroundTimer.SetAllFalse(GetCurrentUserID());
+        NavigationManager.NavigateTo("login");
     }
 
 
