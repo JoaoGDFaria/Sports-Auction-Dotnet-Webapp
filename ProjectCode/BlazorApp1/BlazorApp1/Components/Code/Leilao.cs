@@ -160,8 +160,16 @@ public class Leilao{
     }
 
     public string GetTimeLeft(){
-        TimeSpan timeLeft = this.dataFinalizacaoLeilao-DateTime.Now;
-        return $"Days: {timeLeft.Days}, Hours: {timeLeft.Hours}, Minutes: {timeLeft.Minutes}";
+        string zonaHorariaPortugalId = "GMT Standard Time";
+        TimeZoneInfo zonaHorariaPortugal = TimeZoneInfo.FindSystemTimeZoneById(zonaHorariaPortugalId);
+        DateTime agoraPortugal = TimeZoneInfo.ConvertTime(DateTime.UtcNow, zonaHorariaPortugal);
+        TimeSpan diferenca = this.GetDataFinalizacaoLeilao() -  agoraPortugal;
+        int totaldias = diferenca.Days;
+        string res = totaldias.ToString() + " days, " + diferenca.Hours.ToString() + " hours, " + diferenca.Minutes.ToString() + " minutes, " + diferenca.Seconds.ToString() + " seconds";
+        if(diferenca.Days < 0 || diferenca.Hours < 0 || diferenca.Minutes < 0 || diferenca.Seconds < 0){
+            res = "Ended";
+        }
+        return res;
     }
 
     public double GetNextMinBid(){
