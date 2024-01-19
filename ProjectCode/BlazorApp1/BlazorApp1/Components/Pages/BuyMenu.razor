@@ -228,7 +228,6 @@
     #pragma warning disable CS4014
     private void startBackgroundTimer(){
         BackgroundTimer.SetHasStarted(3, GetCurrentUserID());
-        Console.WriteLine("Starting background timer");
         _ = Task.Run(async () =>
         {
             while (BackgroundTimer.GetHasStarted(3, GetCurrentUserID()))
@@ -236,7 +235,6 @@
                 GetCurrentAuction();
                 await Task.Delay(TimeSpan.FromSeconds(0.1));
                 await InvokeAsync(() => StateHasChanged());
-                Console.WriteLine("State has changed");
             }
         });
     }

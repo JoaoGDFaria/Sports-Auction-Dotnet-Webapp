@@ -238,7 +238,6 @@
     private bool validateNib(string nib)
     {
         bool valid = long.TryParse(nib, out _);
-        Console.WriteLine(nib.Length);
         if (!valid || nib.Length != 12)
         {
             nibFormatError = true;

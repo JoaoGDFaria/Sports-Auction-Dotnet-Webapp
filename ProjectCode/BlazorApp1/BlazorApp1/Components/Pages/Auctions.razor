@@ -177,7 +177,6 @@
     private void startBackgroundTimer(){
         BackgroundTimer.SetAllFalse(GetCurrentUserID());
         BackgroundTimer.SetHasStarted(0,GetCurrentUserID());
-        Console.WriteLine("Starting background timer");
         _ = Task.Run(async () =>
         {
             while (BackgroundTimer.GetHasStarted(0,GetCurrentUserID()))
@@ -185,7 +184,6 @@
                 await LoadAuctions();
                 await Task.Delay(TimeSpan.FromSeconds(1));
                 await InvokeAsync(() => StateHasChanged());
-                Console.WriteLine("State has changed");
             }
         });
     }

@@ -330,11 +330,6 @@
     private void HandleFileUpload(InputFileChangeEventArgs e)
     {
         ImagemArtigo = e.File;
-
-        if (ImagemArtigo != null)
-        {
-            Console.WriteLine("OLAAAA");
-        }
     }
 
 
@@ -353,12 +348,7 @@
             using (var stream = new FileStream(caminhoDestino, FileMode.Create))
             {
                 await file.OpenReadStream().CopyToAsync(stream);
-                Console.WriteLine("Image guardada com sucesso");
             }
-        }
-        else
-        {
-            Console.WriteLine("Error: Directory path is null or empty.");
         }
     }
     catch (Exception ex)
