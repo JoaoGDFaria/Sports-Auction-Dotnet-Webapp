@@ -5,6 +5,7 @@
 @using System.Drawing
 @inject NavigationManager NavigationManager
 @inject Microsoft.AspNetCore.Hosting.IWebHostEnvironment _hostingEnvironment;
+@inject Microsoft.AspNetCore.Hosting.IWebHostEnvironment WebHostEnvironment
 
 
 @using DataLibrary
@@ -337,8 +338,8 @@
 {
     try
     {
-        var caminhoRoot = _hostingEnvironment.ContentRootPath;
-        var caminhoDestino = Path.Combine(caminhoRoot, "C:/Users/hugoa/Desktop/ProjetoLI4/LI4/ProjectCode/BlazorApp1/BlazorApp1/wwwroot/images", nomeArquivo);
+        string webRootPath = WebHostEnvironment.WebRootPath;
+        var caminhoDestino = Path.Combine(webRootPath, "images", nomeArquivo);
 
         var directoryPath = Path.GetDirectoryName(caminhoDestino);
         if (!string.IsNullOrEmpty(directoryPath))
