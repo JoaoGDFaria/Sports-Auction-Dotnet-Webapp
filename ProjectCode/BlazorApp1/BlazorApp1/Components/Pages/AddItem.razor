@@ -253,7 +253,8 @@
            string.IsNullOrEmpty(DescricaoArtigo) ||
            string.IsNullOrEmpty(EstadoArtigo) ||
            string.IsNullOrEmpty(DataUsoArtigo) ||
-           string.IsNullOrEmpty(DataFinalizacaoLeilao)){
+           string.IsNullOrEmpty(DataFinalizacaoLeilao) ||
+           ImagemArtigo == null){
 
             nullError = true;
             return;
