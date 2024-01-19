@@ -163,7 +163,7 @@
         {
             while (BackgroundTimer.GetHasStarted(2, GetCurrentUserID()))
             {
-        
+                await LoadMyBids();
                 await Task.Delay(TimeSpan.FromSeconds(1));
                 await InvokeAsync(() => StateHasChanged());
             }
