@@ -378,7 +378,7 @@
         BackgroundTimer.SetAllFalse(GetCurrentUserID());
         DatabaseQueries dbQuery = new DatabaseQueries(_config, _data);
 
-        if(await dbQuery.GetUser(GetCurrentUserID()) == false){
+        if(await dbQuery.GetUser(GetCurrentUserID()) == false || await dbQuery.GetAccountStatus(GetCurrentUserID()) == false){
             NavigationManager.NavigateTo("/notfound");
         }
     }

@@ -7,6 +7,7 @@ public class Utilizador{
     private long numeroTelemovel;
     private string palavraPasse;
     private string morada;
+    private bool accountStatus;
 
     public Utilizador(){
         this.nib = 0;
@@ -16,9 +17,10 @@ public class Utilizador{
         this.numeroTelemovel = 0;
         this.palavraPasse = "";
         this.morada = "";
+        this.accountStatus = false;
     }
 
-    public Utilizador(long nib, string primeiroNome, string ultimoNome, string email, long numeroTelemovel, string palavraPasse, string morada){
+    public Utilizador(long nib, string primeiroNome, string ultimoNome, string email, long numeroTelemovel, string palavraPasse, string morada, bool accountStatus){
         this.nib = nib;
         this.primeiroNome = primeiroNome;
         this.ultimoNome = ultimoNome;
@@ -26,6 +28,7 @@ public class Utilizador{
         this.numeroTelemovel = numeroTelemovel;
         this.palavraPasse = palavraPasse;
         this.morada = morada;
+        this.accountStatus = accountStatus;
     }
 
     public long GetNIB(){
@@ -56,8 +59,12 @@ public class Utilizador{
         return this.morada;
     }
 
+    public bool GetAccountStatus(){
+        return this.accountStatus;
+    }
+
     public override string ToString(){
-        return $"NIB: {GetNIB()}, PrimeiroNome: {GetPrimeiroNome()}, UltimoNome: {GetUltimoNome()}, Email: {GetEmail()}, NumeroTelemovel: {GetNumeroTelemovel()}, PalavraPasse: {GetPalavraPasse()}, Morada: {GetMorada()}";
+        return $"NIB: {GetNIB()}, PrimeiroNome: {GetPrimeiroNome()}, UltimoNome: {GetUltimoNome()}, Email: {GetEmail()}, NumeroTelemovel: {GetNumeroTelemovel()}, PalavraPasse: {GetPalavraPasse()}, Morada: {GetMorada()}, AccountStatus: {GetAccountStatus()}";
     }
 
 

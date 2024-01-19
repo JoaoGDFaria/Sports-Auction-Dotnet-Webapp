@@ -58,6 +58,36 @@ public class DatabaseQueries{
         return nome;
     }
 
+    public async Task<bool> GetAccountStatus(long idUser){
+
+        string sql = "SELECT Status FROM Utilizador WHERE NIB = @idUser";
+
+        var parameters = new { idUser };
+        string connectionString = _config.GetConnectionString("DefaultConnection") ?? string.Empty;
+
+        byte available = 1;
+        if (connectionString != null){
+            available = await _data.ExecuteQuery<byte>(sql, parameters, connectionString);
+        }
+        return available==0;
+    }
+
+    public async void updateAccountStatus(long idUser, byte estado){
+
+        DateTime dataLicitacao = DateTime.Now;
+        string sql = "UPDATE Utilizador SET Status = @estado WHERE NIB = @idUser";
+
+        var parameters = new {estado, idUser};
+
+        string connectionString = _config.GetConnectionString("DefaultConnection") ?? string.Empty;
+
+        if (connectionString != null)
+        {
+            await _data.ExecuteQuery<int>(sql, parameters, connectionString);
+        } 
+
+    }
+
 
     public async Task<string> GetNameUser(long idUser){
 
@@ -294,8 +324,9 @@ public class DatabaseQueries{
     
     public async Task<int> RegisterUser(string firstName, string lastName, string email, string password, string address, string phoneNumber, string bin){
 
-        string sql = "INSERT INTO Utilizador (PrimeiroNome, UltimoNome, Email, PalavraPasse, Morada, NumeroTelemovel, NIB) "+ 
-                "VALUES (@PrimeiroNome, @UltimoNome, @Email, @PalavraPasse, @Morada, @NumeroTelemovel, @NIB)";
+        byte status = 1;
+        string sql = "INSERT INTO Utilizador (PrimeiroNome, UltimoNome, Email, PalavraPasse, Morada, NumeroTelemovel, NIB, Status) "+ 
+                "VALUES (@PrimeiroNome, @UltimoNome, @Email, @PalavraPasse, @Morada, @NumeroTelemovel, @NIB, @Status)";
 
         var parameters = new
         {
@@ -305,7 +336,8 @@ public class DatabaseQueries{
             @PalavraPasse = password,
             @Morada = address,
             @NumeroTelemovel = phoneNumber,
-            @NIB = bin
+            @NIB = bin,
+            @Status = status
         };
 
         string connectionString = _config.GetConnectionString("DefaultConnection") ?? string.Empty;

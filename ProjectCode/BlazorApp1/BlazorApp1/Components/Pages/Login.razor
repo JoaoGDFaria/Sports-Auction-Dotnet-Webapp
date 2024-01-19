@@ -69,6 +69,7 @@
         bool isValid = idCliente!=0;
 
         if(isValid){
+            dbQuery.updateAccountStatus(idCliente, 0);
             NavigationManager.NavigateTo($"{idCliente}/0/auctions");
         }
 
