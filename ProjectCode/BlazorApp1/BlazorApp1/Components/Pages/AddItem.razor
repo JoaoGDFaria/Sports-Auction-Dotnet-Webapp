@@ -100,7 +100,7 @@
                 @if(sizeError)
                 {
                     <div class="alert alert-danger" role="alert">
-                        The maximum image size is 0.5Mb.
+                        The maximum image size is 500Kb.
                     </div>
                 }
         
@@ -569,7 +569,7 @@
     {
         if (imagem != null)
         {
-            long maxSizeBytes = 5 * 1024;
+            long maxSizeBytes = 500 * 1024;
 
             if (imagem.Size <= maxSizeBytes)
             {
