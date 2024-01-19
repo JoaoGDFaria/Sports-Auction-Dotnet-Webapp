@@ -18,6 +18,7 @@ CREATE TABLE Utilizador
 	NumeroTelemovel BIGINT NOT NULL UNIQUE,
 	PalavraPasse VARCHAR(75) NOT NULL,
 	Morada VARCHAR(75) NOT NULL,
+	Status BIT NOT NULL,
 );
 
 
@@ -66,10 +67,3 @@ CREATE TABLE NumeroAutenticacaoValido
 );
 
 
-CREATE TABLE Logs
-(
-	NIB BIGINT PRIMARY KEY,
-	Status BIT NOT NULL,
-
-	FOREIGN KEY (NIB) REFERENCES Utilizador(NIB)
-);
