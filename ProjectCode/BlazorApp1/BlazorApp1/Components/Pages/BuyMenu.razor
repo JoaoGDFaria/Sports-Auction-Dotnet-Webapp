@@ -233,7 +233,7 @@
             while (BackgroundTimer.GetHasStarted(3, GetCurrentUserID()))
             {
                 GetCurrentAuction();
-                await Task.Delay(TimeSpan.FromSeconds(0.1));
+                await Task.Delay(TimeSpan.FromSeconds(0.5));
                 await InvokeAsync(() => StateHasChanged());
             }
         });
