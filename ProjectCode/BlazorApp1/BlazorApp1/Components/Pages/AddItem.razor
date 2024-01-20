@@ -403,9 +403,9 @@
     {
         DatabaseQueries dbQuery = new DatabaseQueries(_config, _data);
 
-        bool cont = await dbQuery.GetAuthenticationNumber(authNumber); 
-        if (cont == true && authNumber.Length == 6)  
+        if (authNumber.Length == 6)  
         {
+            bool cont = await dbQuery.GetAuthenticationNumber(authNumber); 
             if (cont == false)
             {
                 authFormatError = true;
