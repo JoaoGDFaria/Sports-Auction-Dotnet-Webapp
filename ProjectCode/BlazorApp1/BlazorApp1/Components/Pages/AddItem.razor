@@ -495,11 +495,11 @@
         bool isValid = DateTime.TryParseExact(date, "yyyy/MM/dd", null, System.Globalization.DateTimeStyles.None, out tempDate);
     
         if(isValid && tempDate > DateTime.Now.AddDays(1)){
-            dateUseFormatError = false;
+            dateClosingFormatError = false;
             return true;
         }
         else{
-            dateUseFormatError = true;
+            dateClosingFormatError = true;
             return false;
         }
     }
