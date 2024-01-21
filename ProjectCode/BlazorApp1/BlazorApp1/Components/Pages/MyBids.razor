@@ -131,9 +131,6 @@
         pagination = new Pagination(leiloes.Count);
         bool flag = pagination.SetCurrentPage(GetCurrentPage());
 
-        if (!flag){
-            NavigationManager.NavigateTo("/notfound");
-        }
     }
 
     private int GetCurrentPage(){
